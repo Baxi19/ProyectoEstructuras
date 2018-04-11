@@ -1,0 +1,16 @@
+Welcome to the Domino's game!
+
+
+Instructions to play this game:
+
+1: Go to Neatbeans and Open this proyect.
+
+2: In Neatbeans you have to open the Source Packages.
+
+3: Right click in Libraries Folder.
+
+4: Click on Add JAR / Folder
+
+5: Select 3 files in the  jsonFilesLibraries
+
+4: Run the game and enjoy it..!
