@@ -1,3 +1,6 @@
+
+import javax.swing.ImageIcon;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -125,6 +128,45 @@ public class ListPlayersGaming {
         }   
     }
     
+    
+    
+    public void setFirstPlayer(){
+        // First search the highest token
+        Player aux = start2;                        
+        ImageIcon image = null;
+        Token highestToken = new Token(0,0,0, image);
+        int i = 0;
+        while(aux.sig != start2){
+            while(i <= 6){
+                if(aux.tokens.get(i).id > highestToken.id){
+                    highestToken = aux.tokens.get(i); 
+                }
+                i++;
+            }
+            i = 0;
+            aux = aux.sig;
+        }
+        i = 0;
+        while (i <= 6) {                       //Toma en cuenta el ultimo nodo
+            if (aux.tokens.get(i).id > highestToken.id) {
+                highestToken = aux.tokens.get(i);
+            }
+            i++;
+        }
+        //--------------search the player with the highest token--------------//
+        aux = start2;
+        while(aux.sig != start2){
+            if(aux.getTokens().contains(highestToken)){
+                this.playerGaming = aux;
+                break;
+            }
+            aux = aux.sig;
+        }
+        if(aux.getTokens().contains(highestToken)){
+                this.playerGaming = aux;
+        }  
     }
+}
+
     
 

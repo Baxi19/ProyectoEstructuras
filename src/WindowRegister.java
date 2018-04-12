@@ -118,6 +118,9 @@ public class WindowRegister extends javax.swing.JFrame {
         if(textFieldName.getText().isEmpty() | textFieldPassword.getText().isEmpty() | textFieldConfirmPassword.getText().isEmpty()){
             JOptionPane.showMessageDialog(rootPane, "Field empty.");
         }
+        else if(PlayersList.getInstance().searchPlayer(textFieldName.getText()) != null){
+            JOptionPane.showMessageDialog(rootPane, "That nickname already exists, try with: " + textFieldName.getText() + 1 );   
+        }
         else{
             if(textFieldPassword.getText().equals(textFieldConfirmPassword.getText())){
                 name = textFieldName.getText();

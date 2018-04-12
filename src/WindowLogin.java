@@ -135,7 +135,7 @@ public class WindowLogin extends javax.swing.JFrame {
         else if(userTextField.getText().equals("adminfabian") & passwordTextField.getText().equals("12345")){
             WindowAdmin wAdmin = new WindowAdmin();
             wAdmin.setVisible(true);
-            this.dispose();
+            
         }         
         else{
             Player xplayer = PlayersList.getInstance().searchPlayer(userTextField.getText());
@@ -150,7 +150,7 @@ public class WindowLogin extends javax.swing.JFrame {
                     Player datos;                                                             // local variable
                     datos = PlayersList.getInstance().searchPlayer(userTextField.getText());  //search the objet
                     ListPlayersGaming.getInstance().setActualUser(datos);                     //Set the actual user to the global variable
-                    this.dispose();                                                           //destroy this window
+                    this.setVisible(false);                                                           //destroy this window
                 }
                 else{
                     JOptionPane.showMessageDialog(rootPane, "Wrong password");

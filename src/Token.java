@@ -1,3 +1,7 @@
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,13 +15,25 @@
  */
 public class Token {
     int value1, value2, id;
-    
+    ImageIcon image;
 
-    public Token(int value1, int value2, int id) {
+    public Token(int value1, int value2, int id, ImageIcon image) {
         this.value1 = value1;
         this.value2 = value2;
         this.id = id;
+        this.image = image;
     }
+
+    public ImageIcon getImage() {
+        return image;
+    }
+
+    public void setImage(ImageIcon image) {
+        this.image = image;
+    }
+
+    
+    
 
     public int getValue1() {
         return value1;

@@ -2,7 +2,9 @@
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.TransferHandler;
 
 /*
@@ -20,34 +22,66 @@ public class WindowStartGame extends javax.swing.JFrame {
     int[] tokensRandom = new int[28];
     ArrayList<Integer> tokensDelivered = new ArrayList<Integer>(28);
     public static ArrayList<Token> tokensList = new ArrayList<Token>(28);
-    Token t1 = new Token(0, 0, 1);
-    Token t2 = new Token(0, 1, 2);
-    Token t3 = new Token(0, 2, 3);
-    Token t4 = new Token(0, 3, 4);
-    Token t5 = new Token(0, 4, 5);
-    Token t6 = new Token(0, 5, 6);
-    Token t7 = new Token(0, 6, 7);
-    Token t8 = new Token(1, 1, 8);
-    Token t9 = new Token(1, 2, 9);
-    Token t10 = new Token(1, 3, 10);
-    Token t11 = new Token(1, 4, 11);
-    Token t12 = new Token(1, 5, 12);
-    Token t13 = new Token(1, 6, 13);
-    Token t14 = new Token(2, 2, 14);
-    Token t15 = new Token(2, 3, 15);
-    Token t16 = new Token(2, 4, 16);
-    Token t17 = new Token(2, 5, 17);
-    Token t18 = new Token(2, 6, 18);
-    Token t19 = new Token(3, 3, 19);
-    Token t20 = new Token(3, 4, 20);
-    Token t21 = new Token(3, 5, 21);
-    Token t22 = new Token(3, 6, 22);
-    Token t23 = new Token(4, 4, 23);
-    Token t24 = new Token(4, 5, 24);
-    Token t25 = new Token(4, 6, 25);
-    Token t26 = new Token(5, 5, 26);
-    Token t27 = new Token(5, 6, 27);
-    Token t28 = new Token(6, 6, 28);
+    
+    /*Variables to use for token image*/
+    ImageIcon  I1 = new ImageIcon("/ImagesDominoes/0_0.png");
+    ImageIcon I2 = new ImageIcon("/ImagesDominoes/0_1.png");
+    ImageIcon I3 = new ImageIcon("/ImagesDominoes/0_2.png");
+    ImageIcon I4 = new ImageIcon("/ImagesDominoes/0_3.png");
+    ImageIcon I5 = new ImageIcon("/ImagesDominoes/0_4.png");
+    ImageIcon I6 = new ImageIcon("/ImagesDominoes/0_5.png");
+    ImageIcon I7 = new ImageIcon("/ImagesDominoes/0_6.png");
+    ImageIcon I8 = new ImageIcon("/ImagesDominoes/1_1.png");
+    ImageIcon I9 = new ImageIcon("/ImagesDominoes/1_2.png");
+    ImageIcon I10 = new ImageIcon("/ImagesDominoes/1_3.png");
+    ImageIcon I11 = new ImageIcon("/ImagesDominoes/1_4.png");
+    ImageIcon I12 = new ImageIcon("/ImagesDominoes/1_5.png");
+    ImageIcon I13 = new ImageIcon("/ImagesDominoes/1_6.png");
+    ImageIcon I14 = new ImageIcon("/ImagesDominoes/2_2.png");
+    ImageIcon I15 = new ImageIcon("/ImagesDominoes/2_3.png");
+    ImageIcon I16 = new ImageIcon("/ImagesDominoes/2_4.png");
+    ImageIcon I17 = new ImageIcon("/ImagesDominoes/2_5.png");
+    ImageIcon I18 = new ImageIcon("/ImagesDominoes/2_6.png");
+    ImageIcon I19 = new ImageIcon("/ImagesDominoes/3_3.png");
+    ImageIcon I20 = new ImageIcon("/ImagesDominoes/3_4.png");
+    ImageIcon I21 = new ImageIcon("/ImagesDominoes/3_5.png");
+    ImageIcon I22 = new ImageIcon("/ImagesDominoes/3_6.png");
+    ImageIcon I23 = new ImageIcon("/ImagesDominoes/4_4.png");
+    ImageIcon I24 = new ImageIcon("/ImagesDominoes/4_5.png");
+    ImageIcon I25 = new ImageIcon("/ImagesDominoes/4_6.png");
+    ImageIcon I26 = new ImageIcon("/ImagesDominoes/5_5.png");
+    ImageIcon I27 = new ImageIcon("/ImagesDominoes/5_6.png");
+    ImageIcon I28 = new ImageIcon("/ImagesDominoes/6_6.png");
+    
+    
+    Token t1 = new Token(0, 0, 1, I1);
+    Token t2 = new Token(0, 1, 2, I2);
+    Token t3 = new Token(0, 2, 3, I3);
+    Token t4 = new Token(0, 3, 4, I4);
+    Token t5 = new Token(0, 4, 5, I5);
+    Token t6 = new Token(0, 5, 6, I6);
+    Token t7 = new Token(0, 6, 7, I7);
+    Token t8 = new Token(1, 1, 8, I8);
+    Token t9 = new Token(1, 2, 9, I9);
+    Token t10 = new Token(1, 3, 10, I10);
+    Token t11 = new Token(1, 4, 11, I11);
+    Token t12 = new Token(1, 5, 12, I12);
+    Token t13 = new Token(1, 6, 13, I13);
+    Token t14 = new Token(2, 2, 14, I14);
+    Token t15 = new Token(2, 3, 15, I15);
+    Token t16 = new Token(2, 4, 16, I16);
+    Token t17 = new Token(2, 5, 17, I17);
+    Token t18 = new Token(2, 6, 18, I18);
+    Token t19 = new Token(3, 3, 19, I19);
+    Token t20 = new Token(3, 4, 20, I20);
+    Token t21 = new Token(3, 5, 21, I21);
+    Token t22 = new Token(3, 6, 22, I22);
+    Token t23 = new Token(4, 4, 23, I23);
+    Token t24 = new Token(4, 5, 24, I24);
+    Token t25 = new Token(4, 6, 25, I25);
+    Token t26 = new Token(5, 5, 26, I26);
+    Token t27 = new Token(5, 6, 27, I27);
+    Token t28 = new Token(6, 6, 28, I28);
     
     /**
      * Creates new form LoadGame
@@ -58,9 +92,8 @@ public class WindowStartGame extends javax.swing.JFrame {
         //String gamer = ListPlayersGaming.getInstance().actualUser.getName(); //it get the actual user logged
         
         //******* miss method to distribute the tokens and looking for the first gamer
+
         
-        actualPlayerName.setText(ListPlayersGaming.getInstance().player1.name);// change the player name in the game windows
-        ListPlayersGaming.getInstance().playerGaming = ListPlayersGaming.getInstance().start2;
         // mouse events
         MouseListener ml;
         ml = new MouseListener() {              //Listener                                
@@ -90,30 +123,30 @@ public class WindowStartGame extends javax.swing.JFrame {
         
         
         //Add mouse click action to trasfer
-        token0_0.addMouseListener(ml);
-        token0_1.addMouseListener(ml);
-        token0_2.addMouseListener(ml);
-        token0_3.addMouseListener(ml);
-        token0_4.addMouseListener(ml);
-        token0_5.addMouseListener(ml);
-        token0_6.addMouseListener(ml);
-        token0_7.addMouseListener(ml);
-        token0_8.addMouseListener(ml);
-        token0_9.addMouseListener(ml);
+        position1.addMouseListener(ml);
+        position2.addMouseListener(ml);
+        position3.addMouseListener(ml);
+        position4.addMouseListener(ml);
+        position5.addMouseListener(ml);
+        position6.addMouseListener(ml);
+        position7.addMouseListener(ml);
+        position8.addMouseListener(ml);
+        position9.addMouseListener(ml);
+        position10.addMouseListener(ml);
 
         // set new images
         //This instruction gets the icon("Image") from the tokens and them 
         //it is used to remplace in the position icon on the matriz's game
-        token0_1.setTransferHandler(new TransferHandler("icon"));
-        token0_2.setTransferHandler(new TransferHandler("icon"));
-        token0_0.setTransferHandler(new TransferHandler("icon"));
-        token0_3.setTransferHandler(new TransferHandler("icon"));
-        token0_4.setTransferHandler(new TransferHandler("icon"));
-        token0_5.setTransferHandler(new TransferHandler("icon"));
-        token0_6.setTransferHandler(new TransferHandler("icon"));
-        token0_7.setTransferHandler(new TransferHandler("icon"));
-        token0_8.setTransferHandler(new TransferHandler("icon"));
-        token0_9.setTransferHandler(new TransferHandler("icon"));
+        position2.setTransferHandler(new TransferHandler("icon"));
+        position3.setTransferHandler(new TransferHandler("icon"));
+        position1.setTransferHandler(new TransferHandler("icon"));
+        position4.setTransferHandler(new TransferHandler("icon"));
+        position5.setTransferHandler(new TransferHandler("icon"));
+        position6.setTransferHandler(new TransferHandler("icon"));
+        position7.setTransferHandler(new TransferHandler("icon"));
+        position8.setTransferHandler(new TransferHandler("icon"));
+        position9.setTransferHandler(new TransferHandler("icon"));
+        position10.setTransferHandler(new TransferHandler("icon"));
 
         //set new possibles positions
         // it instruction get ready the position in the matriz 
@@ -203,6 +236,9 @@ public class WindowStartGame extends javax.swing.JFrame {
         printTokens();
         makeRandomList();
         distributeTokens();
+        callSearchHighestToken();
+        loopToPrintImages();
+        actualPlayerName.setText(ListPlayersGaming.getInstance().playerGaming.name);// change the player name in the game windows
     }
 
     /**
@@ -320,16 +356,16 @@ public class WindowStartGame extends javax.swing.JFrame {
         celda42 = new javax.swing.JLabel();
         celda49 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        token0_0 = new javax.swing.JLabel();
-        token0_1 = new javax.swing.JLabel();
-        token0_2 = new javax.swing.JLabel();
-        token0_3 = new javax.swing.JLabel();
-        token0_4 = new javax.swing.JLabel();
-        token0_5 = new javax.swing.JLabel();
-        token0_6 = new javax.swing.JLabel();
-        token0_7 = new javax.swing.JLabel();
-        token0_8 = new javax.swing.JLabel();
-        token0_9 = new javax.swing.JLabel();
+        position1 = new javax.swing.JLabel();
+        position2 = new javax.swing.JLabel();
+        position3 = new javax.swing.JLabel();
+        position4 = new javax.swing.JLabel();
+        position5 = new javax.swing.JLabel();
+        position6 = new javax.swing.JLabel();
+        position7 = new javax.swing.JLabel();
+        position8 = new javax.swing.JLabel();
+        position9 = new javax.swing.JLabel();
+        position10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -663,36 +699,36 @@ public class WindowStartGame extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(8, 136, 12));
         jPanel3.setLayout(new java.awt.GridLayout(1, 0));
 
-        token0_0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/token0_0.png"))); // NOI18N
-        token0_0.setName("token0_0"); // NOI18N
-        jPanel3.add(token0_0);
+        position1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/token0_0.png"))); // NOI18N
+        position1.setName("position1"); // NOI18N
+        jPanel3.add(position1);
 
-        token0_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/token0_1.png"))); // NOI18N
-        jPanel3.add(token0_1);
+        position2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/token0_1.png"))); // NOI18N
+        jPanel3.add(position2);
 
-        token0_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/token0_2.png"))); // NOI18N
-        jPanel3.add(token0_2);
+        position3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/token0_2.png"))); // NOI18N
+        jPanel3.add(position3);
 
-        token0_3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/token0_0.png"))); // NOI18N
-        jPanel3.add(token0_3);
+        position4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/token0_0.png"))); // NOI18N
+        jPanel3.add(position4);
 
-        token0_4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/token0_2.png"))); // NOI18N
-        jPanel3.add(token0_4);
+        position5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/token0_2.png"))); // NOI18N
+        jPanel3.add(position5);
 
-        token0_5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/token0_1.png"))); // NOI18N
-        jPanel3.add(token0_5);
+        position6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/token0_1.png"))); // NOI18N
+        jPanel3.add(position6);
 
-        token0_6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/token0_2.png"))); // NOI18N
-        jPanel3.add(token0_6);
+        position7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/token0_2.png"))); // NOI18N
+        jPanel3.add(position7);
 
-        token0_7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/token0_1.png"))); // NOI18N
-        jPanel3.add(token0_7);
+        position8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/token0_1.png"))); // NOI18N
+        jPanel3.add(position8);
 
-        token0_8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/token0_2.png"))); // NOI18N
-        jPanel3.add(token0_8);
+        position9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/token0_2.png"))); // NOI18N
+        jPanel3.add(position9);
 
-        token0_9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/token0_1.png"))); // NOI18N
-        jPanel3.add(token0_9);
+        position10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/token0_1.png"))); // NOI18N
+        jPanel3.add(position10);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -851,18 +887,18 @@ public class WindowStartGame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JLabel position1;
+    private javax.swing.JLabel position10;
+    private javax.swing.JLabel position2;
+    private javax.swing.JLabel position3;
+    private javax.swing.JLabel position4;
+    private javax.swing.JLabel position5;
+    private javax.swing.JLabel position6;
+    private javax.swing.JLabel position7;
+    private javax.swing.JLabel position8;
+    private javax.swing.JLabel position9;
     private javax.swing.JLabel saveImage;
     private javax.swing.JLabel skipImage;
-    private javax.swing.JLabel token0_0;
-    private javax.swing.JLabel token0_1;
-    private javax.swing.JLabel token0_2;
-    private javax.swing.JLabel token0_3;
-    private javax.swing.JLabel token0_4;
-    private javax.swing.JLabel token0_5;
-    private javax.swing.JLabel token0_6;
-    private javax.swing.JLabel token0_7;
-    private javax.swing.JLabel token0_8;
-    private javax.swing.JLabel token0_9;
     private javax.swing.JLabel trapImage;
     // End of variables declaration//GEN-END:variables
 
@@ -898,42 +934,38 @@ public class WindowStartGame extends javax.swing.JFrame {
     }
     
     public void makeRandomList(){
-        //variables
-        int i = 0, cantidad = 28, rango = 28;
-        //arreglos con tamaño = 7
-        int arreglo[] = new int[cantidad];
-        // se llama al random a la primera posicion
-        arreglo[i] = (int) (Math.random()*rango+1);
-        //agregamos el primer valor a los comparaciones
-        tokensRandom[i] = arreglo[i];
-        //Ciclo para comparacion en la segunda posicion del array en adelante
-        for (i = 1; i < cantidad; i++) {
-            // se ingresa un valor a la siguiente posicion
-            arreglo[i] = (int) (Math.random() * rango+1);
-            //agregamos el valor a la siguiente posicion
-            tokensRandom[i] = arreglo[i];
-            // recorremos la lista nuevamente
-            for (int j = 0; j < i; j++) {
-                // si la variable existe
-                if (arreglo[i] == tokensRandom[j]) {
-                    // nos colocamos en la posicion anterior y volvemos al ciclo
-                    i--;
+        //vars
+        int position = 0, size = 28, range = 28;
+        //array size = 7
+        int[] array = new int[size];
+        // call random to the first position
+        array[position] = (int) (Math.random()*range+1);
+        //add the first 
+        tokensRandom[position] = array[position];
+        // loop to compare from the second position to the final
+        for (position = 1; position < size; position++) {
+            // add to the next position
+            array[position] = (int) (Math.random() * range+1);
+            tokensRandom[position] = array[position];
+            // loop to check the array again
+            for (int position2 = 0; position2 < position; position2++) {
+                // if last value is in array
+                if (array[position] == tokensRandom[position2]) {
+                    // come back one position and position the loop again until the number 
+                    //will not in the array
+                    position--;
                 }
             }
         }
-        //ciclo para imprimir en consola
+        //loop to print in console
         System.out.println("Arreglo 1 \n");
-        for (int k = 0; k < cantidad; k++) {
-            System.out.print((k + 1) + ".- " + arreglo[k] + "\n");
+        for (int position3 = 0; position3 < size; position3++) {
+            System.out.print((position3 + 1) + ".- " + array[position3] + "\n");
         }
     }
     
     
-    
-    /*public void distributeTokens(){
-        //System.out.println(ListPlayersGaming.getInstance().player1.addToken(searchToken(5)));
-    }
-*/ public void distributeTokens(){
+ public void distributeTokens(){
          int aux = ListPlayersGaming.getInstance().numberOfGamers;
          if(aux == 2){
              //player1
@@ -945,8 +977,7 @@ public class WindowStartGame extends javax.swing.JFrame {
                  System.out.println(ListPlayersGaming.getInstance().player2.addToken(searchToken(tokensRandom[i])));    
              }
          }
-      
-         if(aux == 3){
+        if(aux == 3){
              //player1
              for (int i = 0; i <= 6; i++){
                  System.out.println(ListPlayersGaming.getInstance().player1.addToken(searchToken(tokensRandom[i])));
@@ -994,10 +1025,13 @@ public class WindowStartGame extends javax.swing.JFrame {
             System.out.println("Lado A:" + tokensList.get(i).value1 + " | Lado B:" + tokensList.get(i).value2 + "       ID: " + (i+1));
     }
     
-   //public Player searchHighestToken(){
-       
-  // }
-
+    private void callSearchHighestToken(){
+        ListPlayersGaming.getInstance().setFirstPlayer();
+    }
+   
+    public void loopToPrintImages(){
+        
+    }   
     
 
     
