@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
 public class ListPlayersGaming {
     int numberOfGamers;
     Player start2, end2; 
-    static Player actualUser;//It will have the user logged and the players's info  
+    public Player actualUser;//It will have the user logged and the players's info  
     public Player player1 = new Player("Player 1","1");
     public Player player2 = new Player("Player 2","1");
     public Player player3 = new Player("Player 3","1");
@@ -28,13 +28,14 @@ public class ListPlayersGaming {
         this.start2 = null;
         this.end2 = null;
     }
+    
     //set & get actual user
-    public static Player getActualUser() {
+    public Player getActualUser() {
         return actualUser;
     }
 
-    public static void setActualUser(Player actualUser) {
-        ListPlayersGaming.actualUser = actualUser;
+    public void setActualUser(Player actualUser) {
+        this.actualUser = actualUser;
     }
     
     public static ListPlayersGaming getInstance(){

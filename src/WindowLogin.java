@@ -152,9 +152,9 @@ public class WindowLogin extends javax.swing.JFrame {
                     WindowSelectionGame windowSelectionGame = new WindowSelectionGame();
                     windowSelectionGame.setVisible(true);
                     // Add info to the global variable
-                    Player datos;                                                             // local variable
+                    Player datos;                                                                        // local variable
                     datos = ListPlayersRegistered.getInstance().searchPlayer(userTextField.getText());  //search the objet
-                    ListPlayersGaming.getInstance().setActualUser(datos);                     //Set the actual user to the global variable
+                    ListPlayersGaming.getInstance().setActualUser(datos);                              //Set the actual user to the global variable
                     this.setVisible(false);                                                           //destroy this window
                 }
                 else{

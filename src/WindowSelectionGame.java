@@ -1,3 +1,14 @@
+
+import java.awt.HeadlessException;
+import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,13 +22,18 @@
 public class WindowSelectionGame extends javax.swing.JFrame {
     //NavBar will be used to keep the NavBar events..
     private boolean navBar, navBar2;
+    Player userToSelect  = ListPlayersRegistered.getInstance().start;
+    ArrayList<String> playersThatWillPlay = new ArrayList<String>();
+    int numberOfPlayersSelected = 1;
     /**
      * Creates new form Load
      */
     public WindowSelectionGame() {
         initComponents();
         
+        
         this.setExtendedState(MAXIMIZED_BOTH);  //set full size
+       
         
         Boolean navBar = false;                 //set nav bar = false because the navBar will be close when the user start the game         
         principalPanel.setSize(0,0);            // set panel for load (0,0)
@@ -51,6 +67,16 @@ public class WindowSelectionGame extends javax.swing.JFrame {
         numberPlayers = new javax.swing.JComboBox<>();
         buttonNewGame = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        labelName = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        labelWins = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        labelplayersSelected = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -157,7 +183,7 @@ public class WindowSelectionGame extends javax.swing.JFrame {
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/check1.png"))); // NOI18N
         principalPanel2.add(jLabel7);
-        jLabel7.setBounds(49, 54, 96, 96);
+        jLabel7.setBounds(20, 20, 96, 96);
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -182,7 +208,7 @@ public class WindowSelectionGame extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(55, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -198,7 +224,7 @@ public class WindowSelectionGame extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(numberPlayers)
@@ -207,7 +233,96 @@ public class WindowSelectionGame extends javax.swing.JFrame {
         );
 
         principalPanel2.add(jPanel2);
-        jPanel2.setBounds(121, 168, 311, 344);
+        jPanel2.setBounds(140, 120, 312, 300);
+
+        jPanel3.setBackground(new java.awt.Color(153, 153, 153));
+
+        jLabel8.setText("Name :");
+
+        labelName.setText("name");
+
+        jLabel10.setText("Wins :");
+
+        labelWins.setText("wins");
+
+        jButton1.setBackground(new java.awt.Color(3, 105, 49));
+        jButton1.setText("<<");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setBackground(new java.awt.Color(3, 105, 49));
+        jButton2.setText("Select");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setBackground(new java.awt.Color(3, 105, 49));
+        jButton3.setText(">>");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel10))
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelWins)
+                            .addComponent(labelName))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(labelName))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelWins)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        principalPanel2.add(jPanel3);
+        jPanel3.setBounds(140, 440, 310, 200);
+
+        jLabel9.setText("Players selected:");
+        principalPanel2.add(jLabel9);
+        jLabel9.setBounds(150, 640, 90, 40);
+
+        labelplayersSelected.setText("1");
+        principalPanel2.add(labelplayersSelected);
+        labelplayersSelected.setBounds(250, 650, 40, 20);
 
         getContentPane().add(principalPanel2);
         principalPanel2.setBounds(490, 0, 1530, 1080);
@@ -250,48 +365,122 @@ public class WindowSelectionGame extends javax.swing.JFrame {
     private void buttonNewGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNewGameActionPerformed
 
         if (numberPlayers.getSelectedItem() == "2 Players") {          //check if is two players selected
-            ListPlayersGaming.getInstance().setNumberOfGamers(2);   
-            ListPlayersGaming.getInstance().makeListofTwoPlayers();    //add user 1 information
-            WindowStartGame newWindows = new WindowStartGame();        //close This windows and go to Start Game Windows 
-            newWindows.setVisible(true);                               //set visible the new windows
-            this.dispose();                                            //Destroy the actual windows
-        } 
-        else if (numberPlayers.getSelectedItem() == "3 Players") {     //check if is tree players selected
-            ListPlayersGaming.getInstance().setNumberOfGamers(3);
-            ListPlayersGaming.getInstance().makeListofThreePlayers();  //add user 1 information
-            WindowStartGame newWindows = new WindowStartGame();        //close This windows and go to Start Game Windows 
-            newWindows.setVisible(true);                               //set visible the new windows
-            this.dispose();                                            //Destroy the actual windows
-        } 
-        else {
-            ListPlayersGaming.getInstance().setNumberOfGamers(4);
-            ListPlayersGaming.getInstance().makeListofFourPlayers();
-            WindowStartGame newWindows = new WindowStartGame();        //close This windows and go to Start Game Windows 
-            newWindows.setVisible(true);                               //set visible the new windows
-            this.dispose();                                            //Destroy the actual windows
+            if (numberOfPlayersSelected == 2) {
+                ListPlayersGaming.getInstance().setNumberOfGamers(2);
+                ListPlayersGaming.getInstance().makeListofTwoPlayers();    //add user 1 information
+                ListPlayersGaming.getInstance().player2.setName(playersThatWillPlay.get(0));
+                WindowStartGame newWindows = new WindowStartGame();        //close This windows and go to Start Game Windows 
+                newWindows.setVisible(true);                               //set visible the new windows
+                this.dispose();                                            //Destroy the actual windows
+            }
+            else{
+                JOptionPane.showMessageDialog(rootPane, "You need to select 1 player to play agains.");
+            }
         }
         
+
+        else if (numberPlayers.getSelectedItem() == "3 Players") {     //check if is tree players selected
+            if (numberOfPlayersSelected == 3) {
+                ListPlayersGaming.getInstance().setNumberOfGamers(3);
+                ListPlayersGaming.getInstance().makeListofThreePlayers();  //add user 1 information
+                ListPlayersGaming.getInstance().player2.setName(playersThatWillPlay.get(0));
+                ListPlayersGaming.getInstance().player3.setName(playersThatWillPlay.get(1));
+                WindowStartGame newWindows = new WindowStartGame();        //close This windows and go to Start Game Windows 
+                newWindows.setVisible(true);                               //set visible the new windows
+                this.dispose();
+            }
+            else{
+                JOptionPane.showMessageDialog(rootPane, "You need to select 2 players to play agains.");
+            }
+        } 
+        else if (numberPlayers.getSelectedItem() == "4 Players") { 
+            if (numberOfPlayersSelected == 4) {
+                ListPlayersGaming.getInstance().setNumberOfGamers(4);
+                ListPlayersGaming.getInstance().makeListofFourPlayers();
+                ListPlayersGaming.getInstance().player2.setName(playersThatWillPlay.get(0));
+                ListPlayersGaming.getInstance().player3.setName(playersThatWillPlay.get(1));
+                ListPlayersGaming.getInstance().player2.setName(playersThatWillPlay.get(2));
+                WindowStartGame newWindows = new WindowStartGame();        //close This windows and go to Start Game Windows 
+                newWindows.setVisible(true);                               //set visible the new windows
+                this.dispose();                                            //Destroy the actual windows
+            }
+            else{
+                JOptionPane.showMessageDialog(rootPane, "You need to select 3 players to play agains.");
+            }
+        }
+            
+
     }//GEN-LAST:event_buttonNewGameActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        searchPlayerVersus();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        userToSelect = userToSelect.sig;
+        labelName.setText(userToSelect.getName());
+        labelWins.setText(Integer.toString(userToSelect.getWins()));
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        userToSelect = userToSelect.ant;
+        labelName.setText(userToSelect.getName());
+        labelWins.setText(Integer.toString(userToSelect.getWins()));
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel actualPlayerName2;
     private javax.swing.JButton butonLoadGame;
     private javax.swing.JButton butonNewGame;
     private javax.swing.JButton buttonNewGame;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelName;
+    private javax.swing.JLabel labelWins;
+    private javax.swing.JLabel labelplayersSelected;
     private javax.swing.JComboBox<String> numberPlayers;
     private javax.swing.JLabel principalImage;
     private javax.swing.JPanel principalPanel;
     private javax.swing.JPanel principalPanel2;
     // End of variables declaration//GEN-END:variables
+
+    
+   
+    public void searchPlayerVersus(){
+        if(playersThatWillPlay.contains(labelName.getName())){
+            JOptionPane.showMessageDialog(rootPane, "That player is already playing");
+        }
+        else{
+            if(playersThatWillPlay.size() < 4){
+                playersThatWillPlay.add(labelName.getText());
+                numberOfPlayersSelected++; 
+                JOptionPane.showMessageDialog(rootPane, labelName.getText() + " selected.");
+                System.out.println(playersThatWillPlay.get(0) + " selected");
+                labelplayersSelected.setText(Integer.toString(numberOfPlayersSelected));
+            }
+            else{   
+                JOptionPane.showMessageDialog(rootPane, "You can not select more than 4 players.");
+            }
+        }
+    }
+        
 }
