@@ -10,14 +10,17 @@ import java.util.ArrayList;
 public class Player implements Serializable{
     String name, password;
     int wins;
+    ArrayList<Integer> trapsActivated;
     ArrayList<Token> tokens;
     Player ant, sig;
+    
     
     public Player(){
         this.name = "";
         this.password = "";
         this.wins = 0;
-        this.tokens = new ArrayList<>(14);
+        this.trapsActivated = new ArrayList<>(3);
+        this.tokens = new ArrayList<>(21);
         this.ant = null;
         this.sig = null;
 }
@@ -26,7 +29,8 @@ public class Player implements Serializable{
         this.name = name;
         this.password = password;
         this.wins = 0;
-        this.tokens = new ArrayList<>(14);
+        this.trapsActivated = new ArrayList<>(3);
+        this.tokens = new ArrayList<>(21);
         this.ant = null;
         this.sig = null;
     }
@@ -35,11 +39,20 @@ public class Player implements Serializable{
         this.name = name;
         this.password = password;
         this.wins = wins;
-        this.tokens = new ArrayList<>(14);
+        this.trapsActivated = new ArrayList<>(3);
+        this.tokens = new ArrayList<>(21);
         this.ant = null;
         this.sig = null;
     }
-    
+
+    public ArrayList<Integer> getTrapsActivated() {
+        return trapsActivated;
+    }
+
+    public void setTrapsActivated(ArrayList<Integer> trapsActivated) {
+        this.trapsActivated = trapsActivated;
+    }
+
     public String getName() {
         return name;
     }

@@ -43,6 +43,7 @@ public class WindowLogin extends javax.swing.JFrame {
         buttonLogin = new javax.swing.JButton();
         buttonSingIn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -120,6 +121,10 @@ public class WindowLogin extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(-30, 0, 890, 550);
 
+        jPasswordField1.setText("jPasswordField1");
+        getContentPane().add(jPasswordField1);
+        jPasswordField1.setBounds(220, 150, 109, 19);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -138,7 +143,7 @@ public class WindowLogin extends javax.swing.JFrame {
             
         }         
         else{
-            Player xplayer = PlayersList.getInstance().searchPlayer(userTextField.getText());
+            Player xplayer = ListPlayersRegistered.getInstance().searchPlayer(userTextField.getText());
             
             if(xplayer == null)
                 JOptionPane.showMessageDialog(rootPane, "User not found.");
@@ -148,7 +153,7 @@ public class WindowLogin extends javax.swing.JFrame {
                     windowSelectionGame.setVisible(true);
                     // Add info to the global variable
                     Player datos;                                                             // local variable
-                    datos = PlayersList.getInstance().searchPlayer(userTextField.getText());  //search the objet
+                    datos = ListPlayersRegistered.getInstance().searchPlayer(userTextField.getText());  //search the objet
                     ListPlayersGaming.getInstance().setActualUser(datos);                     //Set the actual user to the global variable
                     this.setVisible(false);                                                           //destroy this window
                 }
@@ -212,6 +217,7 @@ public class WindowLogin extends javax.swing.JFrame {
     private javax.swing.JButton buttonOff;
     private javax.swing.JButton buttonSingIn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JLabel labelPassword;
     private javax.swing.JLabel labelSingIn;
     private javax.swing.JLabel laberUser;
@@ -230,7 +236,7 @@ public class WindowLogin extends javax.swing.JFrame {
                 String n = loadPlayer.name;
                 String p = loadPlayer.password;
                 int w = loadPlayer.wins;
-                PlayersList.getInstance().insertFinal(n, p, w);
+                ListPlayersRegistered.getInstance().insertFinal(n, p, w);
                 System.out.println(loadPlayer.name);
             }
             reader.close();

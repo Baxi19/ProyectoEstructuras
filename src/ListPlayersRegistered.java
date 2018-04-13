@@ -11,13 +11,13 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class PlayersList {   // singletone class PlayerList
+public class ListPlayersRegistered {   // singletone class PlayerList
      Player start;           // start pointer
      Player end;             // final pointer
-    public static PlayersList instance = null; //Instance to return
+    public static ListPlayersRegistered instance = null; //Instance to return
 
     //private constructor for singleton class
-    private PlayersList() {
+    private ListPlayersRegistered() {
         this.start = null;
         this.end = null;
     }
@@ -157,10 +157,10 @@ public class PlayersList {   // singletone class PlayerList
             return aux;                      // return start
     }
     
-    //return an "unique global object"  of PlayersList
-    public static PlayersList getInstance(){
+    //return an "unique global object"  of ListPlayersRegistered
+    public static ListPlayersRegistered getInstance(){
         if(instance == null)
-            instance = new PlayersList();
+            instance = new ListPlayersRegistered();
         return instance;
     }
     

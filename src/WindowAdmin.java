@@ -379,7 +379,7 @@ public class WindowAdmin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Empty field");
         else{
             String name = TextFieldUserDelete.getText();
-            String deleteMethod = PlayersList.getInstance().deletePlayer(name);
+            String deleteMethod = ListPlayersRegistered.getInstance().deletePlayer(name);
             TextFieldUserDelete.setText("");
             JOptionPane.showMessageDialog(rootPane, deleteMethod);
        }
@@ -390,7 +390,7 @@ public class WindowAdmin extends javax.swing.JFrame {
         if(TextFieldUserDelete.getText().isEmpty())
             JOptionPane.showMessageDialog(rootPane, "Type a player to eliminate");
         else{
-            Player userX = PlayersList.getInstance().searchPlayer(TextFieldUserDelete.getText());
+            Player userX = ListPlayersRegistered.getInstance().searchPlayer(TextFieldUserDelete.getText());
             if(userX == null)
                 labelResult.setText("No matches found");
             else{
@@ -412,7 +412,7 @@ public class WindowAdmin extends javax.swing.JFrame {
         else{
             String nameX = TextFieldName.getText();
             String passwordX = TextFieldPassword.getText();
-            PlayersList.getInstance().insertFinal(nameX, passwordX, 0);
+            ListPlayersRegistered.getInstance().insertFinal(nameX, passwordX, 0);
             TextFieldName.setText("");
             TextFieldPassword.setText("");
             JOptionPane.showMessageDialog(rootPane, "Player " + nameX + "successfully added to the system.");
@@ -428,7 +428,7 @@ public class WindowAdmin extends javax.swing.JFrame {
             String newName = TextFieldNewName.getText();
             String password = TextFieldNewPassword.getText();
             int wins = Integer.parseInt(TextFieldChangeWins.getText());
-            PlayersList.getInstance().editPlayer(name, newName, password, wins);
+            ListPlayersRegistered.getInstance().editPlayer(name, newName, password, wins);
             TextFieldUserToEdit.setText("");
             TextFieldNewName.setText("");
             TextFieldNewPassword.setText("");
@@ -439,7 +439,7 @@ public class WindowAdmin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        jLabel1.setText(Integer.toString(PlayersList.getInstance().lenghtList()));
+        jLabel1.setText(Integer.toString(ListPlayersRegistered.getInstance().lenghtList()));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void TextFieldChangeWinsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldChangeWinsActionPerformed

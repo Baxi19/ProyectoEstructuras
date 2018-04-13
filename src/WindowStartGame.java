@@ -2,10 +2,11 @@
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
-import javax.swing.JLabel;
 import javax.swing.TransferHandler;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -19,7 +20,9 @@ import javax.swing.TransferHandler;
  */
 
 public class WindowStartGame extends javax.swing.JFrame {
+    int availableTokens = 28;
     int[] tokensRandom = new int[28];
+    Token tokenSelected;                
     ArrayList<Integer> tokensDelivered = new ArrayList<Integer>(28);
     public static ArrayList<Token> tokensList = new ArrayList<Token>(28);
     
@@ -53,35 +56,36 @@ public class WindowStartGame extends javax.swing.JFrame {
     ImageIcon I27 = new ImageIcon("/ImagesDominoes/5_6.png");
     ImageIcon I28 = new ImageIcon("/ImagesDominoes/6_6.png");
     
-    
-    Token t1 = new Token(0, 0, 1, I1);
+    //Tokens with 4 parameters have only ant and sig pointers
+    //Tokens with 6 parameters have ant, sig, up, and down pointers
+    Token t1 = new Token(0, 0, 1, I1, null, null);
     Token t2 = new Token(0, 1, 2, I2);
     Token t3 = new Token(0, 2, 3, I3);
     Token t4 = new Token(0, 3, 4, I4);
     Token t5 = new Token(0, 4, 5, I5);
     Token t6 = new Token(0, 5, 6, I6);
     Token t7 = new Token(0, 6, 7, I7);
-    Token t8 = new Token(1, 1, 8, I8);
+    Token t8 = new Token(1, 1, 8, I8, null, null);
     Token t9 = new Token(1, 2, 9, I9);
     Token t10 = new Token(1, 3, 10, I10);
     Token t11 = new Token(1, 4, 11, I11);
     Token t12 = new Token(1, 5, 12, I12);
     Token t13 = new Token(1, 6, 13, I13);
-    Token t14 = new Token(2, 2, 14, I14);
+    Token t14 = new Token(2, 2, 14, I14, null, null);
     Token t15 = new Token(2, 3, 15, I15);
     Token t16 = new Token(2, 4, 16, I16);
     Token t17 = new Token(2, 5, 17, I17);
     Token t18 = new Token(2, 6, 18, I18);
-    Token t19 = new Token(3, 3, 19, I19);
+    Token t19 = new Token(3, 3, 19, I19, null, null);
     Token t20 = new Token(3, 4, 20, I20);
     Token t21 = new Token(3, 5, 21, I21);
     Token t22 = new Token(3, 6, 22, I22);
-    Token t23 = new Token(4, 4, 23, I23);
+    Token t23 = new Token(4, 4, 23, I23, null, null);
     Token t24 = new Token(4, 5, 24, I24);
     Token t25 = new Token(4, 6, 25, I25);
-    Token t26 = new Token(5, 5, 26, I26);
+    Token t26 = new Token(5, 5, 26, I26, null, null);
     Token t27 = new Token(5, 6, 27, I27);
-    Token t28 = new Token(6, 6, 28, I28);
+    Token t28 = new Token(6, 6, 28, I28, null, null);
     
     /**
      * Creates new form LoadGame
@@ -239,6 +243,7 @@ public class WindowStartGame extends javax.swing.JFrame {
         callSearchHighestToken();
         loopToPrintImages();
         actualPlayerName.setText(ListPlayersGaming.getInstance().playerGaming.name);// change the player name in the game windows
+        setNumberOfTokensAvailable();
     }
 
     /**
@@ -259,21 +264,25 @@ public class WindowStartGame extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         doneImage = new javax.swing.JLabel();
         buttonDone = new javax.swing.JButton();
-        jPanel7 = new javax.swing.JPanel();
-        skipImage = new javax.swing.JLabel();
-        buttonSkip = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         actualPlayerName = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jPanel21 = new javax.swing.JPanel();
         trapImage = new javax.swing.JLabel();
-        buttonTrap = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
         jPanel22 = new javax.swing.JPanel();
         exitImage = new javax.swing.JLabel();
         buttonExit = new javax.swing.JButton();
         jPanel23 = new javax.swing.JPanel();
         saveImage = new javax.swing.JLabel();
         buttonSave = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        jButton3 = new javax.swing.JButton();
+        actualDomino = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         celda80 = new javax.swing.JLabel();
         celda79 = new javax.swing.JLabel();
@@ -391,16 +400,19 @@ public class WindowStartGame extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(77, Short.MAX_VALUE)
+                .addContainerGap(117, Short.MAX_VALUE)
                 .addComponent(addImagen)
                 .addGap(52, 52, 52)
-                .addComponent(buttonAddToken, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87))
+                .addComponent(buttonAddToken, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(addImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(buttonAddToken, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(buttonAddToken, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel6.setBackground(new java.awt.Color(51, 0, 153));
@@ -419,44 +431,19 @@ public class WindowStartGame extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(77, Short.MAX_VALUE)
+                .addContainerGap(117, Short.MAX_VALUE)
                 .addComponent(doneImage)
                 .addGap(53, 53, 53)
-                .addComponent(buttonDone, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86))
+                .addComponent(buttonDone, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(doneImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(buttonDone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        jPanel7.setBackground(new java.awt.Color(51, 0, 153));
-
-        skipImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/skipIcon.png"))); // NOI18N
-
-        buttonSkip.setText("SKIP");
-        buttonSkip.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonSkipActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(75, Short.MAX_VALUE)
-                .addComponent(skipImage)
-                .addGap(55, 55, 55)
-                .addComponent(buttonSkip, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88))
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(skipImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(buttonSkip, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(buttonDone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/game.png"))); // NOI18N
@@ -473,23 +460,42 @@ public class WindowStartGame extends javax.swing.JFrame {
 
         trapImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/trapIcon.png"))); // NOI18N
 
-        buttonTrap.setText("TRAP");
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Remove token", "Lose 1 turn", "Take another token" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Trap");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
         jPanel21.setLayout(jPanel21Layout);
         jPanel21Layout.setHorizontalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
-                .addContainerGap(74, Short.MAX_VALUE)
+                .addContainerGap(114, Short.MAX_VALUE)
                 .addComponent(trapImage)
-                .addGap(55, 55, 55)
-                .addComponent(buttonTrap, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88))
+                .addGap(57, 57, 57)
+                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(58, 58, 58))
         );
         jPanel21Layout.setVerticalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(trapImage, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(buttonTrap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel21Layout.createSequentialGroup()
+                .addComponent(trapImage, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel21Layout.createSequentialGroup()
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1))
         );
 
         jPanel22.setBackground(new java.awt.Color(51, 0, 153));
@@ -508,16 +514,19 @@ public class WindowStartGame extends javax.swing.JFrame {
         jPanel22Layout.setHorizontalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
-                .addContainerGap(74, Short.MAX_VALUE)
+                .addContainerGap(114, Short.MAX_VALUE)
                 .addComponent(exitImage)
-                .addGap(55, 55, 55)
-                .addComponent(buttonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(89, 89, 89))
+                .addGap(57, 57, 57)
+                .addComponent(buttonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(68, 68, 68))
         );
         jPanel22Layout.setVerticalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(exitImage, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(buttonExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel22Layout.createSequentialGroup()
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(buttonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(exitImage, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel23.setBackground(new java.awt.Color(51, 0, 153));
@@ -531,17 +540,40 @@ public class WindowStartGame extends javax.swing.JFrame {
         jPanel23Layout.setHorizontalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel23Layout.createSequentialGroup()
-                .addContainerGap(74, Short.MAX_VALUE)
+                .addContainerGap(114, Short.MAX_VALUE)
                 .addComponent(saveImage)
                 .addGap(55, 55, 55)
-                .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(89, 89, 89))
+                .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66))
         );
         jPanel23Layout.setVerticalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(saveImage, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(buttonSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel23Layout.createSequentialGroup()
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(saveImage, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel23Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(buttonSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText(" Available tokens");
+
+        jLabel4.setFont(new java.awt.Font("MS Gothic", 0, 36)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+
+        jButton2.setText("Select Token");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jToggleButton1.setText("<<");
+
+        jButton3.setText(">>");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -549,52 +581,73 @@ public class WindowStartGame extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 10, Short.MAX_VALUE))
             .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(actualPlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(actualPlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1))
+                        .addGap(139, 139, 139))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(20, 20, 20))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(actualDomino, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(jButton2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jButton3)))))
+                        .addGap(91, 91, 91))))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(150, 150, 150)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
                 .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(actualPlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(actualPlayerName)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(actualDomino, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jToggleButton1)
+                    .addComponent(jButton3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -739,7 +792,7 @@ public class WindowStartGame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 11082, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 11042, Short.MAX_VALUE)
                         .addContainerGap())
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
@@ -750,7 +803,7 @@ public class WindowStartGame extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 482, Short.MAX_VALUE))
         );
 
         pack();
@@ -765,16 +818,10 @@ public class WindowStartGame extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonDoneActionPerformed
 
     private void buttonAddTokenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddTokenActionPerformed
-        // This method will check if in the list are tokens available
-        // if are tokens, will return to the player's tokens
-        // if not are available will return a msj 
+        takeToken();
+        
         
     }//GEN-LAST:event_buttonAddTokenActionPerformed
-
-    private void buttonSkipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSkipActionPerformed
-
-        
-    }//GEN-LAST:event_buttonSkipActionPerformed
 
     private void buttonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExitActionPerformed
        //Go to destroy Windows
@@ -782,16 +829,59 @@ public class WindowStartGame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_buttonExitActionPerformed
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here: , Lose 1 turn, Take another token
+        if(tokenSelected == null){
+            JOptionPane.showMessageDialog(rootPane, "Select one token first");
+        }
+        else{
+            if (jComboBox1.getSelectedItem().equals("Remove token")) {
+                if(ListPlayersGaming.getInstance().playerGaming.trapsActivated.contains(1)){
+                    JOptionPane.showMessageDialog(rootPane, "That trap was already activated");
+                }
+                else{
+                    tokenSelected.setTrap(1);
+                }
+                
+            } else if (jComboBox1.getSelectedItem().equals("Lose 1 turn")) {
+                if(ListPlayersGaming.getInstance().playerGaming.trapsActivated.contains(1)){
+                    JOptionPane.showMessageDialog(rootPane, "That trap was already activated");
+                }
+                else{
+                    tokenSelected.setTrap(2);
+                }
+            } else {
+                if(ListPlayersGaming.getInstance().playerGaming.trapsActivated.contains(1)){
+                    JOptionPane.showMessageDialog(rootPane, "That trap was already activated");
+                }
+                else{
+                    tokenSelected.setTrap(3);
+                }
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        Icon i1 = ListPlayersGaming.getInstance().player1.tokens.get(0).image;
+        actualDomino.setIcon(i1);
+        actualDomino.setVisible(true);
+    
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel actualDomino;
     private javax.swing.JLabel actualPlayerName;
     private javax.swing.JLabel addImagen;
     private javax.swing.JButton buttonAddToken;
     private javax.swing.JButton buttonDone;
     private javax.swing.JButton buttonExit;
     private javax.swing.JButton buttonSave;
-    private javax.swing.JButton buttonSkip;
-    private javax.swing.JButton buttonTrap;
     private javax.swing.JLabel celda1;
     private javax.swing.JLabel celda10;
     private javax.swing.JLabel celda11;
@@ -874,7 +964,13 @@ public class WindowStartGame extends javax.swing.JFrame {
     private javax.swing.JLabel celda9;
     private javax.swing.JLabel doneImage;
     private javax.swing.JLabel exitImage;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
@@ -886,7 +982,7 @@ public class WindowStartGame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel position1;
     private javax.swing.JLabel position10;
     private javax.swing.JLabel position2;
@@ -898,7 +994,6 @@ public class WindowStartGame extends javax.swing.JFrame {
     private javax.swing.JLabel position8;
     private javax.swing.JLabel position9;
     private javax.swing.JLabel saveImage;
-    private javax.swing.JLabel skipImage;
     private javax.swing.JLabel trapImage;
     // End of variables declaration//GEN-END:variables
 
@@ -970,43 +1065,57 @@ public class WindowStartGame extends javax.swing.JFrame {
          if(aux == 2){
              //player1
              for (int i = 0; i <= 6; i++){
+                 tokensDelivered.add(tokensRandom[i]);
+                 availableTokens--;
                  System.out.println(ListPlayersGaming.getInstance().player1.addToken(searchToken(tokensRandom[i])));
              }
              //player2
              for (int i = 7; i <= 13; i++) {
+                 tokensDelivered.add(tokensRandom[i]);
+                 availableTokens--;
                  System.out.println(ListPlayersGaming.getInstance().player2.addToken(searchToken(tokensRandom[i])));    
              }
          }
         if(aux == 3){
              //player1
              for (int i = 0; i <= 6; i++){
+                 tokensDelivered.add(tokensRandom[i]);
+                 availableTokens--;
                  System.out.println(ListPlayersGaming.getInstance().player1.addToken(searchToken(tokensRandom[i])));
              }
              //player2
              for (int i = 7; i <= 13; i++) {
+                 tokensDelivered.add(tokensRandom[i]);
+                 availableTokens--;
                  System.out.println(ListPlayersGaming.getInstance().player2.addToken(searchToken(tokensRandom[i])));    
              }
              //player3
              for (int i = 14; i <= 20; i++) {
-                System.out.println(ListPlayersGaming.getInstance().player3.addToken(searchToken(tokensRandom[i])));
+                 tokensDelivered.add(tokensRandom[i]);
+                 availableTokens--;
+                 System.out.println(ListPlayersGaming.getInstance().player3.addToken(searchToken(tokensRandom[i])));
              }
          }
          if(aux == 4){
               //player1
              for (int i = 0; i <= 6; i++){
+                 availableTokens--;
                  System.out.println(ListPlayersGaming.getInstance().player1.addToken(searchToken(tokensRandom[i])));
              }
              //player2
              for (int i = 7; i <= 13; i++) {
+                 availableTokens--;
                  System.out.println(ListPlayersGaming.getInstance().player2.addToken(searchToken(tokensRandom[i])));    
              }
              //player3
              for (int i = 14; i <= 20; i++) {
-                System.out.println(ListPlayersGaming.getInstance().player3.addToken(searchToken(tokensRandom[i])));
+                 availableTokens--;
+                 System.out.println(ListPlayersGaming.getInstance().player3.addToken(searchToken(tokensRandom[i])));
              }
              //player4
              for (int i = 21; i <= 27; i++) {
-                System.out.println(ListPlayersGaming.getInstance().player4.addToken(searchToken(tokensRandom[i])));
+                 availableTokens--;
+                 System.out.println(ListPlayersGaming.getInstance().player4.addToken(searchToken(tokensRandom[i])));
              }
          } 
     }
@@ -1028,11 +1137,35 @@ public class WindowStartGame extends javax.swing.JFrame {
     private void callSearchHighestToken(){
         ListPlayersGaming.getInstance().setFirstPlayer();
     }
+    
+    public void setNumberOfTokensAvailable(){
+        jLabel4.setText(Integer.toString(availableTokens));
+    }
+    
+    public void takeToken(){
+         for(int i = 0; i <= 28; i++){
+           if(availableTokens > 0){
+               if(tokensDelivered.contains(tokensRandom[i])){
+                    i++;
+               }
+               else{
+                   ListPlayersGaming.getInstance().playerGaming.addToken(searchToken(tokensRandom[i])); 
+                   availableTokens--;
+                   setNumberOfTokensAvailable();
+                   break;
+               }
+           }
+           else{
+               JOptionPane.showMessageDialog(null," Oops!!! There are not tokens available!  ");
+               break;
+           }
    
+       }
+    }
     public void loopToPrintImages(){
         
     }   
     
-
+    
     
 }
