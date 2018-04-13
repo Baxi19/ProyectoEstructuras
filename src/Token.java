@@ -19,9 +19,10 @@ public class Token {
     Token ant, sig;
     private Token up, down;
     int trap;
+    String name;
     
 
-    public Token(int value1, int value2, int id, ImageIcon image) {
+    public Token(int value1, int value2, int id, ImageIcon image,String address) {
         this.value1 = value1;
         this.value2 = value2;
         this.id = id;
@@ -29,9 +30,10 @@ public class Token {
         this.ant = null;
         this.sig = null;
         this.trap = 0;
+        this.name = address;
     }
 
-    public Token(int value1, int value2, int id, ImageIcon image, Token up, Token down) {
+    public Token(int value1, int value2, int id, ImageIcon image, Token up, Token down, String address) {
         this.value1 = value1;
         this.value2 = value2;
         this.id = id;
@@ -41,6 +43,15 @@ public class Token {
         this.up = null;
         this.down = null;
         this.trap = 0;
+        this.name = address;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getTrap() {

@@ -134,7 +134,7 @@ public class ListPlayersGaming {
         // First search the highest token
         Player aux = start2;                        
         ImageIcon image = null;
-        Token highestToken = new Token(0,0,0, image);
+        Token highestToken = new Token(0,0,0, image,"");
         int i = 0;
         while(aux.sig != start2){
             while(i <= 6){
