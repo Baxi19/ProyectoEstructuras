@@ -1,5 +1,6 @@
 
 import java.awt.HeadlessException;
+import java.awt.List;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -23,14 +24,13 @@ public class WindowSelectionGame extends javax.swing.JFrame {
     //NavBar will be used to keep the NavBar events..
     private boolean navBar, navBar2;
     Player userToSelect  = ListPlayersRegistered.getInstance().start;
-    ArrayList<String> playersThatWillPlay = new ArrayList<String>();
-    int numberOfPlayersSelected = 1;
+    private static ArrayList<String> playersThatWillPlay = new ArrayList<String>(4);
+    private static int numberOfPlayersSelected = 1;
     /**
      * Creates new form Load
      */
     public WindowSelectionGame() {
         initComponents();
-        
         
         this.setExtendedState(MAXIMIZED_BOTH);  //set full size
        
@@ -38,6 +38,7 @@ public class WindowSelectionGame extends javax.swing.JFrame {
         Boolean navBar = false;                 //set nav bar = false because the navBar will be close when the user start the game         
         principalPanel.setSize(0,0);            // set panel for load (0,0)
         principalPanel2.setSize(0,0);           // set panel for new game (0,0)
+        playersThatWillPlay.add("");
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -365,10 +366,10 @@ public class WindowSelectionGame extends javax.swing.JFrame {
     private void buttonNewGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNewGameActionPerformed
 
         if (numberPlayers.getSelectedItem() == "2 Players") {          //check if is two players selected
-            if (numberOfPlayersSelected == 2) {
+            if (numberOfPlayersSelected >= 2) {
                 ListPlayersGaming.getInstance().setNumberOfGamers(2);
                 ListPlayersGaming.getInstance().makeListofTwoPlayers();    //add user 1 information
-                ListPlayersGaming.getInstance().player2.setName(playersThatWillPlay.get(0));
+                ListPlayersGaming.getInstance().player2.setName(playersThatWillPlay.get(1));
                 WindowStartGame newWindows = new WindowStartGame();        //close This windows and go to Start Game Windows 
                 newWindows.setVisible(true);                               //set visible the new windows
                 this.dispose();                                            //Destroy the actual windows
@@ -380,11 +381,11 @@ public class WindowSelectionGame extends javax.swing.JFrame {
         
 
         else if (numberPlayers.getSelectedItem() == "3 Players") {     //check if is tree players selected
-            if (numberOfPlayersSelected == 3) {
+            if (numberOfPlayersSelected >= 3) {
                 ListPlayersGaming.getInstance().setNumberOfGamers(3);
                 ListPlayersGaming.getInstance().makeListofThreePlayers();  //add user 1 information
-                ListPlayersGaming.getInstance().player2.setName(playersThatWillPlay.get(0));
-                ListPlayersGaming.getInstance().player3.setName(playersThatWillPlay.get(1));
+                ListPlayersGaming.getInstance().player2.setName(playersThatWillPlay.get(1));
+                ListPlayersGaming.getInstance().player3.setName(playersThatWillPlay.get(2));
                 WindowStartGame newWindows = new WindowStartGame();        //close This windows and go to Start Game Windows 
                 newWindows.setVisible(true);                               //set visible the new windows
                 this.dispose();
@@ -394,12 +395,12 @@ public class WindowSelectionGame extends javax.swing.JFrame {
             }
         } 
         else if (numberPlayers.getSelectedItem() == "4 Players") { 
-            if (numberOfPlayersSelected == 4) {
+            if (numberOfPlayersSelected >= 4) {
                 ListPlayersGaming.getInstance().setNumberOfGamers(4);
                 ListPlayersGaming.getInstance().makeListofFourPlayers();
-                ListPlayersGaming.getInstance().player2.setName(playersThatWillPlay.get(0));
-                ListPlayersGaming.getInstance().player3.setName(playersThatWillPlay.get(1));
-                ListPlayersGaming.getInstance().player2.setName(playersThatWillPlay.get(2));
+                ListPlayersGaming.getInstance().player2.setName(playersThatWillPlay.get(1));
+                ListPlayersGaming.getInstance().player3.setName(playersThatWillPlay.get(2));
+                ListPlayersGaming.getInstance().player4.setName(playersThatWillPlay.get(3));
                 WindowStartGame newWindows = new WindowStartGame();        //close This windows and go to Start Game Windows 
                 newWindows.setVisible(true);                               //set visible the new windows
                 this.dispose();                                            //Destroy the actual windows
@@ -414,6 +415,8 @@ public class WindowSelectionGame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        String n = ListPlayersGaming.getInstance().getActualUser().getName();
+        playersThatWillPlay.set(0, n);
         searchPlayerVersus();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -466,20 +469,18 @@ public class WindowSelectionGame extends javax.swing.JFrame {
     
    
     public void searchPlayerVersus(){
-        if(playersThatWillPlay.contains(labelName.getName())){
+        
+        if(playersThatWillPlay.contains(labelName.getText())){
             JOptionPane.showMessageDialog(rootPane, "That player is already playing");
         }
+        else if(numberOfPlayersSelected > 3 ){
+            JOptionPane.showMessageDialog(rootPane, "You can not select more than 4 players.");
+        }
         else{
-            if(playersThatWillPlay.size() < 4){
-                playersThatWillPlay.add(labelName.getText());
-                numberOfPlayersSelected++; 
-                JOptionPane.showMessageDialog(rootPane, labelName.getText() + " selected.");
-                System.out.println(playersThatWillPlay.get(0) + " selected");
-                labelplayersSelected.setText(Integer.toString(numberOfPlayersSelected));
-            }
-            else{   
-                JOptionPane.showMessageDialog(rootPane, "You can not select more than 4 players.");
-            }
+            numberOfPlayersSelected++;
+            labelplayersSelected.setText(Integer.toString(numberOfPlayersSelected));
+            playersThatWillPlay.add(labelName.getText());
+            JOptionPane.showMessageDialog(rootPane, labelName.getText() + " selected.");
         }
     }
         

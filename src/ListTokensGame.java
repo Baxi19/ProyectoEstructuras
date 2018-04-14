@@ -11,6 +11,8 @@
 public class ListTokensGame {
     Token start3;
     Token end3;
+    Token subStart;
+    Token subEnd3;
     Token savePosition;
     public static ListTokensGame instance = null;
 
