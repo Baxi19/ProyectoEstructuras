@@ -12,7 +12,7 @@ public class ListTokensGame {
     Token start3;
     Token end3;
     Token subStart;
-    Token subEnd3;
+    Token subEnd;
     Token savePosition;
     public static ListTokensGame instance = null;
 
@@ -71,24 +71,30 @@ public class ListTokensGame {
             pairToken.setUp(newToken);
             newToken.ant = pairToken;
             newToken.sig = null;
+            subStart = pairToken;
+            subEnd = newToken;
         }
         else{
-            newToken.ant = pairToken;
-            pairToken.sig = newToken;
-            newToken.sig = null;            
+            subEnd.sig = newToken;
+            newToken.ant = subEnd;
+            newToken.sig = null;
+            subEnd = newToken;            
         }
     }
     
     public void insertDown(Token newToken, Token pairToken){
-        if(pairToken.getDown() == null){
+        if(pairToken.getDown()== null){
             pairToken.setDown(newToken);
             newToken.ant = pairToken;
             newToken.sig = null;
+            subStart = pairToken;
+            subEnd = newToken;
         }
         else{
-            pairToken.sig = newToken;
-            newToken.ant = pairToken;
+            subEnd.sig = newToken;
+            newToken.ant = subEnd;
             newToken.sig = null;
+            subEnd = newToken;            
         }
     }
     

@@ -1,9 +1,11 @@
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import javax.imageio.ImageIO;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -34,6 +36,7 @@ public class WindowStartGame extends javax.swing.JFrame {
     ArrayList<Integer> tokensDelivered = new ArrayList<Integer>(28);
     public static ArrayList<Token> tokensList = new ArrayList<Token>(28);
     public static boolean moveDone;
+    public static int tokensPair = 0;
     /*Variables to use for token image*/
     ImageIcon  I1 = new ImageIcon("/ImagesDominoes/0_0.png");
     ImageIcon I2 = new ImageIcon("/ImagesDominoes/0_1.png");
@@ -110,11 +113,33 @@ public class WindowStartGame extends javax.swing.JFrame {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                if (moveDone == false){          
+                if (moveDone == false){
                     JComponent jc = (JComponent) e.getSource();     //Jc is used to get the dominoes image                      
                     TransferHandler th = jc.getTransferHandler();   //th is used to transfer the image to the new position                
                     th.exportAsDrag(jc, e, TransferHandler.COPY);   //is used to handle the transfer of a Transferable to and from Swing components                 
                     moveDone = true;
+                    String nam = imagesNames[count];
+                    Token newToken = searchTokenName(nam);
+                    if(newToken.value1 == newToken.value2){
+                        tokensPair++;
+                    }      
+                    if(ListTokensGame.getInstance().start3 == null){
+                        ListTokensGame.getInstance().insertStart(newToken);
+                    }
+                    else {
+                        if(newToken.value1 == ListTokensGame.getInstance().start3.value1 |
+                           newToken.value2 == ListTokensGame.getInstance().start3.value1 |
+                           newToken.value1 == ListTokensGame.getInstance().start3.value2 |
+                           newToken.value2 == ListTokensGame.getInstance().start3.value2){
+                           ListTokensGame.getInstance().insertStart(newToken); 
+                        }
+                        else if(newToken.value1 == ListTokensGame.getInstance().end3.value1 |
+                           newToken.value2 == ListTokensGame.getInstance().end3.value1 |
+                           newToken.value1 == ListTokensGame.getInstance().end3.value2 |
+                           newToken.value2 == ListTokensGame.getInstance().end3.value2){
+                           ListTokensGame.getInstance().insertFinal(newToken);
+                        }
+                    }
                 }
             }
 
@@ -540,6 +565,11 @@ public class WindowStartGame extends javax.swing.JFrame {
         saveImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/save.png"))); // NOI18N
 
         buttonSave.setText("SAVE");
+        buttonSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSaveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
         jPanel23.setLayout(jPanel23Layout);
@@ -955,6 +985,18 @@ public class WindowStartGame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_bBackActionPerformed
 
+    private void buttonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveActionPerformed
+        try {
+            // TODO add your handling code here:
+            capturarPantalla(ListPlayersGaming.getInstance().playerGaming.name);
+        } catch (AWTException ex) {
+            Logger.getLogger(WindowStartGame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(WindowStartGame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_buttonSaveActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel actualPlayerName;
@@ -1244,11 +1286,26 @@ public class WindowStartGame extends javax.swing.JFrame {
    
        }
     }
+    
     public void loopToPrintImages(){
         
     }  
     
-
+    public Token searchTokenName(String name){
+        for(int i = 0; i < ListPlayersGaming.getInstance().playerGaming.tokens.size(); i++){
+            if(ListPlayersGaming.getInstance().playerGaming.tokens.get(i).name == name)
+                return ListPlayersGaming.getInstance().playerGaming.tokens.get(i);
+        }
+        return null;       
+    }
     
+
+    public static void capturarPantalla(String Nombre) throws AWTException, IOException {
+     BufferedImage captura = new Robot().createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()) );
+     // Guardar Como JPEG
+     File file = new File(Nombre + ".jpg");
+     ImageIO.write(captura, "jpg", file);
+     JOptionPane.showMessageDialog(null, ListPlayersGaming.getInstance().actualUser.name + "'s game saved");
+  }
     
 }

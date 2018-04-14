@@ -5,17 +5,16 @@
  * by: Fabián Zamora R. and Randald Villegas B.*
  * * * * * * * * * * * * * * * * * * * * * * * */
 
-
+//
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.ObjectMapper;
 
 /**
  *
  * @author Fabián
  */
+
+//method for convert an java object to json
 public class JsonUtil {
     private static final ObjectMapper mapper = new ObjectMapper();
   
@@ -28,7 +27,17 @@ public class JsonUtil {
         }
         return jsonResult;
     }
-    
+    //method for convert an json file to java object
+    public static <T> T convertJsontoJava(String jsonLine, Class<T> cls){
+        T result = null;
+        try {
+            result = mapper.readValue(jsonLine, cls);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+    //method for convert an object victory to json
     public static String converVictoryToJson(Victory nPlayer){
         String jsonResult = "";
         try {
@@ -39,15 +48,5 @@ public class JsonUtil {
         return jsonResult;
     }
     
-
-    public static <T> T convertJsontoJava(String jsonLine, Class<T> cls){
-        T result = null;
-        try {
-            result = mapper.readValue(jsonLine, cls);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return result;
-    }
     
 }

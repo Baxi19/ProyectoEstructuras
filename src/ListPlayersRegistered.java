@@ -146,7 +146,7 @@ public class ListPlayersRegistered {   // singletone class PlayerList
             return lenght;
         }
     }
-     //this method will return the first
+    //this method will return the first
     public Player searchStart(){
         Player aux = start;                   // pointer declaration
         return aux;                      // return start
@@ -164,4 +164,8 @@ public class ListPlayersRegistered {   // singletone class PlayerList
         return instance;
     }
     
+    public void removePlayer(Player p){
+        
+        
+    }
 }

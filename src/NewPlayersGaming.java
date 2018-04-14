@@ -15,14 +15,13 @@ public class NewPlayersGaming {
     NewPlayersGaming sig, ant;
     
     //constructor
-
     public NewPlayersGaming(String nombre, int tokens) {
         this.tokens = tokens;
         this.nombre = nombre;
         this.sig = this.ant = null;
     }
-    //get
-
+    
+    //Getter and setters
     public String getNombre() {
         return nombre;
     }
@@ -38,8 +37,7 @@ public class NewPlayersGaming {
     public NewPlayersGaming getAnt() {
         return ant;
     }
-    //set
-
+   
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -51,11 +49,9 @@ public class NewPlayersGaming {
     public void setSig(NewPlayersGaming sig) {
         this.sig = sig;
     }
-
+    
     public void setAnt(NewPlayersGaming ant) {
         this.ant = ant;
-    }
-    
-    
+    }   
     
 }

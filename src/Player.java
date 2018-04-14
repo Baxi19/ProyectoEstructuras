@@ -1,6 +1,7 @@
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 
 /**
@@ -13,6 +14,7 @@ public class Player implements Serializable{
     ArrayList<Integer> trapsActivated;
     ArrayList<Token> tokens;
     Player ant, sig;
+    ArrayList<ImageIcon> games;
     
     
     public Player(){
@@ -23,6 +25,7 @@ public class Player implements Serializable{
         this.tokens = new ArrayList<>(21);
         this.ant = null;
         this.sig = null;
+        this.games = new ArrayList<ImageIcon>();
 }
 
     public Player(String name, String password) {
@@ -33,6 +36,7 @@ public class Player implements Serializable{
         this.tokens = new ArrayList<>(21);
         this.ant = null;
         this.sig = null;
+         this.games = new ArrayList<ImageIcon>();
     }
     
     public Player(String name, String password, int wins) {
@@ -43,6 +47,15 @@ public class Player implements Serializable{
         this.tokens = new ArrayList<>(21);
         this.ant = null;
         this.sig = null;
+        this.games = new ArrayList<ImageIcon>();
+    }
+
+    public ArrayList<ImageIcon> getGames() {
+        return games;
+    }
+
+    public void addGames(ImageIcon game) {
+        this.games.add(game);
     }
 
     public ArrayList<Integer> getTrapsActivated() {
