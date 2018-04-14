@@ -138,6 +138,21 @@ public class WindowStartGame extends javax.swing.JFrame {
                            newToken.value1 == ListTokensGame.getInstance().end3.value2 |
                            newToken.value2 == ListTokensGame.getInstance().end3.value2){
                            ListTokensGame.getInstance().insertFinal(newToken);
+                           if(newToken.id == 1 | newToken.id == 8 | newToken.id == 14 |
+                              newToken.id == 19 | newToken.id == 23 | newToken.id == 28){
+                               ListTokensGame.getInstance().tokensPair.add(newToken);
+                           }
+                        }
+                        else if(ListTokensGame.getInstance().tokensPair.size() > 0){
+                            for(int i = 0; i < ListTokensGame.getInstance().tokensPair.size(); i++){
+                                if(ListTokensGame.getInstance().tokensPair.get(i).getDown() == null){
+                                    if(newToken.value1 == ListTokensGame.getInstance().tokensPair.get(i).value1 |
+                                       newToken.value2 == ListTokensGame.getInstance().tokensPair.get(i).value1 |
+                                       newToken.value1 == ListTokensGame.getInstance().tokensPair.get(i).value2 |
+                                       newToken.value2 == ListTokensGame.getInstance().tokensPair.get(i).value2 )
+                                         ListTokensGame.getInstance().insertDown(ListTokensGame.getInstance().tokensPair.get(i), newToken);  
+                                }
+                            }
                         }
                     }
                 }

@@ -1,3 +1,6 @@
+
+import java.util.ArrayList;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,6 +17,7 @@ public class ListTokensGame {
     Token subStart;
     Token subEnd;
     Token savePosition;
+    public ArrayList<Token> tokensPair = new ArrayList<Token>();
     public static ListTokensGame instance = null;
 
     public Token getStart3() {
@@ -118,6 +122,14 @@ public class ListTokensGame {
         
     }
     
+   /* public Token searchToken(){
+        Token aux = start3;
+        while(aux != end3){
+        
+        
+     }
+    }
+    */
     
     
 }
