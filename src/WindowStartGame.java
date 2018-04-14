@@ -173,31 +173,19 @@ public class WindowStartGame extends javax.swing.JFrame {
         
         
         //Add mouse click action to trasfer
-        actualToken.addMouseListener(ml);
-        /* position2.addMouseListener(ml);
+        position1.addMouseListener(ml);
+        position2.addMouseListener(ml);
         position3.addMouseListener(ml);
         position4.addMouseListener(ml);
-        position5.addMouseListener(ml);
-        position6.addMouseListener(ml);
-        position7.addMouseListener(ml);
-        position8.addMouseListener(ml);
-        position9.addMouseListener(ml);
-        position10.addMouseListener(ml);
-*/
+        
         // set new images
         //This instruction gets the icon("Image") from the tokens and them 
         //it is used to remplace in the position icon on the matriz's game
-        actualToken.setTransferHandler(new TransferHandler("icon"));
-      /*  position3.setTransferHandler(new TransferHandler("icon"));
         position1.setTransferHandler(new TransferHandler("icon"));
+        position2.setTransferHandler(new TransferHandler("icon"));
+        position3.setTransferHandler(new TransferHandler("icon"));
         position4.setTransferHandler(new TransferHandler("icon"));
-        position5.setTransferHandler(new TransferHandler("icon"));
-        position6.setTransferHandler(new TransferHandler("icon"));
-        position7.setTransferHandler(new TransferHandler("icon"));
-        position8.setTransferHandler(new TransferHandler("icon"));
-        position9.setTransferHandler(new TransferHandler("icon"));
-        position10.setTransferHandler(new TransferHandler("icon"));
-*/
+      
         //set new possibles positions
         // it instruction get ready the position in the matriz 
         // to will remplace for the new token image
@@ -325,8 +313,8 @@ public class WindowStartGame extends javax.swing.JFrame {
         buttonSave = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
-        actualToken = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        doneImage1 = new javax.swing.JLabel();
         bNext = new javax.swing.JButton();
         bBack = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -411,11 +399,11 @@ public class WindowStartGame extends javax.swing.JFrame {
         celda42 = new javax.swing.JLabel();
         celda49 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        Information = new javax.swing.JLabel();
         position1 = new javax.swing.JLabel();
         position2 = new javax.swing.JLabel();
         position3 = new javax.swing.JLabel();
         position4 = new javax.swing.JLabel();
-        position5 = new javax.swing.JLabel();
         position6 = new javax.swing.JLabel();
         position7 = new javax.swing.JLabel();
         position8 = new javax.swing.JLabel();
@@ -446,11 +434,11 @@ public class WindowStartGame extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(117, Short.MAX_VALUE)
                 .addComponent(addImagen)
                 .addGap(52, 52, 52)
-                .addComponent(buttonAddToken, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62))
+                .addComponent(buttonAddToken, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -477,11 +465,11 @@ public class WindowStartGame extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(111, Short.MAX_VALUE)
                 .addComponent(doneImage)
                 .addGap(59, 59, 59)
-                .addComponent(buttonDone, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61))
+                .addComponent(buttonDone, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -525,13 +513,13 @@ public class WindowStartGame extends javax.swing.JFrame {
         jPanel21Layout.setHorizontalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(114, Short.MAX_VALUE)
                 .addComponent(trapImage)
                 .addGap(57, 57, 57)
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(58, 58, 58))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                    .addComponent(jComboBox1, 0, 0, Short.MAX_VALUE))
+                .addGap(44, 44, 44))
         );
         jPanel21Layout.setVerticalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -560,11 +548,11 @@ public class WindowStartGame extends javax.swing.JFrame {
         jPanel22Layout.setHorizontalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(109, Short.MAX_VALUE)
                 .addComponent(exitImage)
                 .addGap(62, 62, 62)
-                .addComponent(buttonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68))
+                .addComponent(buttonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
         );
         jPanel22Layout.setVerticalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -591,11 +579,11 @@ public class WindowStartGame extends javax.swing.JFrame {
         jPanel23Layout.setHorizontalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel23Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(107, Short.MAX_VALUE)
                 .addComponent(saveImage)
                 .addGap(62, 62, 62)
-                .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66))
+                .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
         );
         jPanel23Layout.setVerticalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -615,8 +603,9 @@ public class WindowStartGame extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("MS Gothic", 0, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
 
-        jPanel7.setBackground(new java.awt.Color(81, 7, 160));
-        jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel8.setBackground(new java.awt.Color(51, 0, 153));
+
+        doneImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Selection.png"))); // NOI18N
 
         bNext.setText("Next");
         bNext.addActionListener(new java.awt.event.ActionListener() {
@@ -632,30 +621,27 @@ public class WindowStartGame extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(103, 103, 103)
-                .addComponent(bBack)
-                .addGap(35, 35, 35)
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap(111, Short.MAX_VALUE)
+                .addComponent(doneImage1)
+                .addGap(58, 58, 58)
+                .addComponent(bBack, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bNext)
-                .addContainerGap(123, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(actualToken, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66))
+                .addGap(44, 44, 44))
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(actualToken, javax.swing.GroupLayout.DEFAULT_SIZE, 13, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bBack)
-                    .addComponent(bNext))
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(doneImage1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bNext)
+                    .addComponent(bBack))
                 .addContainerGap())
         );
 
@@ -682,13 +668,13 @@ public class WindowStartGame extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addGap(20, 20, 20))))
-            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addGap(44, 44, 44))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -705,18 +691,18 @@ public class WindowStartGame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -820,37 +806,46 @@ public class WindowStartGame extends javax.swing.JFrame {
         jPanel2.add(celda49);
 
         jPanel3.setBackground(new java.awt.Color(8, 136, 12));
+        jPanel3.setMinimumSize(new java.awt.Dimension(1000, 120));
+        jPanel3.setPreferredSize(new java.awt.Dimension(1000, 120));
         jPanel3.setLayout(new java.awt.GridLayout(1, 0));
 
-        position1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/token0_0.png"))); // NOI18N
-        position1.setName("position1"); // NOI18N
+        Information.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Information.setForeground(new java.awt.Color(255, 255, 255));
+        Information.setText("Selecione:");
+        Information.setMaximumSize(new java.awt.Dimension(100, 100));
+        Information.setMinimumSize(new java.awt.Dimension(100, 100));
+        Information.setName("Information"); // NOI18N
+        Information.setPreferredSize(new java.awt.Dimension(100, 100));
+        jPanel3.add(Information);
+
+        position1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagesDominoes/0_1.png"))); // NOI18N
+        position1.setMaximumSize(new java.awt.Dimension(100, 100));
+        position1.setMinimumSize(new java.awt.Dimension(100, 100));
+        position1.setPreferredSize(new java.awt.Dimension(100, 100));
         jPanel3.add(position1);
 
-        position2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/token0_1.png"))); // NOI18N
+        position2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagesDominoes180/0_1.png"))); // NOI18N
+        position2.setMaximumSize(new java.awt.Dimension(100, 100));
+        position2.setMinimumSize(new java.awt.Dimension(100, 100));
+        position2.setPreferredSize(new java.awt.Dimension(100, 100));
         jPanel3.add(position2);
 
-        position3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/token0_2.png"))); // NOI18N
+        position3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagesDominoesLeft/0_1.png"))); // NOI18N
+        position3.setMaximumSize(new java.awt.Dimension(60, 100));
+        position3.setMinimumSize(new java.awt.Dimension(60, 100));
+        position3.setPreferredSize(new java.awt.Dimension(60, 100));
         jPanel3.add(position3);
 
-        position4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/token0_0.png"))); // NOI18N
+        position4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagesDominoesRight/0_1.png"))); // NOI18N
+        position4.setMaximumSize(new java.awt.Dimension(60, 100));
+        position4.setMinimumSize(new java.awt.Dimension(60, 100));
+        position4.setPreferredSize(new java.awt.Dimension(60, 100));
         jPanel3.add(position4);
-
-        position5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/token0_2.png"))); // NOI18N
-        jPanel3.add(position5);
-
-        position6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/token0_1.png"))); // NOI18N
         jPanel3.add(position6);
-
-        position7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/token0_2.png"))); // NOI18N
         jPanel3.add(position7);
-
-        position8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/token0_1.png"))); // NOI18N
         jPanel3.add(position8);
-
-        position9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/token0_2.png"))); // NOI18N
         jPanel3.add(position9);
-
-        position10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/token0_1.png"))); // NOI18N
         jPanel3.add(position10);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -870,10 +865,10 @@ public class WindowStartGame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -886,7 +881,10 @@ public class WindowStartGame extends javax.swing.JFrame {
         //ListPlayersGaming.getInstance().actualUser.setName("Done");  //ELIMINAR LINEA CUANDO ESTE CARGANDO LOS JUGADORES CON DIFERENTES NOMBRES
         String gamer = ListPlayersGaming.getInstance().playerGaming.name;
         actualPlayerName.setText(gamer);// change the player name in the game windows
-        actualToken.setIcon(null);
+        position1.setIcon(null);
+        position2.setIcon(null);
+        position3.setIcon(null);
+        position4.setIcon(null);
         count = 0;
         String[] imagesNames = new String[21];
     
@@ -949,20 +947,36 @@ public class WindowStartGame extends javax.swing.JFrame {
             var = ListPlayersGaming.getInstance().playerGaming.tokens.get(i).name;
             imagesNames[i] = var;
         }ImageIcon[] imagenList = new ImageIcon[tokensSize];
+        ImageIcon[] imagenList2 = new ImageIcon[tokensSize];
+        ImageIcon[] imagenList3 = new ImageIcon[tokensSize];
+        ImageIcon[] imagenList4 = new ImageIcon[tokensSize];
         
         for (int i = 0; i < imagenList.length; i++) {
             imagenList[i] = new ImageIcon(getClass().getResource("/ImagesDominoes/"+imagesNames[i]));
+            imagenList2[i] = new ImageIcon(getClass().getResource("/ImagesDominoes180/"+imagesNames[i]));
+            imagenList3[i] = new ImageIcon(getClass().getResource("/ImagesDominoesLeft/"+imagesNames[i]));
+            imagenList4[i] = new ImageIcon(getClass().getResource("/ImagesDominoesRight/"+imagesNames[i]));
+            
         }
         if(count < 0){
             count = (tokensSize-1);
-            actualToken.setIcon(imagenList[count]);
+            position1.setIcon(imagenList[count]);
+            position2.setIcon(imagenList2[count]);
+            position3.setIcon(imagenList3[count]);
+            position4.setIcon(imagenList4[count]);
             
         }if(count >= tokensSize){
             count = 0;
-            actualToken.setIcon(imagenList[count]);
+            position1.setIcon(imagenList[count]);
+            position2.setIcon(imagenList2[count]);
+            position3.setIcon(imagenList3[count]);
+            position4.setIcon(imagenList4[count]);
         }
         if(count < (tokensSize) & count >= 0 ){
-           actualToken.setIcon(imagenList[count]);
+           position1.setIcon(imagenList[count]);
+           position2.setIcon(imagenList2[count]);
+           position3.setIcon(imagenList3[count]);
+           position4.setIcon(imagenList4[count]);
            count --; 
         }
     }
@@ -975,18 +989,32 @@ public class WindowStartGame extends javax.swing.JFrame {
             imagesNames[i] = var;
         }
         
-        
         ImageIcon[] imagenList = new ImageIcon[tokensSize];
+        ImageIcon[] imagenList2 = new ImageIcon[tokensSize];
+        ImageIcon[] imagenList3 = new ImageIcon[tokensSize];
+        ImageIcon[] imagenList4 = new ImageIcon[tokensSize];
+        
+        
         for (int j = 0; j < imagenList.length; j++) {
            
             imagenList[j] = new ImageIcon(getClass().getResource("/ImagesDominoes/"+imagesNames[j]));
+            imagenList2[j] = new ImageIcon(getClass().getResource("/ImagesDominoes180/"+imagesNames[j]));
+            imagenList3[j] = new ImageIcon(getClass().getResource("/ImagesDominoesLeft/"+imagesNames[j]));
+            imagenList4[j] = new ImageIcon(getClass().getResource("/ImagesDominoesRight/"+imagesNames[j]));
+            
         }
         if(count >= 0 & count < tokensSize){
-           actualToken.setIcon(imagenList[count]);
+           position1.setIcon(imagenList[count]);
+           position2.setIcon(imagenList2[count]);
+           position3.setIcon(imagenList3[count]);
+           position4.setIcon(imagenList4[count]);
            count ++;
         }else{
             count = 0;
-            actualToken.setIcon(imagenList[count]);
+            position1.setIcon(imagenList[count]);
+            position2.setIcon(imagenList2[count]);
+            position3.setIcon(imagenList3[count]);
+            position4.setIcon(imagenList4[count]);
         }
     }
     private void bNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNextActionPerformed
@@ -1014,8 +1042,8 @@ public class WindowStartGame extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Information;
     private javax.swing.JLabel actualPlayerName;
-    private javax.swing.JLabel actualToken;
     private javax.swing.JLabel addImagen;
     private javax.swing.JButton bBack;
     private javax.swing.JButton bNext;
@@ -1104,6 +1132,7 @@ public class WindowStartGame extends javax.swing.JFrame {
     private javax.swing.JLabel celda80;
     private javax.swing.JLabel celda9;
     private javax.swing.JLabel doneImage;
+    private javax.swing.JLabel doneImage1;
     private javax.swing.JLabel exitImage;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -1121,13 +1150,12 @@ public class WindowStartGame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JLabel position1;
     private javax.swing.JLabel position10;
     private javax.swing.JLabel position2;
     private javax.swing.JLabel position3;
     private javax.swing.JLabel position4;
-    private javax.swing.JLabel position5;
     private javax.swing.JLabel position6;
     private javax.swing.JLabel position7;
     private javax.swing.JLabel position8;
