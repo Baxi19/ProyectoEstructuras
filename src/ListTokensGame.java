@@ -14,8 +14,7 @@ import java.util.ArrayList;
 public class ListTokensGame {
     Token start3;
     Token end3;
-    Token subStart;
-    Token subEnd;
+ 
     Token savePosition;
     public ArrayList<Token> tokensPair = new ArrayList<Token>();
     public static ListTokensGame instance = null;
@@ -70,35 +69,35 @@ public class ListTokensGame {
         }   
     }
     
-    public void insertUp(Token newToken, Token pairToken){
-        if(pairToken.getUp() == null){
-            pairToken.setUp(newToken);
+    public void insertUp(Token newToken, TokenPair pairToken){
+        if(pairToken.up == null){
+            pairToken.up = newToken;
             newToken.ant = pairToken;
             newToken.sig = null;
-            subStart = pairToken;
-            subEnd = newToken;
+            pairToken.subStart = newToken;
+            pairToken.subEnd = newToken;
         }
         else{
-            subEnd.sig = newToken;
-            newToken.ant = subEnd;
             newToken.sig = null;
-            subEnd = newToken;            
+            pairToken.subEnd.sig = newToken;
+            newToken.ant = pairToken.subEnd;
+            pairToken.subEnd = newToken;            
         }
     }
     
-    public void insertDown(Token newToken, Token pairToken){
-        if(pairToken.getDown()== null){
-            pairToken.setDown(newToken);
+    public void insertDown(Token newToken, TokenPair pairToken){
+         if(pairToken.down == null){
+            pairToken.down = newToken;
             newToken.ant = pairToken;
             newToken.sig = null;
-            subStart = pairToken;
-            subEnd = newToken;
+            pairToken.subStart = newToken;
+            pairToken.subEnd = newToken;
         }
         else{
-            subEnd.sig = newToken;
-            newToken.ant = subEnd;
             newToken.sig = null;
-            subEnd = newToken;            
+            pairToken.subEnd.sig = newToken;
+            newToken.ant = pairToken.subEnd;
+            pairToken.subEnd = newToken;            
         }
     }
     

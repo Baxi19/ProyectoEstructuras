@@ -17,7 +17,6 @@ public class Token {
     int value1, value2, id;
     ImageIcon image;
     Token ant, sig;
-    private Token up, down;
     int trap;
     String name;
     
@@ -29,19 +28,6 @@ public class Token {
         this.image = image;
         this.ant = null;
         this.sig = null;
-        this.trap = 0;
-        this.name = address;
-    }
-
-    public Token(int value1, int value2, int id, ImageIcon image, Token up, Token down, String address) {
-        this.value1 = value1;
-        this.value2 = value2;
-        this.id = id;
-        this.image = image;
-        this.ant = ant;
-        this.sig = null;
-        this.up = null;
-        this.down = null;
         this.trap = 0;
         this.name = address;
     }
@@ -110,23 +96,5 @@ public class Token {
     public void setId(int id) {
         this.id = id;
     }
-
-    public Token getUp() {
-        return up;
-    }
-
-    public void setUp(Token up) {
-        this.up = up;
-    }
-
-    public Token getDown() {
-        return down;
-    }
-
-    public void setDown(Token down) {
-        this.down = down;
-    }
-    
-    
-    
+ 
 }

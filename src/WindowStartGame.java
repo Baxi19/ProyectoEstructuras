@@ -69,34 +69,34 @@ public class WindowStartGame extends javax.swing.JFrame {
     
     //Tokens with 4 parameters have only ant and sig pointers
     //Tokens with 6 parameters have ant, sig, up, and down pointers
-    Token t1 = new Token(0, 0, 1, I1, null, null,"0_0.png");
+    TokenPair t1 = new TokenPair(null, null, 0, 0, 1, I1,"0_0.png");
     Token t2 = new Token(0, 1, 2, I2,"0_1.png");
     Token t3 = new Token(0, 2, 3, I3,"0_2.png");
     Token t4 = new Token(0, 3, 4, I4,"0_3.png");
     Token t5 = new Token(0, 4, 5, I5,"0_4.png");
     Token t6 = new Token(0, 5, 6, I6,"0_5.png");
     Token t7 = new Token(0, 6, 7, I7,"0_6.png");
-    Token t8 = new Token(1, 1, 8, I8, null, null,"1_1.png");
+    TokenPair t8 = new TokenPair(null, null, 1, 1, 8, I8,"1_1.png");
     Token t9 = new Token(1, 2, 9, I9,"1_2.png");
     Token t10 = new Token(1, 3, 10, I10,"1_3.png");
     Token t11 = new Token(1, 4, 11, I11,"1_4.png");
     Token t12 = new Token(1, 5, 12, I12,"1_5.png");
     Token t13 = new Token(1, 6, 13, I13,"1_6.png");
-    Token t14 = new Token(2, 2, 14, I14, null, null,"2_2.png");
+    TokenPair t14 = new TokenPair(null, null, 2, 2, 14, I14 ,"2_2.png");
     Token t15 = new Token(2, 3, 15, I15,"2_3.png");
     Token t16 = new Token(2, 4, 16, I16,"2_4.png");
     Token t17 = new Token(2, 5, 17, I17,"2_5.png");
     Token t18 = new Token(2, 6, 18, I18,"2_6.png");
-    Token t19 = new Token(3, 3, 19, I19, null, null,"3_3.png");
+    TokenPair t19 = new TokenPair( null, null, 3, 3, 19, I19,"3_3.png");
     Token t20 = new Token(3, 4, 20, I20,"3_4.png");
     Token t21 = new Token(3, 5, 21, I21,"3_5.png");
     Token t22 = new Token(3, 6, 22, I22,"3_6.png");
-    Token t23 = new Token(4, 4, 23, I23, null, null,"4_4.png");
+    TokenPair t23 = new TokenPair(null, null, 4, 4, 23, I23,"4_4.png");
     Token t24 = new Token(4, 5, 24, I24,"4_5.png");
     Token t25 = new Token(4, 6, 25, I25,"4_6.png");
-    Token t26 = new Token(5, 5, 26, I26, null, null,"5_5.png");
+    TokenPair t26 = new TokenPair(null, null,5, 5, 26, I26, "5_5.png");
     Token t27 = new Token(5, 6, 27, I27,"5_6.png");
-    Token t28 = new Token(6, 6, 28, I28, null, null,"6_6.png");
+    TokenPair t28 = new TokenPair(null, null, 6, 6, 28, I28, "6_6.png");
     
     /**
      * Creates new form LoadGame
@@ -143,7 +143,8 @@ public class WindowStartGame extends javax.swing.JFrame {
                                ListTokensGame.getInstance().tokensPair.add(newToken);
                            }
                         }
-                        else if(ListTokensGame.getInstance().tokensPair.size() > 0){
+                        
+                        /* else if(ListTokensGame.getInstance().tokensPair.size() > 0){
                             for(int i = 0; i < ListTokensGame.getInstance().tokensPair.size(); i++){
                                 if(ListTokensGame.getInstance().tokensPair.get(i).getDown() == null){
                                     if(newToken.value1 == ListTokensGame.getInstance().tokensPair.get(i).value1 |
@@ -153,7 +154,7 @@ public class WindowStartGame extends javax.swing.JFrame {
                                          ListTokensGame.getInstance().insertDown(ListTokensGame.getInstance().tokensPair.get(i), newToken);  
                                 }
                             }
-                        }
+                        }*/
                     }
                 }
             }
