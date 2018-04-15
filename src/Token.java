@@ -20,6 +20,7 @@ public class Token {
     int trap;
     String name;
     
+    
 
     public Token(int value1, int value2, int id, ImageIcon image,String address) {
         this.value1 = value1;

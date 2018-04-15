@@ -1,4 +1,6 @@
 
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 /*
@@ -21,8 +23,10 @@ public class TokenPair extends Token{
         super(value1, value2, id, image, address);
         this.up = up;
         this.down = down;
+        this.subStart = null;
+        this.subEnd = null;
     }
-
+    
     public Token getUp() {
         return up;
     }
@@ -38,6 +42,8 @@ public class TokenPair extends Token{
     public void setDown(Token down) {
         this.down = down;
     }
+
+    
 
     @Override
     public int getValue1() {

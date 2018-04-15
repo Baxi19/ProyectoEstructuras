@@ -16,7 +16,7 @@ public class ListTokensGame {
     Token end3;
  
     Token savePosition;
-    public ArrayList<Token> tokensPair = new ArrayList<Token>();
+    public ArrayList<TokenPair> tokensPair = new ArrayList<TokenPair>();
     public static ListTokensGame instance = null;
 
     public Token getStart3() {
@@ -121,14 +121,13 @@ public class ListTokensGame {
         
     }
     
-   /* public Token searchToken(){
-        Token aux = start3;
-        while(aux != end3){
-        
-        
-     }
+    public void addTokenPair(TokenPair token){
+        tokensPair.add(token);
     }
-    */
+   
+        
+        
+    
     
     
 }

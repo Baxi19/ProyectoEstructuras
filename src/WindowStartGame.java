@@ -30,13 +30,16 @@ import javax.swing.JOptionPane;
  */
 
 public class WindowStartGame extends javax.swing.JFrame {
-    int availableTokens = 28;
+    public static int availableTokens = 28;
     int[] tokensRandom = new int[28];
     Token tokenSelected;                
     ArrayList<Integer> tokensDelivered = new ArrayList<Integer>(28);
     public static ArrayList<Token> tokensList = new ArrayList<Token>(28);
     public static boolean moveDone;
     public static int tokensPair = 0;
+    public static int count = 0;
+    public static ArrayList<String> imagesNames = new ArrayList<String>(21);
+    public static String lastSelection = "Next";
     /*Variables to use for token image*/
     ImageIcon  I1 = new ImageIcon("/ImagesDominoes/0_0.png");
     ImageIcon I2 = new ImageIcon("/ImagesDominoes/0_1.png");
@@ -117,44 +120,49 @@ public class WindowStartGame extends javax.swing.JFrame {
                     JComponent jc = (JComponent) e.getSource();     //Jc is used to get the dominoes image                      
                     TransferHandler th = jc.getTransferHandler();   //th is used to transfer the image to the new position                
                     th.exportAsDrag(jc, e, TransferHandler.COPY);   //is used to handle the transfer of a Transferable to and from Swing components                 
-                    moveDone = true;
-                    String nam = imagesNames[count];
-                    Token newToken = searchTokenName(nam);
-                    if(newToken.value1 == newToken.value2){
-                        tokensPair++;
-                    }      
-                    if(ListTokensGame.getInstance().start3 == null){
-                        ListTokensGame.getInstance().insertStart(newToken);
+                    String nam = imagesNames.get(count); 
+                    Token newToken = searchTokenName(nam);  //token grabbed
+                    System.out.println(newToken.value1 + "|" + newToken.value2);
+                    if(ListTokensGame.getInstance().start3 == null){ //if the list is empty...
+                        callInsertAtStart(newToken);                 // make the first move
+                        System.out.println("First token puted.");
                     }
-                    else {
-                        if(newToken.value1 == ListTokensGame.getInstance().start3.value1 |
-                           newToken.value2 == ListTokensGame.getInstance().start3.value1 |
+                    else {                                                                     //if the list isn't empty...
+                        if(newToken.value1 == ListTokensGame.getInstance().start3.value1 |   
+                           newToken.value2 == ListTokensGame.getInstance().start3.value1 |     //insert at the start (left)
                            newToken.value1 == ListTokensGame.getInstance().start3.value2 |
-                           newToken.value2 == ListTokensGame.getInstance().start3.value2){
-                           ListTokensGame.getInstance().insertStart(newToken); 
+                           newToken.value2 == ListTokensGame.getInstance().start3.value2){                           
+                            callInsertAtStart(newToken);
+                            System.out.println("Token: " + newToken.value1 + "|" + newToken.value2 + " enlazed with: "+ ListTokensGame.getInstance().start3.sig.value1 + "|" + ListTokensGame.getInstance().start3.sig.value2 + "at the start");
                         }
                         else if(newToken.value1 == ListTokensGame.getInstance().end3.value1 |
                            newToken.value2 == ListTokensGame.getInstance().end3.value1 |
-                           newToken.value1 == ListTokensGame.getInstance().end3.value2 |
+                           newToken.value1 == ListTokensGame.getInstance().end3.value2 |        //insert at the final(right)
                            newToken.value2 == ListTokensGame.getInstance().end3.value2){
-                           ListTokensGame.getInstance().insertFinal(newToken);
-                           if(newToken.id == 1 | newToken.id == 8 | newToken.id == 14 |
-                              newToken.id == 19 | newToken.id == 23 | newToken.id == 28){
-                               ListTokensGame.getInstance().tokensPair.add(newToken);
-                           }
-                        }
-                        
-                        /* else if(ListTokensGame.getInstance().tokensPair.size() > 0){
-                            for(int i = 0; i < ListTokensGame.getInstance().tokensPair.size(); i++){
-                                if(ListTokensGame.getInstance().tokensPair.get(i).getDown() == null){
-                                    if(newToken.value1 == ListTokensGame.getInstance().tokensPair.get(i).value1 |
-                                       newToken.value2 == ListTokensGame.getInstance().tokensPair.get(i).value1 |
-                                       newToken.value1 == ListTokensGame.getInstance().tokensPair.get(i).value2 |
-                                       newToken.value2 == ListTokensGame.getInstance().tokensPair.get(i).value2 )
-                                         ListTokensGame.getInstance().insertDown(ListTokensGame.getInstance().tokensPair.get(i), newToken);  
+                            callInserToTheRight(newToken);
+                            System.out.println("Token: " + newToken.value1 + "|" + newToken.value2 + " enlazed with: "+ ListTokensGame.getInstance().start3.ant.value1 + "|" + ListTokensGame.getInstance().start3.ant.value2 + "at the end");
+                        } 
+                        else {
+                            for(int i = 0; i < ListTokensGame.getInstance().tokensPair.size(); i++) {
+                                TokenPair aux = ListTokensGame.getInstance().tokensPair.get(i);
+                                if(aux.up == null){      //if tokenPair.up points to null...
+                                    callInsertUp(newToken, ListTokensGame.getInstance().tokensPair.get(i));        
+                                }
+                                if(aux.down == null){
+                                    callInsertDown(newToken, aux);
+                                }
+                                if(newToken.value1 == aux.value1 | newToken.value2 == aux.value1){
+                                    callInsertUp(newToken, aux);
+                                }
+                                if(newToken.value1 == aux.value2 | newToken.value2 == aux.value2){
+                                    callInsertDown(newToken, aux);                                   
+                                }
+                                if(newToken.value1 == aux.subEnd.value1 | newToken.value2 == aux.subEnd.value1 |
+                                   newToken.value1 == aux.subEnd.value2 | newToken.value2 == aux.subEnd.value2 ){
+                                    callInsertDown(newToken, aux);   
                                 }
                             }
-                        }*/
+                        }
                     }
                 }
             }
@@ -276,7 +284,7 @@ public class WindowStartGame extends javax.swing.JFrame {
         makeRandomList();
         distributeTokens();
         callSearchHighestToken();
-        loopToPrintImages();
+
         actualPlayerName.setText(ListPlayersGaming.getInstance().playerGaming.name);// change the player name in the game windows
         setNumberOfTokensAvailable();
     }
@@ -820,28 +828,16 @@ public class WindowStartGame extends javax.swing.JFrame {
         Information.setPreferredSize(new java.awt.Dimension(100, 100));
         jPanel3.add(Information);
 
-        position1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagesDominoes/0_1.png"))); // NOI18N
         position1.setMaximumSize(new java.awt.Dimension(100, 100));
         position1.setMinimumSize(new java.awt.Dimension(100, 100));
         position1.setPreferredSize(new java.awt.Dimension(100, 100));
         jPanel3.add(position1);
 
-        position2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagesDominoes180/0_1.png"))); // NOI18N
         position2.setMaximumSize(new java.awt.Dimension(100, 100));
         position2.setMinimumSize(new java.awt.Dimension(100, 100));
         position2.setPreferredSize(new java.awt.Dimension(100, 100));
         jPanel3.add(position2);
-
-        position3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagesDominoesLeft/0_1.png"))); // NOI18N
-        position3.setMaximumSize(new java.awt.Dimension(60, 100));
-        position3.setMinimumSize(new java.awt.Dimension(60, 100));
-        position3.setPreferredSize(new java.awt.Dimension(60, 100));
         jPanel3.add(position3);
-
-        position4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagesDominoesRight/0_1.png"))); // NOI18N
-        position4.setMaximumSize(new java.awt.Dimension(60, 100));
-        position4.setMinimumSize(new java.awt.Dimension(60, 100));
-        position4.setPreferredSize(new java.awt.Dimension(60, 100));
         jPanel3.add(position4);
         jPanel3.add(position6);
         jPanel3.add(position7);
@@ -938,94 +934,65 @@ public class WindowStartGame extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-    int count = 0;
-    String[] imagesNames = new String[21];
-    
-    public void Back(){
+   
+   public void insertImage(String button){
+       imagesNames.clear();
+      // String[] imagesNames = new String[21];
         String var = "";
         int tokensSize = ListPlayersGaming.getInstance().playerGaming.tokens.size();
         for (int i = 0; i < tokensSize; i++) {
             var = ListPlayersGaming.getInstance().playerGaming.tokens.get(i).name;
-            imagesNames[i] = var;
+            imagesNames.add(var);
         }ImageIcon[] imagenList = new ImageIcon[tokensSize];
         ImageIcon[] imagenList2 = new ImageIcon[tokensSize];
         ImageIcon[] imagenList3 = new ImageIcon[tokensSize];
         ImageIcon[] imagenList4 = new ImageIcon[tokensSize];
         
         for (int i = 0; i < imagenList.length; i++) {
-            imagenList[i] = new ImageIcon(getClass().getResource("/ImagesDominoes/"+imagesNames[i]));
-            imagenList2[i] = new ImageIcon(getClass().getResource("/ImagesDominoes180/"+imagesNames[i]));
-            imagenList3[i] = new ImageIcon(getClass().getResource("/ImagesDominoesLeft/"+imagesNames[i]));
-            imagenList4[i] = new ImageIcon(getClass().getResource("/ImagesDominoesRight/"+imagesNames[i]));
-            
+            imagenList[i] = new ImageIcon(getClass().getResource("/ImagesDominoes/"+imagesNames.get(i)));
+            imagenList2[i] = new ImageIcon(getClass().getResource("/ImagesDominoes180/"+imagesNames.get(i)));
+            imagenList3[i] = new ImageIcon(getClass().getResource("/ImagesDominoesLeft/"+imagesNames.get(i)));
+            imagenList4[i] = new ImageIcon(getClass().getResource("/ImagesDominoesRight/"+imagesNames.get(i)));         
         }
-        if(count < 0){
+        
+        if(count == 0  & "Back".equals(button)){
             count = (tokensSize-1);
             position1.setIcon(imagenList[count]);
             position2.setIcon(imagenList2[count]);
             position3.setIcon(imagenList3[count]);
             position4.setIcon(imagenList4[count]);
             
-        }if(count >= tokensSize){
+        }else if(count == (tokensSize -1) & "Next".equals(button)){
             count = 0;
             position1.setIcon(imagenList[count]);
             position2.setIcon(imagenList2[count]);
             position3.setIcon(imagenList3[count]);
             position4.setIcon(imagenList4[count]);
-        }
-        if(count < (tokensSize) & count >= 0 ){
-           position1.setIcon(imagenList[count]);
-           position2.setIcon(imagenList2[count]);
-           position3.setIcon(imagenList3[count]);
-           position4.setIcon(imagenList4[count]);
-           count --; 
-        }
-    }
-    
-    public void Next(){
-        String var = "";
-        int tokensSize = ListPlayersGaming.getInstance().playerGaming.tokens.size();
-        for (int i = 0; i < tokensSize; i++) {
-            var = ListPlayersGaming.getInstance().playerGaming.tokens.get(i).name;
-            imagesNames[i] = var;
-        }
-        
-        ImageIcon[] imagenList = new ImageIcon[tokensSize];
-        ImageIcon[] imagenList2 = new ImageIcon[tokensSize];
-        ImageIcon[] imagenList3 = new ImageIcon[tokensSize];
-        ImageIcon[] imagenList4 = new ImageIcon[tokensSize];
-        
-        
-        for (int j = 0; j < imagenList.length; j++) {
-           
-            imagenList[j] = new ImageIcon(getClass().getResource("/ImagesDominoes/"+imagesNames[j]));
-            imagenList2[j] = new ImageIcon(getClass().getResource("/ImagesDominoes180/"+imagesNames[j]));
-            imagenList3[j] = new ImageIcon(getClass().getResource("/ImagesDominoesLeft/"+imagesNames[j]));
-            imagenList4[j] = new ImageIcon(getClass().getResource("/ImagesDominoesRight/"+imagesNames[j]));
             
-        }
-        if(count >= 0 & count < tokensSize){
-           position1.setIcon(imagenList[count]);
-           position2.setIcon(imagenList2[count]);
-           position3.setIcon(imagenList3[count]);
-           position4.setIcon(imagenList4[count]);
-           count ++;
-        }else{
-            count = 0;
+        }else if(count >= 0 & "Next".equals(button)){
+            count ++;
             position1.setIcon(imagenList[count]);
             position2.setIcon(imagenList2[count]);
             position3.setIcon(imagenList3[count]);
             position4.setIcon(imagenList4[count]);
-        }
+            
+        }else if(count <= (tokensSize-1) &"Back".equals(button) ) {
+            count --;
+            position1.setIcon(imagenList[count]);
+            position2.setIcon(imagenList2[count]);
+            position3.setIcon(imagenList3[count]);
+            position4.setIcon(imagenList4[count]);
+            
+        }        
     }
+
     private void bNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNextActionPerformed
-        Next();
-        
+        insertImage("Next");
         
     }//GEN-LAST:event_bNextActionPerformed
     
     private void bBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBackActionPerformed
-        Back();
+      insertImage("Back");
         
     }//GEN-LAST:event_bBackActionPerformed
 
@@ -1327,18 +1294,15 @@ public class WindowStartGame extends javax.swing.JFrame {
                JOptionPane.showMessageDialog(null," Oops!!! There are not tokens available!  ");
                break;
            }
-   
        }
     }
     
-    public void loopToPrintImages(){
-        
-    }  
     
     public Token searchTokenName(String name){
         for(int i = 0; i < ListPlayersGaming.getInstance().playerGaming.tokens.size(); i++){
-            if(ListPlayersGaming.getInstance().playerGaming.tokens.get(i).name == name)
+            if(ListPlayersGaming.getInstance().playerGaming.tokens.get(i).name.equals(name)){
                 return ListPlayersGaming.getInstance().playerGaming.tokens.get(i);
+            }
         }
         return null;       
     }
@@ -1346,10 +1310,39 @@ public class WindowStartGame extends javax.swing.JFrame {
 
     public static void capturarPantalla(String Nombre) throws AWTException, IOException {
      BufferedImage captura = new Robot().createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()) );
+     ListPlayersGaming.getInstance().playerGaming.addGame(captura);
      // Guardar Como JPEG
      File file = new File(Nombre + ".jpg");
      ImageIO.write(captura, "jpg", file);
      JOptionPane.showMessageDialog(null, ListPlayersGaming.getInstance().actualUser.name + "'s game saved");
   }
     
+    public void callInsertAtStart(Token nToken){
+        ListTokensGame.getInstance().insertStart(nToken);
+        if (nToken.id == 1 | nToken.id == 8 | nToken.id == 14
+          | nToken.id == 19 | nToken.id == 23 | nToken.id == 28) {
+            TokenPair tok = new TokenPair(null, null, nToken.value1, nToken.value2, nToken.id, nToken.image, nToken.name);
+            ListTokensGame.getInstance().addTokenPair(tok);
+        }    
+    }
+    
+    public void callInserToTheRight(Token nToken){
+        ListTokensGame.getInstance().insertFinal(nToken); 
+        if (nToken.id == 1 | nToken.id == 8 | nToken.id == 14
+          | nToken.id == 19 | nToken.id == 23 | nToken.id == 28) {
+             TokenPair tok = new TokenPair(null, null, nToken.value1, nToken.value2, nToken.id, nToken.image, nToken.name);
+             ListTokensGame.getInstance().addTokenPair(tok);
+        }    
+    }
+    
+    public void callInsertUp(Token nToken, TokenPair tokenPair) {
+        ListTokensGame.getInstance().insertUp(nToken, tokenPair);
+
+    }
+
+    public void callInsertDown(Token nToken, TokenPair tokenPair) {
+        ListTokensGame.getInstance().insertDown(nToken, tokenPair);
+    }
+
+
 }

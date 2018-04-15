@@ -1,4 +1,5 @@
 
+import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -14,18 +15,18 @@ public class Player implements Serializable{
     ArrayList<Integer> trapsActivated;
     ArrayList<Token> tokens;
     Player ant, sig;
-    ArrayList<ImageIcon> games;
+    ArrayList<BufferedImage> games;
     
     
     public Player(){
         this.name = "";
         this.password = "";
         this.wins = 0;
-        this.trapsActivated = new ArrayList<>(3);
+        this.trapsActivated = new ArrayList<>();
         this.tokens = new ArrayList<>(21);
         this.ant = null;
         this.sig = null;
-        this.games = new ArrayList<ImageIcon>();
+        this.games = new ArrayList<BufferedImage>();
 }
 
     public Player(String name, String password) {
@@ -36,7 +37,7 @@ public class Player implements Serializable{
         this.tokens = new ArrayList<>(21);
         this.ant = null;
         this.sig = null;
-         this.games = new ArrayList<ImageIcon>();
+         this.games = new ArrayList<BufferedImage>();
     }
     
     public Player(String name, String password, int wins) {
@@ -47,14 +48,14 @@ public class Player implements Serializable{
         this.tokens = new ArrayList<>(21);
         this.ant = null;
         this.sig = null;
-        this.games = new ArrayList<ImageIcon>();
+        this.games = new ArrayList<BufferedImage>();
     }
 
-    public ArrayList<ImageIcon> getGames() {
+    public ArrayList<BufferedImage> getGames() {
         return games;
     }
 
-    public void addGames(ImageIcon game) {
+    public void addGame(BufferedImage game) {
         this.games.add(game);
     }
 
