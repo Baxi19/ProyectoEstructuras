@@ -40,6 +40,10 @@ public class WindowStartGame extends javax.swing.JFrame {
     public static int count = 0;
     public static ArrayList<String> imagesNames = new ArrayList<String>(21);
     public static String lastSelection = "Next";
+    public static int numberOfTokens = 0;
+    public static boolean winner = false;
+    ArrayList<Integer> listPossibilities = new ArrayList<Integer>();
+    
     /*Variables to use for token image*/
     ImageIcon  I1 = new ImageIcon("/ImagesDominoes/0_0.png");
     ImageIcon I2 = new ImageIcon("/ImagesDominoes/0_1.png");
@@ -72,34 +76,34 @@ public class WindowStartGame extends javax.swing.JFrame {
     
     //Tokens with 4 parameters have only ant and sig pointers
     //Tokens with 6 parameters have ant, sig, up, and down pointers
-    TokenPair t1 = new TokenPair(null, null, 0, 0, 1, I1,"0_0.png");
+    TokenPair t1 = new TokenPair(null,null,null,null,null, null, 0, 0, 1, I1,"0_0.png");
     Token t2 = new Token(0, 1, 2, I2,"0_1.png");
     Token t3 = new Token(0, 2, 3, I3,"0_2.png");
     Token t4 = new Token(0, 3, 4, I4,"0_3.png");
     Token t5 = new Token(0, 4, 5, I5,"0_4.png");
     Token t6 = new Token(0, 5, 6, I6,"0_5.png");
     Token t7 = new Token(0, 6, 7, I7,"0_6.png");
-    TokenPair t8 = new TokenPair(null, null, 1, 1, 8, I8,"1_1.png");
+    TokenPair t8 = new TokenPair(null,null,null,null,null, null, 1, 1, 8, I8,"1_1.png");
     Token t9 = new Token(1, 2, 9, I9,"1_2.png");
     Token t10 = new Token(1, 3, 10, I10,"1_3.png");
     Token t11 = new Token(1, 4, 11, I11,"1_4.png");
     Token t12 = new Token(1, 5, 12, I12,"1_5.png");
     Token t13 = new Token(1, 6, 13, I13,"1_6.png");
-    TokenPair t14 = new TokenPair(null, null, 2, 2, 14, I14 ,"2_2.png");
+    TokenPair t14 = new TokenPair(null,null,null,null,null, null, 2, 2, 14, I14 ,"2_2.png");
     Token t15 = new Token(2, 3, 15, I15,"2_3.png");
     Token t16 = new Token(2, 4, 16, I16,"2_4.png");
     Token t17 = new Token(2, 5, 17, I17,"2_5.png");
     Token t18 = new Token(2, 6, 18, I18,"2_6.png");
-    TokenPair t19 = new TokenPair( null, null, 3, 3, 19, I19,"3_3.png");
+    TokenPair t19 = new TokenPair(null,null,null,null, null, null, 3, 3, 19, I19,"3_3.png");
     Token t20 = new Token(3, 4, 20, I20,"3_4.png");
     Token t21 = new Token(3, 5, 21, I21,"3_5.png");
     Token t22 = new Token(3, 6, 22, I22,"3_6.png");
-    TokenPair t23 = new TokenPair(null, null, 4, 4, 23, I23,"4_4.png");
+    TokenPair t23 = new TokenPair(null,null,null,null,null, null, 4, 4, 23, I23,"4_4.png");
     Token t24 = new Token(4, 5, 24, I24,"4_5.png");
     Token t25 = new Token(4, 6, 25, I25,"4_6.png");
-    TokenPair t26 = new TokenPair(null, null,5, 5, 26, I26, "5_5.png");
+    TokenPair t26 = new TokenPair(null,null,null,null,null, null,5, 5, 26, I26, "5_5.png");
     Token t27 = new Token(5, 6, 27, I27,"5_6.png");
-    TokenPair t28 = new TokenPair(null, null, 6, 6, 28, I28, "6_6.png");
+    TokenPair t28 = new TokenPair(null,null,null,null,null, null, 6, 6, 28, I28, "6_6.png");
     
     /**
      * Creates new form LoadGame
@@ -110,61 +114,175 @@ public class WindowStartGame extends javax.swing.JFrame {
         moveDone = false;
         MouseListener ml;
         ml = new MouseListener() {              //Listener                                
+
             @Override                           //Override funtion                                
             public void mouseClicked(MouseEvent e) {
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
-                if (moveDone == false){
-                    JComponent jc = (JComponent) e.getSource();     //Jc is used to get the dominoes image                      
-                    TransferHandler th = jc.getTransferHandler();   //th is used to transfer the image to the new position                
-                    th.exportAsDrag(jc, e, TransferHandler.COPY);   //is used to handle the transfer of a Transferable to and from Swing components                 
-                    String nam = imagesNames.get(count); 
+                while (moveDone == false) {
+                    //possibilities = 4;
+                    setTranfer();
+                    JComponent jlabelInfo = (JComponent) e.getSource();     //Jc is used to get the dominoes image                      
+                    TransferHandler tranferHandler = jlabelInfo.getTransferHandler();   //th is used to transfer the image to the new position                
+                    tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY);   //is used to handle the transfer of a Transferable to and from Swing components                 
+                    String nam = imagesNames.get(count);
                     Token newToken = searchTokenName(nam);  //token grabbed
+                    //deleteToken(nam);
+                    System.out.println("\n \t Data of token\n");
                     System.out.println(newToken.value1 + "|" + newToken.value2);
-                    if(ListTokensGame.getInstance().start3 == null){ //if the list is empty...
-                        callInsertAtStart(newToken);                 // make the first move
-                        System.out.println("First token puted.");
-                    }
-                    else {                                                                     //if the list isn't empty...
-                        if(newToken.value1 == ListTokensGame.getInstance().start3.value1 |   
-                           newToken.value2 == ListTokensGame.getInstance().start3.value1 |     //insert at the start (left)
-                           newToken.value1 == ListTokensGame.getInstance().start3.value2 |
-                           newToken.value2 == ListTokensGame.getInstance().start3.value2){                           
+                    //It insert the first token in the list
+                    if (ListTokensGame.getInstance().start3 == null) { //if the list is empty...
+                        tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY);   //is used to handle the transfer of a Transferable to and from Swing components                 
+                        callInsertAtStart(newToken);
+                        deleteToken(nam);
+                        listPossibilities.add (0,newToken.value1);// insert the start position
+                        listPossibilities.add(1,newToken.value2);// insert the end position
+                        if(newToken.value1 == newToken.value2){
+                            listPossibilities.add( newToken.value1);
+                            listPossibilities.add( newToken.value1);
+                        }
+                        moveDone = true;
+                        if( ListPlayersGaming.getInstance().playerGaming.tokens.size() == 0 ){
+                            winner = true;
+                        }
+                        if (winner == true){
+                            JOptionPane.showMessageDialog(rootPane, "You Win This Round");
+                        }
+                        System.out.println("First token Inserted.");
+                        System.out.println("\n \t Data of token\n");
+                        System.out.println(newToken.value1 + "|" + newToken.value2);
+                        break;
+                    } else {
+                        if (newToken.value2 == listPossibilities.get(0)) { // if is the same valor to start
+                            tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY);   //is used to handle the transfer of a Transferable to and from Swing components                 
                             callInsertAtStart(newToken);
-                            System.out.println("Token: " + newToken.value1 + "|" + newToken.value2 + " enlazed with: "+ ListTokensGame.getInstance().start3.sig.value1 + "|" + ListTokensGame.getInstance().start3.sig.value2 + "at the start");
-                        }
-                        else if(newToken.value1 == ListTokensGame.getInstance().end3.value1 |
-                           newToken.value2 == ListTokensGame.getInstance().end3.value1 |
-                           newToken.value1 == ListTokensGame.getInstance().end3.value2 |        //insert at the final(right)
-                           newToken.value2 == ListTokensGame.getInstance().end3.value2){
-                            callInserToTheRight(newToken);
-                            System.out.println("Token: " + newToken.value1 + "|" + newToken.value2 + " enlazed with: "+ ListTokensGame.getInstance().start3.ant.value1 + "|" + ListTokensGame.getInstance().start3.ant.value2 + "at the end");
-                        } 
-                        else {
-                            for(int i = 0; i < ListTokensGame.getInstance().tokensPair.size(); i++) {
-                                TokenPair aux = ListTokensGame.getInstance().tokensPair.get(i);
-                                if(aux.up == null){      //if tokenPair.up points to null...
-                                    callInsertUp(newToken, ListTokensGame.getInstance().tokensPair.get(i));        
-                                }
-                                if(aux.down == null){
-                                    callInsertDown(newToken, aux);
-                                }
-                                if(newToken.value1 == aux.value1 | newToken.value2 == aux.value1){
-                                    callInsertUp(newToken, aux);
-                                }
-                                if(newToken.value1 == aux.value2 | newToken.value2 == aux.value2){
-                                    callInsertDown(newToken, aux);                                   
-                                }
-                                if(newToken.value1 == aux.subEnd.value1 | newToken.value2 == aux.subEnd.value1 |
-                                   newToken.value1 == aux.subEnd.value2 | newToken.value2 == aux.subEnd.value2 ){
-                                    callInsertDown(newToken, aux);   
-                                }
+                            deleteToken(nam);
+                            listPossibilities.set(0, newToken.value1);// move the first value
+                            if(newToken.value1 == newToken.value2){
+                                listPossibilities.add( newToken.value1);
+                                listPossibilities.add( newToken.value1);
                             }
+                            moveDone = true;
+                            if( ListPlayersGaming.getInstance().playerGaming.tokens.size() == 0 ){
+                                winner = true;
+                            }
+                            if (winner == true){
+                                JOptionPane.showMessageDialog(rootPane, "You Win This Round");
+                            }
+                            System.out.println("Inserted: value 2 is the same valor to start");
+                            break;
                         }
+                        if (newToken.value1 == listPossibilities.get(0)) { // if is different valor to start
+                            tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY);   //is used to handle the transfer of a Transferable to and from Swing components                 
+                            int[] arrayChanged = changeValors(newToken.value1, newToken.value2);
+                            newToken.value1 = arrayChanged[0];
+                            newToken.value2 = arrayChanged[1];
+                            callInsertAtStart(newToken);
+                            deleteToken(nam);
+                            listPossibilities.set(0, newToken.value1);// move the first value
+                            if(newToken.value1 == newToken.value2){
+                                listPossibilities.add( newToken.value1);
+                                listPossibilities.add( newToken.value1);
+                            }
+                            if( ListPlayersGaming.getInstance().playerGaming.tokens.size() == 0 ){
+                                winner = true;
+                            }
+                            if (winner == true){
+                                JOptionPane.showMessageDialog(rootPane, "You Win This Round");
+                            }
+                            moveDone = true;
+                            System.out.println("Inserted: new value 1  changed to  valor 2  to insert in start");
+                            break;
+                        }
+                        if (newToken.value1 == listPossibilities.get(1)) { // if is the same valor to start
+                            tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY);   //is used to handle the transfer of a Transferable to and from Swing components                 
+                            callInserToTheRight(newToken);
+                            deleteToken(nam);
+                            listPossibilities.set(1, newToken.value2);// move the first value
+                            if(newToken.value1 == newToken.value2){
+                                listPossibilities.add( newToken.value1);
+                                listPossibilities.add( newToken.value1);
+                            }
+                            if( ListPlayersGaming.getInstance().playerGaming.tokens.size() == 0 ){
+                                winner = true;
+                            }
+                            if (winner == true){
+                                JOptionPane.showMessageDialog(rootPane, "You Win This Round");
+                            }
+                            moveDone = true;
+                            System.out.println("Inserted: new value 1 is the same valor to end");
+                            break;
+                        }
+                        if (newToken.value2 == listPossibilities.get(1)) { // if is different valor to start
+                            tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY);   //is used to handle the transfer of a Transferable to and from Swing components                 
+                            int[] arrayChanged = changeValors(newToken.value1, newToken.value2);
+                            newToken.value1 = arrayChanged[0];
+                            newToken.value2 = arrayChanged[1];
+                            callInserToTheRight(newToken);
+                            deleteToken(nam);
+                            listPossibilities.set(1, newToken.value2);// move the first value
+                            if(newToken.value1 == newToken.value2){
+                                listPossibilities.add( newToken.value1);
+                                listPossibilities.add( newToken.value1);
+                            }
+                            if( ListPlayersGaming.getInstance().playerGaming.tokens.size() == 0 ){
+                                winner = true;
+                            }
+                            if (winner == true){
+                                JOptionPane.showMessageDialog(rootPane, "You Win This Round");
+                            }
+                            moveDone = true;
+                            System.out.println("Inserted: new value 1  changed to  valor 2  to insert in end");
+                            break;
+                        }
+
+                        for (int i = 2; i < listPossibilities.size() ; i++) {
+                            int var = listPossibilities.get(i);
+                            if (var == newToken.value1) {
+                                tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY);   //is used to handle the transfer of a Transferable to and from Swing components                 
+                                callInserToTheRight(newToken);
+                                deleteToken(nam);
+                                listPossibilities.set(i, newToken.value2);
+                                
+                                if( ListPlayersGaming.getInstance().playerGaming.tokens.size() == 0 ){
+                                    winner = true;
+                                }
+                                if (winner == true){
+                                    JOptionPane.showMessageDialog(rootPane, "You Win This Round");
+                                }
+                                moveDone = true;
+                                System.out.println("Inserted: new value 1  is in tokens pair");
+                                break;
+                                
+                            }
+                            if(var == newToken.value2){
+                                tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY);   //is used to handle the transfer of a Transferable to and from Swing components                 
+                                int[] arrayChanged = changeValors(newToken.value1, newToken.value2);
+                                newToken.value1 = arrayChanged[0];
+                                newToken.value2 = arrayChanged[1];
+                                callInserToTheRight(newToken);
+                                deleteToken(nam);
+                                listPossibilities.set(i, newToken.value2);
+                                if( ListPlayersGaming.getInstance().playerGaming.tokens.size() == 0 ){
+                                    winner = true;
+                                }
+                                if (winner == true){
+                                    JOptionPane.showMessageDialog(rootPane, "You Win This Round");
+                                }
+                            
+                                moveDone = true;
+                                System.out.println("Inserted: new value 1  changed to  valor 2  to insert in tokens pair");
+                                break;
+                            }
+
+                        }
+                        System.out.println("Token not inserted");
+
                     }
                 }
+            
             }
 
             @Override
@@ -179,105 +297,13 @@ public class WindowStartGame extends javax.swing.JFrame {
             public void mouseExited(MouseEvent e) {
             }
         };
-        
+
         
         //Add mouse click action to trasfer
         position1.addMouseListener(ml);
         position2.addMouseListener(ml);
         position3.addMouseListener(ml);
         position4.addMouseListener(ml);
-        
-        // set new images
-        //This instruction gets the icon("Image") from the tokens and them 
-        //it is used to remplace in the position icon on the matriz's game
-        position1.setTransferHandler(new TransferHandler("icon"));
-        position2.setTransferHandler(new TransferHandler("icon"));
-        position3.setTransferHandler(new TransferHandler("icon"));
-        position4.setTransferHandler(new TransferHandler("icon"));
-      
-        //set new possibles positions
-        // it instruction get ready the position in the matriz 
-        // to will remplace for the new token image
-        celda1.setTransferHandler(new TransferHandler("icon"));                 
-        celda2.setTransferHandler(new TransferHandler("icon"));                 
-        celda3.setTransferHandler(new TransferHandler("icon"));
-        celda4.setTransferHandler(new TransferHandler("icon"));
-        celda5.setTransferHandler(new TransferHandler("icon"));
-        celda6.setTransferHandler(new TransferHandler("icon"));
-        celda7.setTransferHandler(new TransferHandler("icon"));
-        celda8.setTransferHandler(new TransferHandler("icon"));
-        celda9.setTransferHandler(new TransferHandler("icon"));
-        celda10.setTransferHandler(new TransferHandler("icon"));
-        celda11.setTransferHandler(new TransferHandler("icon"));
-        celda12.setTransferHandler(new TransferHandler("icon"));
-        celda13.setTransferHandler(new TransferHandler("icon"));
-        celda14.setTransferHandler(new TransferHandler("icon"));
-        celda15.setTransferHandler(new TransferHandler("icon"));
-        celda16.setTransferHandler(new TransferHandler("icon"));
-        celda17.setTransferHandler(new TransferHandler("icon"));
-        celda18.setTransferHandler(new TransferHandler("icon"));
-        celda19.setTransferHandler(new TransferHandler("icon"));
-        celda20.setTransferHandler(new TransferHandler("icon"));
-        celda21.setTransferHandler(new TransferHandler("icon"));
-        celda22.setTransferHandler(new TransferHandler("icon"));
-        celda23.setTransferHandler(new TransferHandler("icon"));
-        celda24.setTransferHandler(new TransferHandler("icon"));
-        celda25.setTransferHandler(new TransferHandler("icon"));
-        celda26.setTransferHandler(new TransferHandler("icon"));
-        celda27.setTransferHandler(new TransferHandler("icon"));
-        celda28.setTransferHandler(new TransferHandler("icon"));
-        celda29.setTransferHandler(new TransferHandler("icon"));
-        celda30.setTransferHandler(new TransferHandler("icon"));
-        celda31.setTransferHandler(new TransferHandler("icon"));
-        celda32.setTransferHandler(new TransferHandler("icon"));
-        celda33.setTransferHandler(new TransferHandler("icon"));
-        celda34.setTransferHandler(new TransferHandler("icon"));
-        celda35.setTransferHandler(new TransferHandler("icon"));
-        celda36.setTransferHandler(new TransferHandler("icon"));
-        celda37.setTransferHandler(new TransferHandler("icon"));
-        celda38.setTransferHandler(new TransferHandler("icon"));
-        celda39.setTransferHandler(new TransferHandler("icon"));
-        celda40.setTransferHandler(new TransferHandler("icon"));
-        celda41.setTransferHandler(new TransferHandler("icon"));
-        celda42.setTransferHandler(new TransferHandler("icon"));
-        celda43.setTransferHandler(new TransferHandler("icon"));
-        celda44.setTransferHandler(new TransferHandler("icon"));
-        celda45.setTransferHandler(new TransferHandler("icon"));
-        celda46.setTransferHandler(new TransferHandler("icon"));
-        celda47.setTransferHandler(new TransferHandler("icon"));
-        celda48.setTransferHandler(new TransferHandler("icon"));
-        celda49.setTransferHandler(new TransferHandler("icon"));
-        celda50.setTransferHandler(new TransferHandler("icon"));
-        celda51.setTransferHandler(new TransferHandler("icon"));
-        celda52.setTransferHandler(new TransferHandler("icon"));
-        celda53.setTransferHandler(new TransferHandler("icon"));
-        celda54.setTransferHandler(new TransferHandler("icon"));
-        celda55.setTransferHandler(new TransferHandler("icon"));
-        celda56.setTransferHandler(new TransferHandler("icon"));
-        celda57.setTransferHandler(new TransferHandler("icon"));
-        celda58.setTransferHandler(new TransferHandler("icon"));
-        celda59.setTransferHandler(new TransferHandler("icon"));
-        celda60.setTransferHandler(new TransferHandler("icon"));
-        celda61.setTransferHandler(new TransferHandler("icon"));
-        celda62.setTransferHandler(new TransferHandler("icon"));
-        celda63.setTransferHandler(new TransferHandler("icon"));
-        celda64.setTransferHandler(new TransferHandler("icon"));
-        celda65.setTransferHandler(new TransferHandler("icon"));
-        celda66.setTransferHandler(new TransferHandler("icon"));
-        celda67.setTransferHandler(new TransferHandler("icon"));
-        celda68.setTransferHandler(new TransferHandler("icon"));
-        celda69.setTransferHandler(new TransferHandler("icon"));
-        celda70.setTransferHandler(new TransferHandler("icon"));
-        celda71.setTransferHandler(new TransferHandler("icon"));
-        celda72.setTransferHandler(new TransferHandler("icon"));
-        celda73.setTransferHandler(new TransferHandler("icon"));
-        celda74.setTransferHandler(new TransferHandler("icon"));
-        celda75.setTransferHandler(new TransferHandler("icon"));
-        celda76.setTransferHandler(new TransferHandler("icon"));
-        celda77.setTransferHandler(new TransferHandler("icon"));
-        celda78.setTransferHandler(new TransferHandler("icon"));
-        celda79.setTransferHandler(new TransferHandler("icon"));
-        celda80.setTransferHandler(new TransferHandler("icon"));
         
         insertTokensInGlobalList();
         printTokens();
@@ -870,7 +896,127 @@ public class WindowStartGame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    public String deleteToken(String name){
+        for(int i = 0; i < ListPlayersGaming.getInstance().playerGaming.tokens.size(); i++){
+         if(ListPlayersGaming.getInstance().playerGaming.tokens.get(i).name.equals(name)){
+             ListPlayersGaming.getInstance().playerGaming.tokens.remove(i);
+             return "Token deleted";
+         }
+     }
+     return "Token to delete not found";
+    }
+    
+    public void setTranfer(){
+        
+        // set new images
+        //This instruction gets the icon("Image") from the tokens and them 
+        //it is used to remplace in the position icon on the matriz's game
+        position1.setTransferHandler(new TransferHandler("icon"));
+        position2.setTransferHandler(new TransferHandler("icon"));
+        position3.setTransferHandler(new TransferHandler("icon"));
+        position4.setTransferHandler(new TransferHandler("icon"));
+      
+        //set new possibles positions
+        // it instruction get ready the position in the matriz 
+        // to will remplace for the new token image
+        
+        celda1.setTransferHandler(new TransferHandler("icon"));                 
+        celda2.setTransferHandler(new TransferHandler("icon"));                 
+        celda3.setTransferHandler(new TransferHandler("icon"));
+        celda4.setTransferHandler(new TransferHandler("icon"));
+        celda5.setTransferHandler(new TransferHandler("icon"));
+        celda6.setTransferHandler(new TransferHandler("icon"));
+        celda7.setTransferHandler(new TransferHandler("icon"));
+        celda8.setTransferHandler(new TransferHandler("icon"));
+        celda9.setTransferHandler(new TransferHandler("icon"));
+        celda10.setTransferHandler(new TransferHandler("icon"));
+        celda11.setTransferHandler(new TransferHandler("icon"));
+        celda12.setTransferHandler(new TransferHandler("icon"));
+        celda13.setTransferHandler(new TransferHandler("icon"));
+        celda14.setTransferHandler(new TransferHandler("icon"));
+        celda15.setTransferHandler(new TransferHandler("icon"));
+        celda16.setTransferHandler(new TransferHandler("icon"));
+        celda17.setTransferHandler(new TransferHandler("icon"));
+        celda18.setTransferHandler(new TransferHandler("icon"));
+        celda19.setTransferHandler(new TransferHandler("icon"));
+        celda20.setTransferHandler(new TransferHandler("icon"));
+        celda21.setTransferHandler(new TransferHandler("icon"));
+        celda22.setTransferHandler(new TransferHandler("icon"));
+        celda23.setTransferHandler(new TransferHandler("icon"));
+        celda24.setTransferHandler(new TransferHandler("icon"));
+        celda25.setTransferHandler(new TransferHandler("icon"));
+        celda26.setTransferHandler(new TransferHandler("icon"));
+        celda27.setTransferHandler(new TransferHandler("icon"));
+        celda28.setTransferHandler(new TransferHandler("icon"));
+        celda29.setTransferHandler(new TransferHandler("icon"));
+        celda30.setTransferHandler(new TransferHandler("icon"));
+        celda31.setTransferHandler(new TransferHandler("icon"));
+        celda32.setTransferHandler(new TransferHandler("icon"));
+        celda33.setTransferHandler(new TransferHandler("icon"));
+        celda34.setTransferHandler(new TransferHandler("icon"));
+        celda35.setTransferHandler(new TransferHandler("icon"));
+        celda36.setTransferHandler(new TransferHandler("icon"));
+        celda37.setTransferHandler(new TransferHandler("icon"));
+        celda38.setTransferHandler(new TransferHandler("icon"));
+        celda39.setTransferHandler(new TransferHandler("icon"));
+        celda40.setTransferHandler(new TransferHandler("icon"));
+        celda41.setTransferHandler(new TransferHandler("icon"));
+        celda42.setTransferHandler(new TransferHandler("icon"));
+        celda43.setTransferHandler(new TransferHandler("icon"));
+        celda44.setTransferHandler(new TransferHandler("icon"));
+        celda45.setTransferHandler(new TransferHandler("icon"));
+        celda46.setTransferHandler(new TransferHandler("icon"));
+        celda47.setTransferHandler(new TransferHandler("icon"));
+        celda48.setTransferHandler(new TransferHandler("icon"));
+        celda49.setTransferHandler(new TransferHandler("icon"));
+        celda50.setTransferHandler(new TransferHandler("icon"));
+        celda51.setTransferHandler(new TransferHandler("icon"));
+        celda52.setTransferHandler(new TransferHandler("icon"));
+        celda53.setTransferHandler(new TransferHandler("icon"));
+        celda54.setTransferHandler(new TransferHandler("icon"));
+        celda55.setTransferHandler(new TransferHandler("icon"));
+        celda56.setTransferHandler(new TransferHandler("icon"));
+        celda57.setTransferHandler(new TransferHandler("icon"));
+        celda58.setTransferHandler(new TransferHandler("icon"));
+        celda59.setTransferHandler(new TransferHandler("icon"));
+        celda60.setTransferHandler(new TransferHandler("icon"));
+        celda61.setTransferHandler(new TransferHandler("icon"));
+        celda62.setTransferHandler(new TransferHandler("icon"));
+        celda63.setTransferHandler(new TransferHandler("icon"));
+        celda64.setTransferHandler(new TransferHandler("icon"));
+        celda65.setTransferHandler(new TransferHandler("icon"));
+        celda66.setTransferHandler(new TransferHandler("icon"));
+        celda67.setTransferHandler(new TransferHandler("icon"));
+        celda68.setTransferHandler(new TransferHandler("icon"));
+        celda69.setTransferHandler(new TransferHandler("icon"));
+        celda70.setTransferHandler(new TransferHandler("icon"));
+        celda71.setTransferHandler(new TransferHandler("icon"));
+        celda72.setTransferHandler(new TransferHandler("icon"));
+        celda73.setTransferHandler(new TransferHandler("icon"));
+        celda74.setTransferHandler(new TransferHandler("icon"));
+        celda75.setTransferHandler(new TransferHandler("icon"));
+        celda76.setTransferHandler(new TransferHandler("icon"));
+        celda77.setTransferHandler(new TransferHandler("icon"));
+        celda78.setTransferHandler(new TransferHandler("icon"));
+        celda79.setTransferHandler(new TransferHandler("icon"));
+        celda80.setTransferHandler(new TransferHandler("icon"));
+        
+            
+        }
+    
+    
+    
+    public int[] changeValors(int value1,int value2){
+        int aux = value1;//guardamos el valor 1
+        value1 = value2;//se cambia el valor 1 por el valor 2
+        value2 = aux;   // sustituimos el valor 2 por el valor que guardo el aux
+        int[] arrayAux = new int[2];
+        arrayAux[0] = value1;
+        arrayAux[1] = value2;
+        return arrayAux;
+    }
+    
     private void buttonDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDoneActionPerformed
         // it move to the next player's turn
         ListPlayersGaming.getInstance().playerGaming = ListPlayersGaming.getInstance().playerGaming.sig;
@@ -883,7 +1029,7 @@ public class WindowStartGame extends javax.swing.JFrame {
         position3.setIcon(null);
         position4.setIcon(null);
         count = 0;
-        String[] imagesNames = new String[21];
+        
     
     }//GEN-LAST:event_buttonDoneActionPerformed
 
@@ -1278,23 +1424,23 @@ public class WindowStartGame extends javax.swing.JFrame {
     }
     
     public void takeToken(){
-         for(int i = 0; i <= 28; i++){
-           if(availableTokens > 0){
-               if(tokensDelivered.contains(tokensRandom[i])){
+        if (availableTokens > 0) {
+            int i = 0;
+            while (i < 28) {
+                if(tokensDelivered.contains(tokensRandom[i])) {
                     i++;
-               }
-               else{
-                   ListPlayersGaming.getInstance().playerGaming.addToken(searchToken(tokensRandom[i])); 
-                   availableTokens--;
-                   setNumberOfTokensAvailable();
-                   break;
-               }
-           }
-           else{
-               JOptionPane.showMessageDialog(null," Oops!!! There are not tokens available!  ");
-               break;
-           }
-       }
+                } else {
+                    ListPlayersGaming.getInstance().playerGaming.addToken(searchToken(tokensRandom[i]));
+                    tokensDelivered.add(tokensRandom[i]);
+                    availableTokens--;
+                    setNumberOfTokensAvailable();
+                    break;
+                }
+            }
+        }
+        else {
+            JOptionPane.showMessageDialog(null, " Oops!!! There are not tokens available!  ");
+        }
     }
     
     
@@ -1321,7 +1467,7 @@ public class WindowStartGame extends javax.swing.JFrame {
         ListTokensGame.getInstance().insertStart(nToken);
         if (nToken.id == 1 | nToken.id == 8 | nToken.id == 14
           | nToken.id == 19 | nToken.id == 23 | nToken.id == 28) {
-            TokenPair tok = new TokenPair(null, null, nToken.value1, nToken.value2, nToken.id, nToken.image, nToken.name);
+            TokenPair tok = new TokenPair(null,null,null,null,null, null, nToken.value1, nToken.value2, nToken.id, nToken.image, nToken.name);
             ListTokensGame.getInstance().addTokenPair(tok);
         }    
     }
@@ -1330,18 +1476,27 @@ public class WindowStartGame extends javax.swing.JFrame {
         ListTokensGame.getInstance().insertFinal(nToken); 
         if (nToken.id == 1 | nToken.id == 8 | nToken.id == 14
           | nToken.id == 19 | nToken.id == 23 | nToken.id == 28) {
-             TokenPair tok = new TokenPair(null, null, nToken.value1, nToken.value2, nToken.id, nToken.image, nToken.name);
+             TokenPair tok = new TokenPair(null,null,null,null,null, null, nToken.value1, nToken.value2, nToken.id, nToken.image, nToken.name);
              ListTokensGame.getInstance().addTokenPair(tok);
         }    
     }
     
     public void callInsertUp(Token nToken, TokenPair tokenPair) {
         ListTokensGame.getInstance().insertUp(nToken, tokenPair);
-
+        if (nToken.id == 1 | nToken.id == 8 | nToken.id == 14
+          | nToken.id == 19 | nToken.id == 23 | nToken.id == 28) {
+             TokenPair tok = new TokenPair(null,null,null,null,null, null, nToken.value1, nToken.value2, nToken.id, nToken.image, nToken.name);
+             ListTokensGame.getInstance().addTokenPair(tok);
+        }
     }
 
     public void callInsertDown(Token nToken, TokenPair tokenPair) {
         ListTokensGame.getInstance().insertDown(nToken, tokenPair);
+        if (nToken.id == 1 | nToken.id == 8 | nToken.id == 14
+          | nToken.id == 19 | nToken.id == 23 | nToken.id == 28) {
+             TokenPair tok = new TokenPair(null,null,null,null,null, null, nToken.value1, nToken.value2, nToken.id, nToken.image, nToken.name);
+             ListTokensGame.getInstance().addTokenPair(tok);
+        }
     }
 
 

@@ -16,17 +16,21 @@ import javax.swing.ImageIcon;
 public class TokenPair extends Token{
     Token up;
     Token down;
-    Token subStart;
-    Token subEnd;
+    Token subStartUp;
+    Token subEndUp;
+    Token subStartDown;
+    Token subEndDown;
 
-    public TokenPair(Token up, Token down, int value1, int value2, int id, ImageIcon image, String address) {
+    public TokenPair(Token up, Token down, Token subStartUp, Token subEndUp, Token subStartDown, Token subEndDown, int value1, int value2, int id, ImageIcon image, String address) {
         super(value1, value2, id, image, address);
         this.up = up;
         this.down = down;
-        this.subStart = null;
-        this.subEnd = null;
+        this.subStartUp = subStartUp;
+        this.subEndUp = subEndUp;
+        this.subStartDown = subStartDown;
+        this.subEndDown = subEndDown;
     }
-    
+
     public Token getUp() {
         return up;
     }
@@ -43,6 +47,38 @@ public class TokenPair extends Token{
         this.down = down;
     }
 
+    public Token getSubStartUp() {
+        return subStartUp;
+    }
+
+    public void setSubStartUp(Token subStartUp) {
+        this.subStartUp = subStartUp;
+    }
+
+    public Token getSubEndUp() {
+        return subEndUp;
+    }
+
+    public void setSubEndUp(Token subEndUp) {
+        this.subEndUp = subEndUp;
+    }
+
+    public Token getSubStartDown() {
+        return subStartDown;
+    }
+
+    public void setSubStartDown(Token subStartDown) {
+        this.subStartDown = subStartDown;
+    }
+
+    public Token getSubEndDown() {
+        return subEndDown;
+    }
+
+    public void setSubEndDown(Token subEndDown) {
+        this.subEndDown = subEndDown;
+    }
+    
     
 
     @Override

@@ -74,14 +74,17 @@ public class ListTokensGame {
             pairToken.up = newToken;
             newToken.ant = pairToken;
             newToken.sig = null;
-            pairToken.subStart = newToken;
-            pairToken.subEnd = newToken;
+            pairToken.subStartUp = newToken;
+            pairToken.subEndUp = newToken;
+            overwriteTokenPair(pairToken);
+            
         }
         else{
             newToken.sig = null;
-            pairToken.subEnd.sig = newToken;
-            newToken.ant = pairToken.subEnd;
-            pairToken.subEnd = newToken;            
+            pairToken.subEndUp.sig = newToken;
+            newToken.ant = pairToken.subEndUp;
+            pairToken.subEndUp = newToken;
+            overwriteTokenPair(pairToken);
         }
     }
     
@@ -90,14 +93,16 @@ public class ListTokensGame {
             pairToken.down = newToken;
             newToken.ant = pairToken;
             newToken.sig = null;
-            pairToken.subStart = newToken;
-            pairToken.subEnd = newToken;
+            pairToken.subStartDown = newToken;
+            pairToken.subEndDown = newToken;
+            overwriteTokenPair(pairToken);
         }
         else{
             newToken.sig = null;
-            pairToken.subEnd.sig = newToken;
-            newToken.ant = pairToken.subEnd;
-            pairToken.subEnd = newToken;            
+            pairToken.subEndDown.sig = newToken;
+            newToken.ant = pairToken.subEndDown;
+            pairToken.subEndDown = newToken;
+            overwriteTokenPair(pairToken);
         }
     }
     
@@ -124,7 +129,16 @@ public class ListTokensGame {
     public void addTokenPair(TokenPair token){
         tokensPair.add(token);
     }
-   
+    
+    public Token overwriteTokenPair(TokenPair tokenPair){
+        for(int i = 0; i < tokensPair.size(); i++){
+            if(tokensPair.get(i).id == tokenPair.id){
+                tokensPair.set(i, tokenPair);
+                return tokenPair;
+            }
+        }
+        return null;
+    }
         
         
     
