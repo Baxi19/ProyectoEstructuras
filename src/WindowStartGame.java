@@ -126,7 +126,7 @@ public class WindowStartGame extends javax.swing.JFrame {
                     setTranfer();
                     JComponent jlabelInfo = (JComponent) e.getSource();     //Jc is used to get the dominoes image                      
                     TransferHandler tranferHandler = jlabelInfo.getTransferHandler();   //th is used to transfer the image to the new position                
-                    tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY);   //is used to handle the transfer of a Transferable to and from Swing components                 
+                    //tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY);   //is used to handle the transfer of a Transferable to and from Swing components                 
                     String nam = imagesNames.get(count);
                     Token newToken = searchTokenName(nam);  //token grabbed
                     //deleteToken(nam);
@@ -139,6 +139,7 @@ public class WindowStartGame extends javax.swing.JFrame {
                         deleteToken(nam);
                         listPossibilities.add (0,newToken.value1);// insert the start position
                         listPossibilities.add(1,newToken.value2);// insert the end position
+                        tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY);   //is used to handle the transfer of a Transferable to and from Swing components                 
                         if(newToken.value1 == newToken.value2){
                             listPossibilities.add( newToken.value1);
                             listPossibilities.add( newToken.value1);
@@ -278,9 +279,13 @@ public class WindowStartGame extends javax.swing.JFrame {
                             }
 
                         }
-                        System.out.println("Token not inserted");
-
+                        if(moveDone == false){
+                            JOptionPane.showMessageDialog(rootPane, "This Token is incompatible");
+                            System.out.println("Token not inserted");
+                            break;
+                        }
                     }
+                    
                 }
             
             }
@@ -304,6 +309,14 @@ public class WindowStartGame extends javax.swing.JFrame {
         position2.addMouseListener(ml);
         position3.addMouseListener(ml);
         position4.addMouseListener(ml);
+        
+        // set new images
+        //This instruction gets the icon("Image") from the tokens and them 
+        //it is used to remplace in the position icon on the matriz's game
+        position1.setTransferHandler(new TransferHandler("icon"));
+        position2.setTransferHandler(new TransferHandler("icon"));
+        position3.setTransferHandler(new TransferHandler("icon"));
+        position4.setTransferHandler(new TransferHandler("icon"));
         
         insertTokensInGlobalList();
         printTokens();
@@ -908,7 +921,7 @@ public class WindowStartGame extends javax.swing.JFrame {
     }
     
     public void setTranfer(){
-        
+       /* 
         // set new images
         //This instruction gets the icon("Image") from the tokens and them 
         //it is used to remplace in the position icon on the matriz's game
@@ -916,7 +929,7 @@ public class WindowStartGame extends javax.swing.JFrame {
         position2.setTransferHandler(new TransferHandler("icon"));
         position3.setTransferHandler(new TransferHandler("icon"));
         position4.setTransferHandler(new TransferHandler("icon"));
-      
+     */ 
         //set new possibles positions
         // it instruction get ready the position in the matriz 
         // to will remplace for the new token image

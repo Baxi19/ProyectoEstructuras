@@ -2,3 +2,4 @@
 {"name":"Elias","password":"1","wins":0,"tokens":[],"ant":null,"sig":null}
 {"name":"Randald","password":"1","wins":0,"tokens":[],"ant":null,"sig":null}
 {"name":"xd","password":"xdD","wins":0,"tokens":[],"ant":null,"sig":null}
+{"name":"Danny","password":"largo","wins":0,"trapsActivated":[],"tokens":[],"ant":null,"sig":null,"games":[]}
