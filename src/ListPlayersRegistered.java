@@ -75,7 +75,7 @@ public class ListPlayersRegistered {   // singletone class PlayerList
                     return end;
         }
         else{                                     // else...
-            while(aux.sig != start){              // go through list until the start
+            while(aux.sig != end.sig){              // go through list until the start
                 if(aux.getName().equals(name)){   // if aux is in the position of the list
                     return aux;                   // return the object found              
                 }

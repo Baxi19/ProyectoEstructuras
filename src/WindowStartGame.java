@@ -32,19 +32,18 @@ import javax.swing.JOptionPane;
  */
 
 public class WindowStartGame extends javax.swing.JFrame {
-    public static int availableTokens = 28;
-    int[] tokensRandom = new int[28];
-    Token tokenSelected;                
-    ArrayList<Integer> tokensDelivered = new ArrayList<Integer>(28);
-    public static ArrayList<Token> tokensList = new ArrayList<Token>(28);
-    public static boolean moveDone;
-    public static int tokensPair = 0;
-    public static int count = 0;
-    public static ArrayList<String> imagesNames = new ArrayList<String>(21);
-    public static String lastSelection = "Next";
-    public static int numberOfTokens = 0;
-    public static boolean winner = false;
-    ArrayList<Integer> listPossibilities = new ArrayList<Integer>();
+    public static int availableTokens = 28; //this will be used to count the avaible tokens
+    int[] tokensRandom = new int[28];       //this will be used to save a ramdom numbers
+    Token tokenSelected;                    //this will be used to get the actual token 
+    ArrayList<Integer> tokensDelivered = new ArrayList<Integer>(28);//this will be used to save the tokens delivered info
+    public static ArrayList<Token> tokensList = new ArrayList<Token>(28); //this will be used to save all tokens in the start
+    public static boolean moveDone;     //this will be used to check if the user insert a token 
+    public static int tokensPair = 0;   //this will be used to count the pair's tokens
+    public static int count = 0;        //this will be used to select the position in the list'names
+    public static ArrayList<String> imagesNames = new ArrayList<String>(21);//this will be used to save the images names
+    public static int numberOfTokens = 0; //this will be used to count the tokens's number
+    public static boolean winner = false; //this will be activate when the actual gamer is without tokens
+    ArrayList<Integer> listPossibilities = new ArrayList<Integer>();//this will be used to save the game and posibilities in the logical  game
     
     /*Variables to use for token image*/
     ImageIcon  I1 = new ImageIcon("/ImagesDominoes/0_0.png");
@@ -112,9 +111,7 @@ public class WindowStartGame extends javax.swing.JFrame {
      */
     public WindowStartGame() {                      //Constructor                                                     
         initComponents();                       //Start the windows                                                     
-        //this.setExtendedState(MAXIMIZED_BOTH);  //set full size                                
-        
-        moveDone = false;
+        moveDone = false;                       //insert validation
         MouseListener ml;
         ml = new MouseListener() {              //Listener                                
 
@@ -123,47 +120,48 @@ public class WindowStartGame extends javax.swing.JFrame {
             }
 
             @Override
-            public void mousePressed(MouseEvent e) {
-                while (moveDone == false) {
-                    //possibilities = 4;
-                    setTranfer();
-                    JComponent jlabelInfo = (JComponent) e.getSource();     //Jc is used to get the dominoes image                      
+            public void mousePressed(MouseEvent e) {//if the mouse is pressed
+                while (moveDone == false) {         //loop to compare possibilities
+                    setTranfer();                   //It will preparate the Jlabels to recive information
+                    JComponent jlabelInfo = (JComponent) e.getSource();                 //get Jlabel  info
                     TransferHandler tranferHandler = jlabelInfo.getTransferHandler();   //th is used to transfer the image to the new position                
-                    //tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY);   //is used to handle the transfer of a Transferable to and from Swing components                 
-                    String nam = imagesNames.get(count);
+                    String nam = imagesNames.get(count);//Get the actual token name
                     Token newToken = searchTokenName(nam);  //token grabbed
-                    //deleteToken(nam);
-                    System.out.println("\n \t Data of token\n");
-                    System.out.println(newToken.value1 + "|" + newToken.value2);
+                    System.out.println("_______________Data of token_______________\n");
                     //It insert the first token in the list
                     if (ListTokensGame.getInstance().start3 == null) { //if the list is empty...
                         tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY);   //is used to handle the transfer of a Transferable to and from Swing components                 
-                        callInsertAtStart(newToken);
-                        deleteToken(nam);
-                        listPossibilities.add (0,newToken.value1);// insert the start position
-                        listPossibilities.add(1,newToken.value2);// insert the end position
-                        tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY);   //is used to handle the transfer of a Transferable to and from Swing components                 
+                        callInsertAtStart(newToken); //this will insert the first tokens
+                        deleteToken(nam);            //this will eliminate the token in the player list   
+                        listPossibilities.add (0,newToken.value1);// this will save the start position
+                        listPossibilities.add(1,newToken.value2);// this will save the end position
+                        tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY);//is used copy the token image in the graphical matrix                
+                        // this will check if is pair to save the possibles moves
                         if(newToken.value1 == newToken.value2){
                             listPossibilities.add( newToken.value1);
                             listPossibilities.add( newToken.value1);
                         }
                         moveDone = true;
+                        // this will check if the actual user is without tokens
                         if( ListPlayersGaming.getInstance().playerGaming.tokens.size() == 0 ){
                             winner = true;
                         }
                         if (winner == true){
+                            int wins = ListPlayersGaming.getInstance().playerGaming.getWins();
+                            ListPlayersGaming.getInstance().playerGaming.setWins(wins+1);
                             JOptionPane.showMessageDialog(rootPane, "You Win This Round");
                         }
                         System.out.println("First token Inserted.");
-                        System.out.println("\n \t Data of token\n");
                         System.out.println(newToken.value1 + "|" + newToken.value2);
                         break;
                     } else {
+                        // this will check the start position
                         if (newToken.value2 == listPossibilities.get(0)) { // if is the same valor to start
-                            tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY);   //is used to handle the transfer of a Transferable to and from Swing components                 
-                            callInsertAtStart(newToken);
-                            deleteToken(nam);
+                            tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY); // copy the info   //is used to handle the transfer of a Transferable to and from Swing components                 
+                            callInsertAtStart(newToken); // insert at start
+                            deleteToken(nam);// delete the token
                             listPossibilities.set(0, newToken.value1);// move the first value
+                            // this will check if is pair
                             if(newToken.value1 == newToken.value2){
                                 listPossibilities.add( newToken.value1);
                                 listPossibilities.add( newToken.value1);
@@ -173,6 +171,8 @@ public class WindowStartGame extends javax.swing.JFrame {
                                 winner = true;
                             }
                             if (winner == true){
+                                int wins = ListPlayersGaming.getInstance().playerGaming.getWins();
+                                ListPlayersGaming.getInstance().playerGaming.setWins(wins+1);
                                 JOptionPane.showMessageDialog(rootPane, "You Win This Round");
                             }
                             System.out.println("Inserted: value 2 is the same valor to start");
@@ -194,6 +194,8 @@ public class WindowStartGame extends javax.swing.JFrame {
                                 winner = true;
                             }
                             if (winner == true){
+                                int wins = ListPlayersGaming.getInstance().playerGaming.getWins();
+                                ListPlayersGaming.getInstance().playerGaming.setWins(wins+1);
                                 JOptionPane.showMessageDialog(rootPane, "You Win This Round");
                             }
                             moveDone = true;
@@ -213,8 +215,10 @@ public class WindowStartGame extends javax.swing.JFrame {
                                 winner = true;
                             }
                             if (winner == true){
+                                int wins = ListPlayersGaming.getInstance().playerGaming.getWins();
+                                ListPlayersGaming.getInstance().playerGaming.setWins(wins+1);
                                 JOptionPane.showMessageDialog(rootPane, "You Win This Round");
-                            }
+                                }
                             moveDone = true;
                             System.out.println("Inserted: new value 1 is the same valor to end");
                             break;
@@ -235,6 +239,8 @@ public class WindowStartGame extends javax.swing.JFrame {
                                 winner = true;
                             }
                             if (winner == true){
+                                int wins = ListPlayersGaming.getInstance().playerGaming.getWins();
+                                ListPlayersGaming.getInstance().playerGaming.setWins(wins+1);
                                 JOptionPane.showMessageDialog(rootPane, "You Win This Round");
                             }
                             moveDone = true;
@@ -254,6 +260,8 @@ public class WindowStartGame extends javax.swing.JFrame {
                                     winner = true;
                                 }
                                 if (winner == true){
+                                    int wins = ListPlayersGaming.getInstance().playerGaming.getWins();
+                                    ListPlayersGaming.getInstance().playerGaming.setWins(wins+1);
                                     JOptionPane.showMessageDialog(rootPane, "You Win This Round");
                                 }
                                 moveDone = true;
@@ -273,6 +281,8 @@ public class WindowStartGame extends javax.swing.JFrame {
                                     winner = true;
                                 }
                                 if (winner == true){
+                                    int wins = ListPlayersGaming.getInstance().playerGaming.getWins();
+                                    ListPlayersGaming.getInstance().playerGaming.setWins(wins+1);
                                     JOptionPane.showMessageDialog(rootPane, "You Win This Round");
                                 }
                             
@@ -282,6 +292,7 @@ public class WindowStartGame extends javax.swing.JFrame {
                             }
 
                         }
+                        // this will check if the token is incompatible
                         if(moveDone == false){
                             JOptionPane.showMessageDialog(rootPane, "This Token is incompatible");
                             System.out.println("Token not inserted");
@@ -321,14 +332,14 @@ public class WindowStartGame extends javax.swing.JFrame {
         position3.setTransferHandler(new TransferHandler("icon"));
         position4.setTransferHandler(new TransferHandler("icon"));
         
-        insertTokensInGlobalList();
-        printTokens();
-        makeRandomList();
-        distributeTokens();
-        callSearchHighestToken();
+        insertTokensInGlobalList();//insert the tokens in a global list
+        printTokens();// print tokens info
+        makeRandomList();//make a random list
+        distributeTokens();//distribute the token's by the number of random list
+        callSearchHighestToken();// search the tokens hight
 
         actualPlayerName.setText(ListPlayersGaming.getInstance().playerGaming.name);// change the player name in the game windows
-        setNumberOfTokensAvailable();
+        setNumberOfTokensAvailable();// set the tokens avaible
     }
 
     /**
@@ -364,7 +375,7 @@ public class WindowStartGame extends javax.swing.JFrame {
         saveImage = new javax.swing.JLabel();
         buttonSave = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        availableTokensJlabel = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         doneImage1 = new javax.swing.JLabel();
         bNext = new javax.swing.JButton();
@@ -463,7 +474,6 @@ public class WindowStartGame extends javax.swing.JFrame {
         position10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1365, 720));
 
         imageTable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/table.jpg"))); // NOI18N
         imageTable.setLabelFor(logicalMatrix);
@@ -659,8 +669,8 @@ public class WindowStartGame extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText(" Available tokens :");
 
-        jLabel4.setFont(new java.awt.Font("MS Gothic", 0, 36)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        availableTokensJlabel.setFont(new java.awt.Font("MS Gothic", 0, 36)); // NOI18N
+        availableTokensJlabel.setForeground(new java.awt.Color(255, 255, 255));
 
         jPanel8.setBackground(new java.awt.Color(51, 0, 153));
 
@@ -732,7 +742,7 @@ public class WindowStartGame extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(availableTokensJlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
         );
         jPanel4Layout.setVerticalGroup(
@@ -760,7 +770,7 @@ public class WindowStartGame extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(availableTokensJlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(110, Short.MAX_VALUE))
         );
 
@@ -922,7 +932,7 @@ public class WindowStartGame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+    // this will delete the token in a list of player gaming
     public String deleteToken(String name){
         for(int i = 0; i < ListPlayersGaming.getInstance().playerGaming.tokens.size(); i++){
          if(ListPlayersGaming.getInstance().playerGaming.tokens.get(i).name.equals(name)){
@@ -934,15 +944,6 @@ public class WindowStartGame extends javax.swing.JFrame {
     }
     
     public void setTranfer(){
-       /* 
-        // set new images
-        //This instruction gets the icon("Image") from the tokens and them 
-        //it is used to remplace in the position icon on the matriz's game
-        position1.setTransferHandler(new TransferHandler("icon"));
-        position2.setTransferHandler(new TransferHandler("icon"));
-        position3.setTransferHandler(new TransferHandler("icon"));
-        position4.setTransferHandler(new TransferHandler("icon"));
-     */ 
         //set new possibles positions
         // it instruction get ready the position in the matriz 
         // to will remplace for the new token image
@@ -1032,7 +1033,7 @@ public class WindowStartGame extends javax.swing.JFrame {
         }
     
     
-    
+    // this will change the valors at token to insert 
     public int[] changeValors(int value1,int value2){
         int aux = value1;//guardamos el valor 1
         value1 = value2;//se cambia el valor 1 por el valor 2
@@ -1042,7 +1043,7 @@ public class WindowStartGame extends javax.swing.JFrame {
         arrayAux[1] = value2;
         return arrayAux;
     }
-    
+    // this will move to the next gamer
     private void buttonDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDoneActionPerformed
         // it move to the next player's turn
         ListPlayersGaming.getInstance().playerGaming = ListPlayersGaming.getInstance().playerGaming.sig;
@@ -1106,49 +1107,56 @@ public class WindowStartGame extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-   
+   // this will insert images in the actual tokens list 
    public void insertImage(String button){
-       imagesNames.clear();
-      // String[] imagesNames = new String[21];
-        String var = "";
-        int tokensSize = ListPlayersGaming.getInstance().playerGaming.tokens.size();
+        imagesNames.clear(); //clean the list of names in every movement
+        String var = "";     //var will be used to save the token name
+        int tokensSize = ListPlayersGaming.getInstance().playerGaming.tokens.size(); //actual tokens size 
         for (int i = 0; i < tokensSize; i++) {
-            var = ListPlayersGaming.getInstance().playerGaming.tokens.get(i).name;
-            imagesNames.add(var);
-        }ImageIcon[] imagenList = new ImageIcon[tokensSize];
+            var = ListPlayersGaming.getInstance().playerGaming.tokens.get(i).name;// save the token's name
+            imagesNames.add(var); // add the name in a arrayList
+        }
+        // 4 lists will be used to save every token image from every actual gamer
+        ImageIcon[] imagenList = new ImageIcon[tokensSize];
         ImageIcon[] imagenList2 = new ImageIcon[tokensSize];
         ImageIcon[] imagenList3 = new ImageIcon[tokensSize];
         ImageIcon[] imagenList4 = new ImageIcon[tokensSize];
         
+        //loop to save the actual user token's images in 4 diferents positions
         for (int i = 0; i < imagenList.length; i++) {
             imagenList[i] = new ImageIcon(getClass().getResource("/ImagesDominoes/"+imagesNames.get(i)));
             imagenList2[i] = new ImageIcon(getClass().getResource("/ImagesDominoes180/"+imagesNames.get(i)));
             imagenList3[i] = new ImageIcon(getClass().getResource("/ImagesDominoesLeft/"+imagesNames.get(i)));
             imagenList4[i] = new ImageIcon(getClass().getResource("/ImagesDominoesRight/"+imagesNames.get(i)));         
         }
-        
+        //this will check when is the first position and the button is back
         if(count == 0  & "Back".equals(button)){
             count = (tokensSize-1);
             position1.setIcon(imagenList[count]);
             position2.setIcon(imagenList2[count]);
             position3.setIcon(imagenList3[count]);
             position4.setIcon(imagenList4[count]);
-            
-        }else if(count == (tokensSize -1) & "Next".equals(button)){
+        }
+        //this will check when is the last position and the button is next
+        else if(count == (tokensSize -1) & "Next".equals(button)){
             count = 0;
             position1.setIcon(imagenList[count]);
             position2.setIcon(imagenList2[count]);
             position3.setIcon(imagenList3[count]);
             position4.setIcon(imagenList4[count]);
             
-        }else if(count >= 0 & "Next".equals(button)){
+        }
+        //this will move to the next position
+        else if(count >= 0 & "Next".equals(button)){
             count ++;
             position1.setIcon(imagenList[count]);
             position2.setIcon(imagenList2[count]);
             position3.setIcon(imagenList3[count]);
             position4.setIcon(imagenList4[count]);
             
-        }else if(count <= (tokensSize-1) &"Back".equals(button) ) {
+        }
+        //this will move to the back position
+        else if(count <= (tokensSize-1) &"Back".equals(button) ) {
             count --;
             position1.setIcon(imagenList[count]);
             position2.setIcon(imagenList2[count]);
@@ -1185,6 +1193,7 @@ public class WindowStartGame extends javax.swing.JFrame {
     private javax.swing.JLabel Information;
     private javax.swing.JLabel actualPlayerName;
     private javax.swing.JLabel addImagen;
+    private javax.swing.JLabel availableTokensJlabel;
     private javax.swing.JButton bBack;
     private javax.swing.JButton bNext;
     private javax.swing.JButton buttonAddToken;
@@ -1279,7 +1288,6 @@ public class WindowStartGame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel21;
@@ -1335,7 +1343,7 @@ public class WindowStartGame extends javax.swing.JFrame {
         tokensList.add(t27);
         tokensList.add(t28);
     }
-    
+    //this make a random list with diferents numbers
     public void makeRandomList(){
         //vars
         int position = 0, size = 28, range = 28;
@@ -1367,7 +1375,7 @@ public class WindowStartGame extends javax.swing.JFrame {
         }
     }
     
-    
+ //this will give the  random numbers used to give the token's ID    
  public void distributeTokens(){
          int aux = ListPlayersGaming.getInstance().numberOfGamers;
          if(aux == 2){
@@ -1428,7 +1436,7 @@ public class WindowStartGame extends javax.swing.JFrame {
          } 
     }
    
-    
+    //this will return the token searched by ID
     public Token searchToken(int id){
         for(int i = 0; i <= 28; i++){
             if(tokensList.get(i).id == id)
@@ -1437,19 +1445,20 @@ public class WindowStartGame extends javax.swing.JFrame {
         return null;
     }
     
+    //this will print the tokens's info 
     public void printTokens(){
         for(int i = 0; i <= 27; i++)
             System.out.println("Lado A:" + tokensList.get(i).value1 + " | Lado B:" + tokensList.get(i).value2 + "       ID: " + (i+1));
     }
-    
+    //this will search the hight token and set the first gamer in a new game
     private void callSearchHighestToken(){
         ListPlayersGaming.getInstance().setFirstPlayer();
     }
-    
+    //this will set the number of token's available
     public void setNumberOfTokensAvailable(){
-        jLabel4.setText(Integer.toString(availableTokens));
+        availableTokensJlabel.setText(Integer.toString(availableTokens));
     }
-    
+    //this will get the  token to actual user
     public void takeToken(){
         if (availableTokens > 0) {
             int i = 0;
@@ -1470,7 +1479,7 @@ public class WindowStartGame extends javax.swing.JFrame {
         }
     }
     
-    
+    //this will search tokens by name
     public Token searchTokenName(String name){
         for(int i = 0; i < ListPlayersGaming.getInstance().playerGaming.tokens.size(); i++){
             if(ListPlayersGaming.getInstance().playerGaming.tokens.get(i).name.equals(name)){
@@ -1480,16 +1489,16 @@ public class WindowStartGame extends javax.swing.JFrame {
         return null;       
     }
     
-
+    //this will catch the imagen for the game to save in file
     public static void capturarPantalla(String Nombre) throws AWTException, IOException {
      BufferedImage captura = new Robot().createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()) );
      ListPlayersGaming.getInstance().playerGaming.addGame(captura);
-     // Guardar Como JPEG
+     // Save as JPEG
      File file = new File(Nombre + ".jpg");
      ImageIO.write(captura, "jpg", file);
      JOptionPane.showMessageDialog(null, ListPlayersGaming.getInstance().actualUser.name + "'s game saved");
   }
-    
+    //this will insert token in the start
     public void callInsertAtStart(Token nToken){
         ListTokensGame.getInstance().insertStart(nToken);
         if (nToken.id == 1 | nToken.id == 8 | nToken.id == 14
@@ -1498,7 +1507,7 @@ public class WindowStartGame extends javax.swing.JFrame {
             ListTokensGame.getInstance().addTokenPair(tok);
         }    
     }
-    
+    //this will insert token in the end
     public void callInserToTheRight(Token nToken){
         ListTokensGame.getInstance().insertFinal(nToken); 
         if (nToken.id == 1 | nToken.id == 8 | nToken.id == 14
@@ -1507,7 +1516,7 @@ public class WindowStartGame extends javax.swing.JFrame {
              ListTokensGame.getInstance().addTokenPair(tok);
         }    
     }
-    
+    //this will insert token in a token's pair to up
     public void callInsertUp(Token nToken, TokenPair tokenPair) {
         ListTokensGame.getInstance().insertUp(nToken, tokenPair);
         if (nToken.id == 1 | nToken.id == 8 | nToken.id == 14
@@ -1516,7 +1525,7 @@ public class WindowStartGame extends javax.swing.JFrame {
              ListTokensGame.getInstance().addTokenPair(tok);
         }
     }
-
+    //this will insert token in a token's pair to down
     public void callInsertDown(Token nToken, TokenPair tokenPair) {
         ListTokensGame.getInstance().insertDown(nToken, tokenPair);
         if (nToken.id == 1 | nToken.id == 8 | nToken.id == 14
@@ -1525,6 +1534,5 @@ public class WindowStartGame extends javax.swing.JFrame {
              ListTokensGame.getInstance().addTokenPair(tok);
         }
     }
-
 
 }
