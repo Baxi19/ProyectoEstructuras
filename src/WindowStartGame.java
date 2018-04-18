@@ -18,6 +18,8 @@ import javax.swing.JComponent;
 import javax.swing.TransferHandler;
 import javax.swing.JOptionPane;
 
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -451,17 +453,17 @@ public class WindowStartGame extends javax.swing.JFrame {
         showTokens = new javax.swing.JPanel();
         Information = new javax.swing.JLabel();
         position1 = new javax.swing.JLabel();
-        position2 = new javax.swing.JLabel();
+        position7 = new javax.swing.JLabel();
         position3 = new javax.swing.JLabel();
+        position8 = new javax.swing.JLabel();
+        position2 = new javax.swing.JLabel();
+        position9 = new javax.swing.JLabel();
         position4 = new javax.swing.JLabel();
         position6 = new javax.swing.JLabel();
-        position7 = new javax.swing.JLabel();
-        position8 = new javax.swing.JLabel();
-        position9 = new javax.swing.JLabel();
         position10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1365, 770));
+        setPreferredSize(new java.awt.Dimension(1365, 720));
 
         imageTable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/table.jpg"))); // NOI18N
         imageTable.setLabelFor(logicalMatrix);
@@ -859,14 +861,16 @@ public class WindowStartGame extends javax.swing.JFrame {
         logicalMatrix.add(celda42);
         logicalMatrix.add(celda49);
 
-        showTokens.setBackground(new java.awt.Color(8, 136, 12));
+        showTokens.setBackground(new java.awt.Color(51, 0, 153));
+        showTokens.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         showTokens.setMinimumSize(new java.awt.Dimension(1000, 120));
         showTokens.setPreferredSize(new java.awt.Dimension(1000, 120));
         showTokens.setLayout(new java.awt.GridLayout(1, 0));
 
-        Information.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Information.setFont(new java.awt.Font("Script MT Bold", 3, 18)); // NOI18N
         Information.setForeground(new java.awt.Color(255, 255, 255));
-        Information.setText("Selecione:");
+        Information.setText("Select Position:");
+        Information.setToolTipText("");
         Information.setMaximumSize(new java.awt.Dimension(100, 100));
         Information.setMinimumSize(new java.awt.Dimension(100, 100));
         Information.setName("Information"); // NOI18N
@@ -877,19 +881,17 @@ public class WindowStartGame extends javax.swing.JFrame {
         position1.setMinimumSize(new java.awt.Dimension(100, 100));
         position1.setPreferredSize(new java.awt.Dimension(100, 100));
         showTokens.add(position1);
+        showTokens.add(position7);
+        showTokens.add(position3);
+        showTokens.add(position8);
 
         position2.setMaximumSize(new java.awt.Dimension(100, 100));
         position2.setMinimumSize(new java.awt.Dimension(100, 100));
         position2.setPreferredSize(new java.awt.Dimension(100, 100));
         showTokens.add(position2);
-        showTokens.add(position3);
+        showTokens.add(position9);
         showTokens.add(position4);
         showTokens.add(position6);
-        showTokens.add(position7);
-        showTokens.add(position8);
-        showTokens.add(position9);
-
-        position10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/trapIcon.png"))); // NOI18N
         showTokens.add(position10);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
