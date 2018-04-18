@@ -110,7 +110,8 @@ public class WindowStartGame extends javax.swing.JFrame {
      */
     public WindowStartGame() {                      //Constructor                                                     
         initComponents();                       //Start the windows                                                     
-        this.setExtendedState(MAXIMIZED_BOTH);  //set full size                                
+        //this.setExtendedState(MAXIMIZED_BOTH);  //set full size                                
+        
         moveDone = false;
         MouseListener ml;
         ml = new MouseListener() {              //Listener                                
@@ -337,7 +338,8 @@ public class WindowStartGame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        imageTable = new javax.swing.JLabel();
+        userControls = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -365,7 +367,7 @@ public class WindowStartGame extends javax.swing.JFrame {
         doneImage1 = new javax.swing.JLabel();
         bNext = new javax.swing.JButton();
         bBack = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        logicalMatrix = new javax.swing.JPanel();
         celda80 = new javax.swing.JLabel();
         celda79 = new javax.swing.JLabel();
         celda78 = new javax.swing.JLabel();
@@ -446,7 +448,7 @@ public class WindowStartGame extends javax.swing.JFrame {
         celda35 = new javax.swing.JLabel();
         celda42 = new javax.swing.JLabel();
         celda49 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        showTokens = new javax.swing.JPanel();
         Information = new javax.swing.JLabel();
         position1 = new javax.swing.JLabel();
         position2 = new javax.swing.JLabel();
@@ -459,8 +461,15 @@ public class WindowStartGame extends javax.swing.JFrame {
         position10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1365, 770));
 
-        jPanel1.setBackground(new java.awt.Color(12, 7, 169));
+        imageTable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/table.jpg"))); // NOI18N
+        imageTable.setLabelFor(logicalMatrix);
+        imageTable.setMaximumSize(new java.awt.Dimension(1000, 800));
+        imageTable.setMinimumSize(new java.awt.Dimension(1000, 800));
+        imageTable.setPreferredSize(new java.awt.Dimension(1000, 800));
+
+        userControls.setBackground(new java.awt.Color(12, 7, 169));
 
         jPanel4.setBackground(new java.awt.Color(102, 0, 255));
 
@@ -482,7 +491,7 @@ public class WindowStartGame extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(117, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(addImagen)
                 .addGap(52, 52, 52)
                 .addComponent(buttonAddToken, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -513,7 +522,7 @@ public class WindowStartGame extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(111, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(doneImage)
                 .addGap(59, 59, 59)
                 .addComponent(buttonDone, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -561,7 +570,7 @@ public class WindowStartGame extends javax.swing.JFrame {
         jPanel21Layout.setHorizontalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
-                .addContainerGap(114, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(trapImage)
                 .addGap(57, 57, 57)
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -596,7 +605,7 @@ public class WindowStartGame extends javax.swing.JFrame {
         jPanel22Layout.setHorizontalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
-                .addContainerGap(109, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(exitImage)
                 .addGap(62, 62, 62)
                 .addComponent(buttonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -627,7 +636,7 @@ public class WindowStartGame extends javax.swing.JFrame {
         jPanel23Layout.setHorizontalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel23Layout.createSequentialGroup()
-                .addContainerGap(107, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(saveImage)
                 .addGap(62, 62, 62)
                 .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -674,7 +683,7 @@ public class WindowStartGame extends javax.swing.JFrame {
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(111, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(doneImage1)
                 .addGap(58, 58, 58)
                 .addComponent(bBack, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -703,7 +712,7 @@ public class WindowStartGame extends javax.swing.JFrame {
             .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(42, Short.MAX_VALUE)
+                .addContainerGap(30, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -750,113 +759,110 @@ public class WindowStartGame extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        javax.swing.GroupLayout userControlsLayout = new javax.swing.GroupLayout(userControls);
+        userControls.setLayout(userControlsLayout);
+        userControlsLayout.setHorizontalGroup(
+            userControlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        userControlsLayout.setVerticalGroup(
+            userControlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel2.setMaximumSize(new java.awt.Dimension(700, 700));
-        jPanel2.setMinimumSize(new java.awt.Dimension(700, 700));
-        jPanel2.setOpaque(false);
-        jPanel2.setPreferredSize(new java.awt.Dimension(700, 700));
-        jPanel2.setLayout(new java.awt.GridLayout(8, 10, 2, 4));
-        jPanel2.add(celda80);
-        jPanel2.add(celda79);
-        jPanel2.add(celda78);
-        jPanel2.add(celda77);
-        jPanel2.add(celda76);
-        jPanel2.add(celda75);
-        jPanel2.add(celda74);
-        jPanel2.add(celda73);
-        jPanel2.add(celda72);
-        jPanel2.add(celda71);
-        jPanel2.add(celda70);
-        jPanel2.add(celda69);
-        jPanel2.add(celda68);
-        jPanel2.add(celda67);
-        jPanel2.add(celda66);
-        jPanel2.add(celda65);
-        jPanel2.add(celda64);
-        jPanel2.add(celda63);
-        jPanel2.add(celda62);
-        jPanel2.add(celda61);
-        jPanel2.add(celda60);
-        jPanel2.add(celda59);
-        jPanel2.add(celda58);
-        jPanel2.add(celda57);
-        jPanel2.add(celda56);
-        jPanel2.add(celda55);
-        jPanel2.add(celda54);
-        jPanel2.add(celda53);
-        jPanel2.add(celda52);
-        jPanel2.add(celda51);
-        jPanel2.add(celda50);
-        jPanel2.add(celda1);
-        jPanel2.add(celda8);
-        jPanel2.add(celda15);
-        jPanel2.add(celda22);
-        jPanel2.add(celda29);
-        jPanel2.add(celda36);
-        jPanel2.add(celda43);
-        jPanel2.add(celda2);
-        jPanel2.add(celda9);
-        jPanel2.add(celda16);
-        jPanel2.add(celda23);
-        jPanel2.add(celda30);
-        jPanel2.add(celda37);
-        jPanel2.add(celda44);
-        jPanel2.add(celda3);
-        jPanel2.add(celda10);
-        jPanel2.add(celda17);
-        jPanel2.add(celda24);
-        jPanel2.add(celda31);
-        jPanel2.add(celda38);
-        jPanel2.add(celda45);
-        jPanel2.add(celda4);
-        jPanel2.add(celda11);
-        jPanel2.add(celda18);
-        jPanel2.add(celda25);
-        jPanel2.add(celda32);
-        jPanel2.add(celda39);
-        jPanel2.add(celda46);
-        jPanel2.add(celda5);
-        jPanel2.add(celda12);
-        jPanel2.add(celda19);
-        jPanel2.add(celda26);
-        jPanel2.add(celda33);
-        jPanel2.add(celda40);
-        jPanel2.add(celda47);
-        jPanel2.add(celda6);
-        jPanel2.add(celda13);
-        jPanel2.add(celda20);
-        jPanel2.add(celda27);
-        jPanel2.add(celda34);
-        jPanel2.add(celda41);
-        jPanel2.add(celda48);
-        jPanel2.add(celda7);
-        jPanel2.add(celda14);
-        jPanel2.add(celda21);
-        jPanel2.add(celda28);
-        jPanel2.add(celda35);
-        jPanel2.add(celda42);
-        jPanel2.add(celda49);
+        logicalMatrix.setMaximumSize(new java.awt.Dimension(1000, 1000));
+        logicalMatrix.setMinimumSize(new java.awt.Dimension(1000, 1000));
+        logicalMatrix.setOpaque(false);
+        logicalMatrix.setPreferredSize(new java.awt.Dimension(1000, 1000));
+        logicalMatrix.setLayout(new java.awt.GridLayout(7, 11));
+        logicalMatrix.add(celda80);
+        logicalMatrix.add(celda79);
+        logicalMatrix.add(celda78);
+        logicalMatrix.add(celda77);
+        logicalMatrix.add(celda76);
+        logicalMatrix.add(celda75);
+        logicalMatrix.add(celda74);
+        logicalMatrix.add(celda73);
+        logicalMatrix.add(celda72);
+        logicalMatrix.add(celda71);
+        logicalMatrix.add(celda70);
+        logicalMatrix.add(celda69);
+        logicalMatrix.add(celda68);
+        logicalMatrix.add(celda67);
+        logicalMatrix.add(celda66);
+        logicalMatrix.add(celda65);
+        logicalMatrix.add(celda64);
+        logicalMatrix.add(celda63);
+        logicalMatrix.add(celda62);
+        logicalMatrix.add(celda61);
+        logicalMatrix.add(celda60);
+        logicalMatrix.add(celda59);
+        logicalMatrix.add(celda58);
+        logicalMatrix.add(celda57);
+        logicalMatrix.add(celda56);
+        logicalMatrix.add(celda55);
+        logicalMatrix.add(celda54);
+        logicalMatrix.add(celda53);
+        logicalMatrix.add(celda52);
+        logicalMatrix.add(celda51);
+        logicalMatrix.add(celda50);
+        logicalMatrix.add(celda1);
+        logicalMatrix.add(celda8);
+        logicalMatrix.add(celda15);
+        logicalMatrix.add(celda22);
+        logicalMatrix.add(celda29);
+        logicalMatrix.add(celda36);
+        logicalMatrix.add(celda43);
+        logicalMatrix.add(celda2);
+        logicalMatrix.add(celda9);
+        logicalMatrix.add(celda16);
+        logicalMatrix.add(celda23);
+        logicalMatrix.add(celda30);
+        logicalMatrix.add(celda37);
+        logicalMatrix.add(celda44);
+        logicalMatrix.add(celda3);
+        logicalMatrix.add(celda10);
+        logicalMatrix.add(celda17);
+        logicalMatrix.add(celda24);
+        logicalMatrix.add(celda31);
+        logicalMatrix.add(celda38);
+        logicalMatrix.add(celda45);
+        logicalMatrix.add(celda4);
+        logicalMatrix.add(celda11);
+        logicalMatrix.add(celda18);
+        logicalMatrix.add(celda25);
+        logicalMatrix.add(celda32);
+        logicalMatrix.add(celda39);
+        logicalMatrix.add(celda46);
+        logicalMatrix.add(celda5);
+        logicalMatrix.add(celda12);
+        logicalMatrix.add(celda19);
+        logicalMatrix.add(celda26);
+        logicalMatrix.add(celda33);
+        logicalMatrix.add(celda40);
+        logicalMatrix.add(celda47);
+        logicalMatrix.add(celda6);
+        logicalMatrix.add(celda13);
+        logicalMatrix.add(celda20);
+        logicalMatrix.add(celda27);
+        logicalMatrix.add(celda34);
+        logicalMatrix.add(celda41);
+        logicalMatrix.add(celda48);
+        logicalMatrix.add(celda7);
+        logicalMatrix.add(celda14);
+        logicalMatrix.add(celda21);
+        logicalMatrix.add(celda28);
+        logicalMatrix.add(celda35);
+        logicalMatrix.add(celda42);
+        logicalMatrix.add(celda49);
 
-        jPanel3.setBackground(new java.awt.Color(8, 136, 12));
-        jPanel3.setMinimumSize(new java.awt.Dimension(1000, 120));
-        jPanel3.setPreferredSize(new java.awt.Dimension(1000, 120));
-        jPanel3.setLayout(new java.awt.GridLayout(1, 0));
+        showTokens.setBackground(new java.awt.Color(8, 136, 12));
+        showTokens.setMinimumSize(new java.awt.Dimension(1000, 120));
+        showTokens.setPreferredSize(new java.awt.Dimension(1000, 120));
+        showTokens.setLayout(new java.awt.GridLayout(1, 0));
 
         Information.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Information.setForeground(new java.awt.Color(255, 255, 255));
@@ -865,46 +871,51 @@ public class WindowStartGame extends javax.swing.JFrame {
         Information.setMinimumSize(new java.awt.Dimension(100, 100));
         Information.setName("Information"); // NOI18N
         Information.setPreferredSize(new java.awt.Dimension(100, 100));
-        jPanel3.add(Information);
+        showTokens.add(Information);
 
         position1.setMaximumSize(new java.awt.Dimension(100, 100));
         position1.setMinimumSize(new java.awt.Dimension(100, 100));
         position1.setPreferredSize(new java.awt.Dimension(100, 100));
-        jPanel3.add(position1);
+        showTokens.add(position1);
 
         position2.setMaximumSize(new java.awt.Dimension(100, 100));
         position2.setMinimumSize(new java.awt.Dimension(100, 100));
         position2.setPreferredSize(new java.awt.Dimension(100, 100));
-        jPanel3.add(position2);
-        jPanel3.add(position3);
-        jPanel3.add(position4);
-        jPanel3.add(position6);
-        jPanel3.add(position7);
-        jPanel3.add(position8);
-        jPanel3.add(position9);
-        jPanel3.add(position10);
+        showTokens.add(position2);
+        showTokens.add(position3);
+        showTokens.add(position4);
+        showTokens.add(position6);
+        showTokens.add(position7);
+        showTokens.add(position8);
+        showTokens.add(position9);
+
+        position10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/trapIcon.png"))); // NOI18N
+        showTokens.add(position10);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(userControls, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 10592, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(logicalMatrix, javax.swing.GroupLayout.DEFAULT_SIZE, 1629, Short.MAX_VALUE)
+                    .addComponent(showTokens, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGap(0, 363, Short.MAX_VALUE)
+                    .addComponent(imageTable, javax.swing.GroupLayout.PREFERRED_SIZE, 1637, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(userControls, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(showTokens, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(logicalMatrix, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(imageTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 770, Short.MAX_VALUE))
         );
 
         pack();
@@ -1261,6 +1272,7 @@ public class WindowStartGame extends javax.swing.JFrame {
     private javax.swing.JLabel doneImage;
     private javax.swing.JLabel doneImage1;
     private javax.swing.JLabel exitImage;
+    private javax.swing.JLabel imageTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
@@ -1268,16 +1280,14 @@ public class WindowStartGame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel23;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel logicalMatrix;
     private javax.swing.JLabel position1;
     private javax.swing.JLabel position10;
     private javax.swing.JLabel position2;
@@ -1288,7 +1298,9 @@ public class WindowStartGame extends javax.swing.JFrame {
     private javax.swing.JLabel position8;
     private javax.swing.JLabel position9;
     private javax.swing.JLabel saveImage;
+    private javax.swing.JPanel showTokens;
     private javax.swing.JLabel trapImage;
+    private javax.swing.JPanel userControls;
     // End of variables declaration//GEN-END:variables
 
     public void insertTokensInGlobalList() {

@@ -82,8 +82,8 @@ static public void main(String[] passedArgs) {
     if (passedArgs != null) {
       PApplet.main(concat(appletArgs, passedArgs));
     } else {
-      //PApplet.main(appletArgs);
-      new WindowLogin().setVisible(true);
+      PApplet.main(appletArgs);
+      //new WindowLogin().setVisible(true);
     }
   }
 }
