@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ListPlayersRegistered {   // singletone class PlayerList
+     Player actualRegistred;
      Player start;           // start pointer
      Player end;             // final pointer
     public static ListPlayersRegistered instance = null; //Instance to return
@@ -37,6 +38,14 @@ public class ListPlayersRegistered {   // singletone class PlayerList
 
     public void setEnd(Player end) {
         this.end = end;
+    }
+
+    public Player getActualRegistred() {
+        return actualRegistred;
+    }
+
+    public void setActualRegistred(Player actualRegistred) {
+        this.actualRegistred = actualRegistred;
     }
     
     // Method to insert an player to the end of the list

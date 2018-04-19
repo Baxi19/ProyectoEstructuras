@@ -15,6 +15,7 @@ public class ListPlayersGaming {
     int numberOfGamers;
     Player start2, end2; 
     public Player actualUser;//It will have the user logged and the players's info  
+    public static Player registredUser;
     public Player player1 = new Player("Player 1","1");
     public Player player2 = new Player("Player 2","1");
     public Player player3 = new Player("Player 3","1");
@@ -27,6 +28,14 @@ public class ListPlayersGaming {
     private ListPlayersGaming() {
         this.start2 = null;
         this.end2 = null;
+    }
+
+    public static Player getRegistredUser() {
+        return registredUser;
+    }
+
+    public static void setRegistredUser(Player registredUser) {
+        ListPlayersGaming.registredUser = registredUser;
     }
     
     //set & get actual user
