@@ -3,6 +3,7 @@ import java.awt.HeadlessException;
 import java.awt.List;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -59,6 +60,7 @@ public class WindowLogin extends javax.swing.JFrame {
         butonLoadGame = new javax.swing.JButton();
         butonSingIn = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         principalPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -136,6 +138,18 @@ public class WindowLogin extends javax.swing.JFrame {
         jPanel1.add(jLabel6);
         jLabel6.setBounds(0, 200, 460, 150);
 
+        jButton1.setBackground(new java.awt.Color(102, 0, 255));
+        jButton1.setFont(new java.awt.Font("Script MT Bold", 1, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Save Data");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1);
+        jButton1.setBounds(260, 660, 100, 60);
+
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 490, 1080);
 
@@ -198,12 +212,10 @@ public class WindowLogin extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(laberUser, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(userTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -374,7 +386,7 @@ public class WindowLogin extends javax.swing.JFrame {
         if(userTextField.getText().isEmpty() | passwordTextField.getText().isEmpty()){
             JOptionPane.showMessageDialog(rootPane, "Field empty.");
         }
-        else if(userTextField.getText().equals("adminfabian") & passwordTextField.getText().equals("12345")){
+        else if(userTextField.getText().equals("admin") & passwordTextField.getText().equals("12345")){
             WindowAdmin wAdmin = new WindowAdmin();
             wAdmin.setVisible(true);
             
@@ -430,10 +442,17 @@ public class WindowLogin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_singInButtonActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        deletePlayersFile();
+        saveActualPlayersList();
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton butonLoadGame;
     private javax.swing.JButton butonSingIn;
     private javax.swing.JButton buttonLogin;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -530,6 +549,24 @@ public class WindowLogin extends javax.swing.JFrame {
         });
 
     }
+    public void saveActualPlayersList(){
+        ListPlayersRegistered.getInstance().reWriteUsers();
+    }
+    
+    public boolean deletePlayersFile() {
+        File route = new File(".");                                              // get the proyect location in any computer
+        String path = route.getAbsolutePath();  route.delete();                                 // save the location in a string
+        File playersFile = new File(path + "\\Players.txt");                       // open a new file
+        if (playersFile.exists()) {                                                // if the file.txt exists
+            playersFile.delete();                                                // then delete it                   // show the location where the text file used to be  
+            System.out.println("Files deleted from " + path);
+            return true;
+        } 
+         System.out.println("File does not exists.");
+         return false;
+    }
+    
+ 
     
     
     

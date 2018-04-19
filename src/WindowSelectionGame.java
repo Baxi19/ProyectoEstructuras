@@ -28,6 +28,7 @@ public class WindowSelectionGame extends javax.swing.JFrame {
     private static int numberOfPlayersSelected = 1;
     /**
      * Creates new form Load
+     * @param auxName
      */
     public WindowSelectionGame(String auxName) {
         
@@ -160,11 +161,17 @@ public class WindowSelectionGame extends javax.swing.JFrame {
         laberUser2.setBackground(new java.awt.Color(255, 255, 255));
         laberUser2.setFont(new java.awt.Font("Script MT Bold", 3, 24)); // NOI18N
         laberUser2.setForeground(new java.awt.Color(255, 255, 255));
-        laberUser2.setText("Name:");
+        laberUser2.setText("New name:");
 
         labelPassword2.setFont(new java.awt.Font("Script MT Bold", 3, 24)); // NOI18N
         labelPassword2.setForeground(new java.awt.Color(255, 255, 255));
-        labelPassword2.setText("Password :");
+        labelPassword2.setText("New password :");
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         buttonSingIn1.setBackground(new java.awt.Color(255, 255, 255));
         buttonSingIn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/finalAccep.png"))); // NOI18N
@@ -191,13 +198,13 @@ public class WindowSelectionGame extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(labelPassword2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                    .addComponent(labelPassword2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(laberUser2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,13 +212,13 @@ public class WindowSelectionGame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(laberUser1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(laberUser2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPassword2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(buttonSingIn1)
                 .addContainerGap(33, Short.MAX_VALUE))
@@ -303,7 +310,7 @@ public class WindowSelectionGame extends javax.swing.JFrame {
         );
 
         principalPanel2.add(jPanel2);
-        jPanel2.setBounds(140, 120, 311, 300);
+        jPanel2.setBounds(140, 120, 312, 300);
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
         jPanel3.setForeground(new java.awt.Color(102, 0, 255));
@@ -528,7 +535,20 @@ public class WindowSelectionGame extends javax.swing.JFrame {
 
     private void buttonSingIn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSingIn1ActionPerformed
         // TODO add your handling code here:
+        String newName = jTextField1.getText();
+        String newPassword = jTextField2.getText();
+        ListPlayersRegistered.getInstance().editSelfData(newName, newName, newPassword);  
+        ListPlayersGaming.getInstance().actualUser.setName(newName);
+        principalPanel.setSize(0,0);
+        navBar = false;
+        navBar2 = false;
+        actualPlayerName2.setText(newName);
+        
     }//GEN-LAST:event_buttonSingIn1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel actualPlayerName2;

@@ -32,14 +32,6 @@ public class WindowAdmin extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel4 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        buttonLeft = new javax.swing.JButton();
-        buttonStart = new javax.swing.JButton();
-        buttonEnd = new javax.swing.JButton();
-        buttonRight = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
         jPanel2 = new javax.swing.JPanel();
         labelTextPassword = new javax.swing.JLabel();
         labelTextName = new javax.swing.JLabel();
@@ -51,7 +43,6 @@ public class WindowAdmin extends javax.swing.JFrame {
         TextFieldChangeWins = new javax.swing.JTextField();
         TextFieldNewPassword = new javax.swing.JTextField();
         TextFieldNewName = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         buttonModifyUser = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         buttonAddUser = new javax.swing.JButton();
@@ -65,13 +56,175 @@ public class WindowAdmin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         TextFieldPassword = new javax.swing.JTextField();
         TextFieldName = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        buttonLeft = new javax.swing.JButton();
+        buttonStart = new javax.swing.JButton();
+        buttonEnd = new javax.swing.JButton();
+        buttonRight = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/progra1/Images/dominobbbb.jpg"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(580, 505));
+        setPreferredSize(new java.awt.Dimension(1044, 648));
         setResizable(false);
         getContentPane().setLayout(null);
+
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel2.setLayout(null);
+
+        labelTextPassword.setFont(new java.awt.Font("MS Gothic", 1, 14)); // NOI18N
+        labelTextPassword.setForeground(new java.awt.Color(255, 255, 255));
+        labelTextPassword.setText("Password:");
+        jPanel2.add(labelTextPassword);
+        labelTextPassword.setBounds(12, 94, 81, 24);
+
+        labelTextName.setFont(new java.awt.Font("MS Gothic", 1, 14)); // NOI18N
+        labelTextName.setForeground(new java.awt.Color(255, 255, 255));
+        labelTextName.setText("Name:");
+        jPanel2.add(labelTextName);
+        labelTextName.setBounds(32, 52, 44, 30);
+        jPanel2.add(TextFieldUserToEdit);
+        TextFieldUserToEdit.setBounds(164, 214, 80, 30);
+
+        labelUserToEdit.setFont(new java.awt.Font("MS Gothic", 1, 14)); // NOI18N
+        labelUserToEdit.setForeground(new java.awt.Color(255, 255, 255));
+        labelUserToEdit.setText("User to edit:");
+        jPanel2.add(labelUserToEdit);
+        labelUserToEdit.setBounds(36, 213, 110, 30);
+
+        labelNewName.setFont(new java.awt.Font("MS Gothic", 1, 14)); // NOI18N
+        labelNewName.setForeground(new java.awt.Color(255, 255, 255));
+        labelNewName.setText("New Name:");
+        jPanel2.add(labelNewName);
+        labelNewName.setBounds(65, 266, 81, 20);
+
+        labelNewPassword.setFont(new java.awt.Font("MS Gothic", 1, 14)); // NOI18N
+        labelNewPassword.setForeground(new java.awt.Color(255, 255, 255));
+        labelNewPassword.setText("New Password:");
+        jPanel2.add(labelNewPassword);
+        labelNewPassword.setBounds(36, 315, 110, 20);
+
+        changeWins.setFont(new java.awt.Font("MS Gothic", 1, 14)); // NOI18N
+        changeWins.setForeground(new java.awt.Color(255, 255, 255));
+        changeWins.setText("Change Wins to:");
+        jPanel2.add(changeWins);
+        changeWins.setBounds(22, 363, 130, 20);
+
+        TextFieldChangeWins.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextFieldChangeWinsActionPerformed(evt);
+            }
+        });
+        jPanel2.add(TextFieldChangeWins);
+        TextFieldChangeWins.setBounds(164, 359, 80, 30);
+        jPanel2.add(TextFieldNewPassword);
+        TextFieldNewPassword.setBounds(164, 311, 80, 30);
+        jPanel2.add(TextFieldNewName);
+        TextFieldNewName.setBounds(164, 262, 80, 30);
+
+        buttonModifyUser.setFont(new java.awt.Font("MS Gothic", 1, 14)); // NOI18N
+        buttonModifyUser.setText("Edit");
+        buttonModifyUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonModifyUserActionPerformed(evt);
+            }
+        });
+        jPanel2.add(buttonModifyUser);
+        buttonModifyUser.setBounds(164, 415, 80, 30);
+
+        jButton1.setFont(new java.awt.Font("MS Gothic", 1, 14)); // NOI18N
+        jButton1.setText("See");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1);
+        jButton1.setBounds(390, 360, 58, 24);
+
+        buttonAddUser.setFont(new java.awt.Font("MS Gothic", 1, 14)); // NOI18N
+        buttonAddUser.setText("Add User");
+        buttonAddUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAddUserActionPerformed(evt);
+            }
+        });
+        jPanel2.add(buttonAddUser);
+        buttonAddUser.setBounds(88, 133, 160, 30);
+
+        buttonBack.setFont(new java.awt.Font("MS Gothic", 1, 14)); // NOI18N
+        buttonBack.setText("<<");
+        buttonBack.setToolTipText("");
+        buttonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBackActionPerformed(evt);
+            }
+        });
+        jPanel2.add(buttonBack);
+        buttonBack.setBounds(22, 415, 50, 30);
+
+        labelSearchUser.setFont(new java.awt.Font("MS Gothic", 1, 14)); // NOI18N
+        labelSearchUser.setForeground(new java.awt.Color(255, 255, 255));
+        labelSearchUser.setText("Search user:");
+        jPanel2.add(labelSearchUser);
+        labelSearchUser.setBounds(600, 70, 108, 14);
+
+        TextFieldUserDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextFieldUserDeleteActionPerformed(evt);
+            }
+        });
+        jPanel2.add(TextFieldUserDelete);
+        TextFieldUserDelete.setBounds(710, 60, 116, 30);
+
+        buttonSearch.setFont(new java.awt.Font("MS Gothic", 1, 14)); // NOI18N
+        buttonSearch.setText("Search");
+        buttonSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSearchActionPerformed(evt);
+            }
+        });
+        jPanel2.add(buttonSearch);
+        buttonSearch.setBounds(710, 110, 116, 30);
+
+        labelTextResult.setFont(new java.awt.Font("MS Gothic", 1, 14)); // NOI18N
+        labelTextResult.setForeground(new java.awt.Color(255, 255, 255));
+        labelTextResult.setText("Password:");
+        jPanel2.add(labelTextResult);
+        labelTextResult.setBounds(620, 160, 80, 23);
+
+        buttonDeleteUser.setFont(new java.awt.Font("MS Gothic", 1, 14)); // NOI18N
+        buttonDeleteUser.setText("Delete user");
+        buttonDeleteUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonDeleteUserActionPerformed(evt);
+            }
+        });
+        jPanel2.add(buttonDeleteUser);
+        buttonDeleteUser.setBounds(710, 210, 122, 30);
+
+        labelResult.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(labelResult);
+        labelResult.setBounds(710, 160, 122, 30);
+
+        jLabel2.setFont(new java.awt.Font("MS Gothic", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Number of registered players:");
+        jPanel2.add(jLabel2);
+        jLabel2.setBounds(320, 300, 203, 44);
+        jPanel2.add(TextFieldPassword);
+        TextFieldPassword.setBounds(88, 92, 160, 30);
+        jPanel2.add(TextFieldName);
+        TextFieldName.setBounds(88, 53, 160, 30);
+
+        jLabel1.setFont(new java.awt.Font("MS Gothic", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(jLabel1);
+        jLabel1.setBounds(540, 300, 50, 44);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -137,234 +290,11 @@ public class WindowAdmin extends javax.swing.JFrame {
                 .addGap(11, 11, 11))
         );
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(290, 40, 270, 150);
-
-        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
-
-        labelTextPassword.setFont(new java.awt.Font("MS Gothic", 1, 14)); // NOI18N
-        labelTextPassword.setForeground(new java.awt.Color(255, 255, 255));
-        labelTextPassword.setText("Password:");
-
-        labelTextName.setFont(new java.awt.Font("MS Gothic", 1, 14)); // NOI18N
-        labelTextName.setForeground(new java.awt.Color(255, 255, 255));
-        labelTextName.setText("Name:");
-
-        labelUserToEdit.setFont(new java.awt.Font("MS Gothic", 1, 14)); // NOI18N
-        labelUserToEdit.setForeground(new java.awt.Color(255, 255, 255));
-        labelUserToEdit.setText("User to edit:");
-
-        labelNewName.setFont(new java.awt.Font("MS Gothic", 1, 14)); // NOI18N
-        labelNewName.setForeground(new java.awt.Color(255, 255, 255));
-        labelNewName.setText("New Name:");
-
-        labelNewPassword.setFont(new java.awt.Font("MS Gothic", 1, 14)); // NOI18N
-        labelNewPassword.setForeground(new java.awt.Color(255, 255, 255));
-        labelNewPassword.setText("New Password:");
-
-        changeWins.setFont(new java.awt.Font("MS Gothic", 1, 14)); // NOI18N
-        changeWins.setForeground(new java.awt.Color(255, 255, 255));
-        changeWins.setText("Change Wins to:");
-
-        TextFieldChangeWins.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextFieldChangeWinsActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("MS Gothic", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-
-        buttonModifyUser.setFont(new java.awt.Font("MS Gothic", 1, 14)); // NOI18N
-        buttonModifyUser.setText("Edit");
-        buttonModifyUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonModifyUserActionPerformed(evt);
-            }
-        });
-
-        jButton1.setFont(new java.awt.Font("MS Gothic", 1, 14)); // NOI18N
-        jButton1.setText("See");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        buttonAddUser.setFont(new java.awt.Font("MS Gothic", 1, 14)); // NOI18N
-        buttonAddUser.setText("Add User");
-        buttonAddUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonAddUserActionPerformed(evt);
-            }
-        });
-
-        buttonBack.setFont(new java.awt.Font("MS Gothic", 1, 14)); // NOI18N
-        buttonBack.setText("<<");
-        buttonBack.setToolTipText("");
-        buttonBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonBackActionPerformed(evt);
-            }
-        });
-
-        labelSearchUser.setFont(new java.awt.Font("MS Gothic", 1, 14)); // NOI18N
-        labelSearchUser.setForeground(new java.awt.Color(255, 255, 255));
-        labelSearchUser.setText("Search user:");
-
-        TextFieldUserDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextFieldUserDeleteActionPerformed(evt);
-            }
-        });
-
-        buttonSearch.setFont(new java.awt.Font("MS Gothic", 1, 14)); // NOI18N
-        buttonSearch.setText("Search");
-        buttonSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonSearchActionPerformed(evt);
-            }
-        });
-
-        labelTextResult.setFont(new java.awt.Font("MS Gothic", 1, 14)); // NOI18N
-        labelTextResult.setForeground(new java.awt.Color(255, 255, 255));
-        labelTextResult.setText("Password:");
-
-        buttonDeleteUser.setFont(new java.awt.Font("MS Gothic", 1, 14)); // NOI18N
-        buttonDeleteUser.setText("Delete user");
-        buttonDeleteUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonDeleteUserActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setFont(new java.awt.Font("MS Gothic", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Number of registered players:");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(labelNewName, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(TextFieldNewName, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(buttonBack)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buttonModifyUser, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(changeWins, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TextFieldChangeWins, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                    .addComponent(labelNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(TextFieldNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                    .addComponent(labelUserToEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(TextFieldUserToEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(labelTextName, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(buttonAddUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                        .addComponent(TextFieldPassword, javax.swing.GroupLayout.Alignment.TRAILING)))))))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(labelTextResult, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelSearchUser, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelResult, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TextFieldUserDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buttonDeleteUser))
-                        .addGap(0, 26, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(147, 147, 147))))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelTextPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelTextName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelTextPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TextFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addComponent(buttonAddUser, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TextFieldUserToEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelUserToEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelSearchUser)
-                    .addComponent(TextFieldUserDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TextFieldNewName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelNewName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(TextFieldNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelTextResult, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(TextFieldChangeWins, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(changeWins, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(labelResult, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(buttonDeleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buttonModifyUser, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
-                        .addGap(74, 74, 74))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
+        jPanel2.add(jPanel1);
+        jPanel1.setBounds(290, 50, 270, 150);
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(0, 10, 580, 540);
+        jPanel2.setBounds(0, 0, 1070, 670);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -379,9 +309,9 @@ public class WindowAdmin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Empty field");
         else{
             String name = TextFieldUserDelete.getText();
-            String deleteMethod = ListPlayersRegistered.getInstance().deletePlayer(name);
-            TextFieldUserDelete.setText("");
-            JOptionPane.showMessageDialog(rootPane, deleteMethod);
+            ListPlayersRegistered.getInstance().deletePlayer(name);
+            JOptionPane.showMessageDialog(rootPane, "Player " + name + " succesfully deleted.");
+            TextFieldUserDelete.setText("");      
        }
     }//GEN-LAST:event_buttonDeleteUserActionPerformed
 

@@ -1525,7 +1525,7 @@ public class WindowStartGame extends javax.swing.JFrame {
     
     //this will catch the imagen for the game to save in file
     public static void capturarPantalla(String Nombre) throws AWTException, IOException {
-     BufferedImage captura = new Robot().createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()) );
+     BufferedImage captura = new Robot().createScreenCapture(new Rectangle(375, 130 , 1000,740) );
      ListPlayersGaming.getInstance().playerGaming.addGame(captura);
      // Save as JPEG
      File file = new File(Nombre + ".jpg");

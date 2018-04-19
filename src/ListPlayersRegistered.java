@@ -5,8 +5,10 @@
  * by: Fabián Zamora R. and Randald Villegas B.*
  * * * * * * * * * * * * * * * * * * * * * * * */
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -96,34 +98,19 @@ public class ListPlayersRegistered {   // singletone class PlayerList
     }
      
 // method to delete an player to the player's list
-    public String deletePlayer(String name){       
+    public void deletePlayer(String name){       
         Player aux = searchPlayer(name);         // call method search and save the result in aux
-        if(aux != null){
-            if(lenghtList() > 2){                                  
-                aux.ant.sig = aux.sig;           // object before aux point to his next object
-                aux.sig.ant = aux.ant;           // join nodes aux ant to aux sig
-                aux.ant = null;                  // aux point to null
-                aux.sig = null;
-                return "Player deleted";
-            }
-            if (lenghtList() == 2){
-                aux.ant.sig = aux.sig;
-                aux.sig.ant = aux.ant;
-                aux .sig = null;
-                aux.ant = null;
-            }
-            else if(lenghtList() == 1){
-                aux.ant = null;
-                aux.sig = null;
-                start = null;
-                end = null;
-                return "player deleted";
-            }
-            else if (lenghtList() == 0){
-                return "There are not players to delete";
-            }
+        aux.ant.sig = aux.sig;
+        aux.sig.ant = aux.ant;
+        if(aux == start){
+            start = aux.sig;
         }
-        return "Player not found";
+        else if(aux == end){
+            end = aux.sig;
+        }
+        aux.sig = null;
+        aux.ant = null;
+        aux = null;
     }
     
     public void editPlayer(String name, String newName, String newPassword, int wins){
@@ -132,6 +119,14 @@ public class ListPlayersRegistered {   // singletone class PlayerList
             aux.setName(newName);
             aux.setPassword(newPassword);
             aux.setWins(wins);
+        }    
+    }
+    
+    public void editSelfData(String name, String newName, String newPassword){
+        Player aux = searchPlayer(name);
+        if(aux != null){
+            aux.setName(newName);
+            aux.setPassword(newPassword);
         }    
     }
     
@@ -145,14 +140,11 @@ public class ListPlayersRegistered {   // singletone class PlayerList
             return 1;
         }
         else{
-            while(aux.sig != start){
+            while(aux.sig != end.sig){
                 lenght += 1;
                 aux = aux.sig;  
             }
-            if (aux.sig == start){
-                lenght += 1;
-            }
-            return lenght;
+            return lenght + 1;
         }
     }
     //this method will return the first
@@ -173,8 +165,33 @@ public class ListPlayersRegistered {   // singletone class PlayerList
         return instance;
     }
     
-    public void removePlayer(Player p){
+
+    public void savePlayer(Player newPlayer){
+        String playerToRegister = JsonUtil.converPlayerToJson(newPlayer);
+         try {
+            FileWriter writer = new FileWriter("Players.txt", true);
+            BufferedWriter bufferedWriter = new BufferedWriter(writer);
+            bufferedWriter.write(playerToRegister);
+            bufferedWriter.newLine();     
+            bufferedWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+         System.out.println("Player: " + newPlayer.name + " succesfully saved in text file 'Players.txt'.");
+    }
         
-        
+    
+    public void reWriteUsers(){
+        Player aux = start;
+        while(aux.sig != end.sig){
+            Player auxAnt = aux.ant;
+            Player auxSig = aux.sig;
+            aux.ant = null;
+            aux.sig = null;
+            savePlayer(aux);
+            aux.ant = auxAnt;
+            aux.sig = auxSig;
+            aux = aux.sig;
+        }
     }
 }
