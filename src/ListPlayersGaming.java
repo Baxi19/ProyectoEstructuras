@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 /*
@@ -13,7 +14,9 @@ import javax.swing.ImageIcon;
  */
 public class ListPlayersGaming {
     int numberOfGamers;
-    Player start2, end2; 
+    Player start2, end2;
+    public static ArrayList<Token> listTrap = new ArrayList<Token>(14); //this will be used to save all tokens with trap
+    public static int auxCont = 0;
     public Player actualUser;//It will have the user logged and the players's info  
     public static Player registredUser;
     public Player player1 = new Player("Player 1","1");
@@ -144,7 +147,7 @@ public class ListPlayersGaming {
         // First search the highest token
         Player aux = start2;                        
         ImageIcon image = null;
-        Token highestToken = new Token(0,0,0, image,"");
+        Token highestToken = new Token(0,0,0, image,"",0);
         int i = 0;
         while(aux.sig != start2){
             while(i <= 6){

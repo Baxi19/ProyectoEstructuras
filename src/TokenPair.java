@@ -21,8 +21,8 @@ public class TokenPair extends Token{
     Token subStartDown;
     Token subEndDown;
 
-    public TokenPair(Token up, Token down, Token subStartUp, Token subEndUp, Token subStartDown, Token subEndDown, int value1, int value2, int id, ImageIcon image, String address) {
-        super(value1, value2, id, image, address);
+    public TokenPair(Token up, Token down, Token subStartUp, Token subEndUp, Token subStartDown, Token subEndDown, int value1, int value2, int id, ImageIcon image, String address, int trap) {
+        super(value1, value2, id, image, address, trap);
         this.up = up;
         this.down = down;
         this.subStartUp = subStartUp;
@@ -30,6 +30,8 @@ public class TokenPair extends Token{
         this.subStartDown = subStartDown;
         this.subEndDown = subEndDown;
     }
+
+    
 
     public Token getUp() {
         return up;

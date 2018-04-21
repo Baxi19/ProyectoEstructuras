@@ -22,7 +22,7 @@ public class Token {
     
     
 
-    public Token(int value1, int value2, int id, ImageIcon image,String address) {
+    public Token(int value1, int value2, int id, ImageIcon image,String address, int trap) {
         this.value1 = value1;
         this.value2 = value2;
         this.id = id;

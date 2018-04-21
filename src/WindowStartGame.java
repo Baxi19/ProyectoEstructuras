@@ -1,3 +1,4 @@
+
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.Rectangle;
@@ -37,10 +38,12 @@ public class WindowStartGame extends javax.swing.JFrame {
     Token tokenSelected;                    //this will be used to get the actual token 
     ArrayList<Integer> tokensDelivered = new ArrayList<Integer>(28);//this will be used to save the tokens delivered info
     public static ArrayList<Token> tokensList = new ArrayList<Token>(28); //this will be used to save all tokens in the start
+    
     public static boolean moveDone;     //this will be used to check if the user insert a token 
     public static int tokensPair = 0;   //this will be used to count the pair's tokens
     public static int count = 0;        //this will be used to select the position in the list'names
     public static ArrayList<String> imagesNames = new ArrayList<String>(21);//this will be used to save the images names
+    
     public static int numberOfTokens = 0; //this will be used to count the tokens's number
     public static boolean winner = false; //this will be activate when the actual gamer is without tokens
     ArrayList<Integer> listPossibilities = new ArrayList<Integer>();//this will be used to save the game and posibilities in the logical  game
@@ -77,34 +80,34 @@ public class WindowStartGame extends javax.swing.JFrame {
     
     //Tokens with 4 parameters have only ant and sig pointers
     //Tokens with 6 parameters have ant, sig, up, and down pointers
-    TokenPair t1 = new TokenPair(null,null,null,null,null, null, 0, 0, 1, I1,"0_0.png");
-    Token t2 = new Token(0, 1, 2, I2,"0_1.png");
-    Token t3 = new Token(0, 2, 3, I3,"0_2.png");
-    Token t4 = new Token(0, 3, 4, I4,"0_3.png");
-    Token t5 = new Token(0, 4, 5, I5,"0_4.png");
-    Token t6 = new Token(0, 5, 6, I6,"0_5.png");
-    Token t7 = new Token(0, 6, 7, I7,"0_6.png");
-    TokenPair t8 = new TokenPair(null,null,null,null,null, null, 1, 1, 8, I8,"1_1.png");
-    Token t9 = new Token(1, 2, 9, I9,"1_2.png");
-    Token t10 = new Token(1, 3, 10, I10,"1_3.png");
-    Token t11 = new Token(1, 4, 11, I11,"1_4.png");
-    Token t12 = new Token(1, 5, 12, I12,"1_5.png");
-    Token t13 = new Token(1, 6, 13, I13,"1_6.png");
-    TokenPair t14 = new TokenPair(null,null,null,null,null, null, 2, 2, 14, I14 ,"2_2.png");
-    Token t15 = new Token(2, 3, 15, I15,"2_3.png");
-    Token t16 = new Token(2, 4, 16, I16,"2_4.png");
-    Token t17 = new Token(2, 5, 17, I17,"2_5.png");
-    Token t18 = new Token(2, 6, 18, I18,"2_6.png");
-    TokenPair t19 = new TokenPair(null,null,null,null, null, null, 3, 3, 19, I19,"3_3.png");
-    Token t20 = new Token(3, 4, 20, I20,"3_4.png");
-    Token t21 = new Token(3, 5, 21, I21,"3_5.png");
-    Token t22 = new Token(3, 6, 22, I22,"3_6.png");
-    TokenPair t23 = new TokenPair(null,null,null,null,null, null, 4, 4, 23, I23,"4_4.png");
-    Token t24 = new Token(4, 5, 24, I24,"4_5.png");
-    Token t25 = new Token(4, 6, 25, I25,"4_6.png");
-    TokenPair t26 = new TokenPair(null,null,null,null,null, null,5, 5, 26, I26, "5_5.png");
-    Token t27 = new Token(5, 6, 27, I27,"5_6.png");
-    TokenPair t28 = new TokenPair(null,null,null,null,null, null, 6, 6, 28, I28, "6_6.png");
+    TokenPair t1 = new TokenPair(null,null,null,null,null, null, 0, 0, 1, I1,"0_0.png",0);
+    Token t2 = new Token(0, 1, 2, I2,"0_1.png",0);
+    Token t3 = new Token(0, 2, 3, I3,"0_2.png",0);
+    Token t4 = new Token(0, 3, 4, I4,"0_3.png",0);
+    Token t5 = new Token(0, 4, 5, I5,"0_4.png",0);
+    Token t6 = new Token(0, 5, 6, I6,"0_5.png",0);
+    Token t7 = new Token(0, 6, 7, I7,"0_6.png",0);
+    TokenPair t8 = new TokenPair(null,null,null,null,null, null, 1, 1, 8, I8,"1_1.png",0);
+    Token t9 = new Token(1, 2, 9, I9,"1_2.png",0);
+    Token t10 = new Token(1, 3, 10, I10,"1_3.png",0);
+    Token t11 = new Token(1, 4, 11, I11,"1_4.png",0);
+    Token t12 = new Token(1, 5, 12, I12,"1_5.png",0);
+    Token t13 = new Token(1, 6, 13, I13,"1_6.png",0);
+    TokenPair t14 = new TokenPair(null,null,null,null,null, null, 2, 2, 14, I14 ,"2_2.png",0);
+    Token t15 = new Token(2, 3, 15, I15,"2_3.png",0);
+    Token t16 = new Token(2, 4, 16, I16,"2_4.png",0);
+    Token t17 = new Token(2, 5, 17, I17,"2_5.png",0);
+    Token t18 = new Token(2, 6, 18, I18,"2_6.png",0);
+    TokenPair t19 = new TokenPair(null,null,null,null, null, null, 3, 3, 19, I19,"3_3.png",0);
+    Token t20 = new Token(3, 4, 20, I20,"3_4.png",0);
+    Token t21 = new Token(3, 5, 21, I21,"3_5.png",0);
+    Token t22 = new Token(3, 6, 22, I22,"3_6.png",0);
+    TokenPair t23 = new TokenPair(null,null,null,null,null, null, 4, 4, 23, I23,"4_4.png",0);
+    Token t24 = new Token(4, 5, 24, I24,"4_5.png",0);
+    Token t25 = new Token(4, 6, 25, I25,"4_6.png",0);
+    TokenPair t26 = new TokenPair(null,null,null,null,null, null,5, 5, 26, I26, "5_5.png",0);
+    Token t27 = new Token(5, 6, 27, I27,"5_6.png",0);
+    TokenPair t28 = new TokenPair(null,null,null,null,null, null, 6, 6, 28, I28, "6_6.png",0);
     
     /**
      * Creates new form LoadGame
@@ -127,9 +130,18 @@ public class WindowStartGame extends javax.swing.JFrame {
                     TransferHandler tranferHandler = jlabelInfo.getTransferHandler();   //th is used to transfer the image to the new position                
                     String nam = imagesNames.get(count);//Get the actual token name
                     Token newToken = searchTokenName(nam);  //token grabbed
+                    //add token with trap in a arrayList
+                    if(newToken.trap != 0){
+                        int id = newToken.id;
+                        Token token = searchToken(id);
+                        ListPlayersGaming.listTrap.add(token);
+                    }
                     System.out.println("_______________Data of token_______________\n");
+                    System.out.println(newToken.value1 + "|" + newToken.value2);
                     //It insert the first token in the list
                     if (ListTokensGame.getInstance().start3 == null) { //if the list is empty...
+                        // Search if are tokens with tramps
+                        verify();
                         tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY);   //is used to handle the transfer of a Transferable to and from Swing components                 
                         callInsertAtStart(newToken); //this will insert the first tokens
                         deleteToken(nam);            //this will eliminate the token in the player list   
@@ -154,9 +166,15 @@ public class WindowStartGame extends javax.swing.JFrame {
                         System.out.println("First token Inserted.");
                         System.out.println(newToken.value1 + "|" + newToken.value2);
                         break;
-                    } else {
+                    }
+                    else{ 
+                    
+                        
                         // this will check the start position
-                        if (newToken.value2 == listPossibilities.get(0)) { // if is the same valor to start
+                        if (newToken.value2 == listPossibilities.get(0)){ // if is the same valor to start
+                            // Search if are tokens with tramps
+                            verify();
+                            int aux = listPossibilities.get(0);
                             tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY); // copy the info   //is used to handle the transfer of a Transferable to and from Swing components                 
                             callInsertAtStart(newToken); // insert at start
                             deleteToken(nam);// delete the token
@@ -177,8 +195,11 @@ public class WindowStartGame extends javax.swing.JFrame {
                             }
                             System.out.println("Inserted: value 2 is the same valor to start");
                             break;
+                            }
                         }
                         if (newToken.value1 == listPossibilities.get(0)) { // if is different valor to start
+                            // Search if are tokens with tramps
+                            verify();
                             tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY);   //is used to handle the transfer of a Transferable to and from Swing components                 
                             int[] arrayChanged = changeValors(newToken.value1, newToken.value2);
                             newToken.value1 = arrayChanged[0];
@@ -203,6 +224,8 @@ public class WindowStartGame extends javax.swing.JFrame {
                             break;
                         }
                         if (newToken.value1 == listPossibilities.get(1)) { // if is the same valor to start
+                            // Search if are tokens with tramps
+                            verify();
                             tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY);   //is used to handle the transfer of a Transferable to and from Swing components                 
                             callInserToTheRight(newToken);
                             deleteToken(nam);
@@ -224,6 +247,8 @@ public class WindowStartGame extends javax.swing.JFrame {
                             break;
                         }
                         if (newToken.value2 == listPossibilities.get(1)) { // if is different valor to start
+                            // Search if are tokens with tramps
+                            verify();
                             tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY);   //is used to handle the transfer of a Transferable to and from Swing components                 
                             int[] arrayChanged = changeValors(newToken.value1, newToken.value2);
                             newToken.value1 = arrayChanged[0];
@@ -250,12 +275,15 @@ public class WindowStartGame extends javax.swing.JFrame {
 
                         for (int i = 2; i < listPossibilities.size() ; i++) {
                             int var = listPossibilities.get(i);
-                            if (var == newToken.value1) {
-                                tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY);   //is used to handle the transfer of a Transferable to and from Swing components                 
-                                callInserToTheRight(newToken);
-                                deleteToken(nam);
-                                listPossibilities.set(i, newToken.value2);
                                 
+                                if (var == newToken.value1) {
+                                    // Search if are tokens with tramps
+                                    verify();
+                                    tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY);   //is used to handle the transfer of a Transferable to and from Swing components                 
+                                    callInserToTheRight(newToken);
+                                    deleteToken(nam);
+                                    listPossibilities.set(i, newToken.value2);
+
                                 if( ListPlayersGaming.getInstance().playerGaming.tokens.size() == 0 ){
                                     winner = true;
                                 }
@@ -270,6 +298,7 @@ public class WindowStartGame extends javax.swing.JFrame {
                                 
                             }
                             if(var == newToken.value2){
+                                verify();
                                 tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY);   //is used to handle the transfer of a Transferable to and from Swing components                 
                                 int[] arrayChanged = changeValors(newToken.value1, newToken.value2);
                                 newToken.value1 = arrayChanged[0];
@@ -302,7 +331,7 @@ public class WindowStartGame extends javax.swing.JFrame {
                     
                 }
             
-            }
+            
 
             @Override
             public void mouseReleased(MouseEvent e) {
@@ -366,8 +395,8 @@ public class WindowStartGame extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jPanel21 = new javax.swing.JPanel();
         trapImage = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        tipoTrampa = new javax.swing.JComboBox<>();
+        buttonTrap = new javax.swing.JButton();
         jPanel22 = new javax.swing.JPanel();
         exitImage = new javax.swing.JLabel();
         buttonExit = new javax.swing.JButton();
@@ -491,6 +520,8 @@ public class WindowStartGame extends javax.swing.JFrame {
 
         addImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/getToken.png"))); // NOI18N
 
+        buttonAddToken.setBackground(new java.awt.Color(0, 0, 0));
+        buttonAddToken.setForeground(new java.awt.Color(102, 0, 255));
         buttonAddToken.setText("TOKEN");
         buttonAddToken.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -522,6 +553,8 @@ public class WindowStartGame extends javax.swing.JFrame {
 
         doneImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/check.png"))); // NOI18N
 
+        buttonDone.setBackground(new java.awt.Color(0, 0, 0));
+        buttonDone.setForeground(new java.awt.Color(102, 0, 255));
         buttonDone.setText("DONE");
         buttonDone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -551,7 +584,7 @@ public class WindowStartGame extends javax.swing.JFrame {
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/game.png"))); // NOI18N
 
-        actualPlayerName.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        actualPlayerName.setFont(new java.awt.Font("Script MT Bold", 2, 20)); // NOI18N
         actualPlayerName.setForeground(new java.awt.Color(255, 255, 255));
         actualPlayerName.setText("Player");
 
@@ -563,17 +596,21 @@ public class WindowStartGame extends javax.swing.JFrame {
 
         trapImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/trapIcon.png"))); // NOI18N
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Remove token", "Lose 1 turn", "Take another token" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        tipoTrampa.setBackground(new java.awt.Color(0, 0, 0));
+        tipoTrampa.setForeground(new java.awt.Color(102, 0, 255));
+        tipoTrampa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Remove token", "Lose 1 turn", "Take another token" }));
+        tipoTrampa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                tipoTrampaActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Trap");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonTrap.setBackground(new java.awt.Color(0, 0, 0));
+        buttonTrap.setForeground(new java.awt.Color(102, 0, 255));
+        buttonTrap.setText("Trap");
+        buttonTrap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                buttonTrapActionPerformed(evt);
             }
         });
 
@@ -586,16 +623,16 @@ public class WindowStartGame extends javax.swing.JFrame {
                 .addComponent(trapImage)
                 .addGap(66, 66, 66)
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, 0, 0, Short.MAX_VALUE))
+                    .addComponent(buttonTrap, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                    .addComponent(tipoTrampa, 0, 0, Short.MAX_VALUE))
                 .addGap(44, 44, 44))
         );
         jPanel21Layout.setVerticalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel21Layout.createSequentialGroup()
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tipoTrampa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1))
+                .addComponent(buttonTrap))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(trapImage, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -606,6 +643,8 @@ public class WindowStartGame extends javax.swing.JFrame {
 
         exitImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/off.png"))); // NOI18N
 
+        buttonExit.setBackground(new java.awt.Color(0, 0, 0));
+        buttonExit.setForeground(new java.awt.Color(102, 0, 255));
         buttonExit.setText("EXIT");
         buttonExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -638,6 +677,8 @@ public class WindowStartGame extends javax.swing.JFrame {
 
         saveImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/save.png"))); // NOI18N
 
+        buttonSave.setBackground(new java.awt.Color(0, 0, 0));
+        buttonSave.setForeground(new java.awt.Color(102, 0, 255));
         buttonSave.setText("SAVE");
         buttonSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -667,17 +708,19 @@ public class WindowStartGame extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Script MT Bold", 1, 20)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText(" Available tokens :");
 
-        availableInfo.setFont(new java.awt.Font("MS Gothic", 0, 36)); // NOI18N
+        availableInfo.setFont(new java.awt.Font("Script MT Bold", 0, 18)); // NOI18N
         availableInfo.setForeground(new java.awt.Color(255, 255, 255));
 
         jPanel8.setBackground(new java.awt.Color(51, 0, 153));
 
         doneImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Selection.png"))); // NOI18N
 
+        bNext.setBackground(new java.awt.Color(0, 0, 0));
+        bNext.setForeground(new java.awt.Color(102, 0, 255));
         bNext.setText("Next");
         bNext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -685,6 +728,8 @@ public class WindowStartGame extends javax.swing.JFrame {
             }
         });
 
+        bBack.setBackground(new java.awt.Color(0, 0, 0));
+        bBack.setForeground(new java.awt.Color(102, 0, 255));
         bBack.setText("Back");
         bBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -733,41 +778,42 @@ public class WindowStartGame extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(availableInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel7)
+                        .addGap(57, 57, 57)
+                        .addComponent(actualPlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(131, 131, 131)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
-                        .addComponent(actualPlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(availableInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(131, 131, 131)
+                                .addComponent(jLabel1)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(actualPlayerName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(actualPlayerName)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel8)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel7))
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -932,7 +978,7 @@ public class WindowStartGame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(logicalMatrix, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(imageTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 775, Short.MAX_VALUE))
+                .addComponent(imageTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 780, Short.MAX_VALUE))
         );
 
         pack();
@@ -1106,43 +1152,120 @@ public class WindowStartGame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_buttonExitActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void tipoTrampaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoTrampaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_tipoTrampaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here: , Lose 1 turn, Take another token
-        if(tokenSelected == null){
-            JOptionPane.showMessageDialog(rootPane, "Select one token first");
-        }
-        else{
-            if (jComboBox1.getSelectedItem().equals("Remove token")) {
-                if(ListPlayersGaming.getInstance().playerGaming.trapsActivated.contains(1)){
-                    JOptionPane.showMessageDialog(rootPane, "That trap was already activated");
-                }
-                else{
-                    tokenSelected.setTrap(1);
-                }
-                
-            } else if (jComboBox1.getSelectedItem().equals("Lose 1 turn")) {
-                if(ListPlayersGaming.getInstance().playerGaming.trapsActivated.contains(1)){
-                    JOptionPane.showMessageDialog(rootPane, "That trap was already activated");
-                }
-                else{
-                    tokenSelected.setTrap(2);
-                }
+    private void buttonTrapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTrapActionPerformed
+        addTrap();
+        
+    }//GEN-LAST:event_buttonTrapActionPerformed
+    public void addTrap(){
+        if (tipoTrampa.getSelectedItem().equals("Remove token")) {
+            if (ListPlayersGaming.getInstance().listTrap.contains(1)) {
+                JOptionPane.showMessageDialog(rootPane, "That trap was already activated");
+                return;
             } else {
-                if(ListPlayersGaming.getInstance().playerGaming.trapsActivated.contains(1)){
-                    JOptionPane.showMessageDialog(rootPane, "That trap was already activated");
-                }
-                else{
-                    tokenSelected.setTrap(3);
-                }
+                JOptionPane.showMessageDialog(rootPane, "Trap 1 activeted");
+                Token auxToken = tokenSelected;
+                auxToken.setTrap(1);
+                ListPlayersGaming.getInstance().listTrap.add(tokenSelected);
+                
+                return;
+            }
+        } else if (tipoTrampa.getSelectedItem().equals("Lose 1 turn")) {
+            if (ListPlayersGaming.getInstance().playerGaming.trapsActivated.contains(1)) {
+                JOptionPane.showMessageDialog(rootPane, "That trap was already activated");
+                return;
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Trap 2 activeted");
+                Token auxToken = tokenSelected;
+                auxToken.setTrap(2);
+                ListPlayersGaming.getInstance().listTrap.add(auxToken);
+                
+                return;
+            }
+        } else if (tipoTrampa.getSelectedItem().equals("Take another token")) {
+            if (ListPlayersGaming.getInstance().playerGaming.trapsActivated.contains(1)) {
+                JOptionPane.showMessageDialog(rootPane, "That trap was already activated");
+                return ;
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Trap 3 activeted");
+                Token auxToken = tokenSelected;
+                auxToken.setTrap(1);
+                ListPlayersGaming.getInstance().listTrap.add(auxToken);
+                
+                return;
             }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
-   // this will insert images in the actual tokens list 
-   public void insertImage(String button){
+
+    }
+
+    public void verify() {
+         
+        for (int i = 0; i < ListPlayersGaming.getInstance().listTrap.size(); i++) {
+            int trap = ListPlayersGaming.getInstance().listTrap.get(i).trap;
+            if (trap != 0) {
+                searchTrap(trap);
+                System.out.println("Token with trap : " + trap);
+            }
+        }
+    }
+
+    public void searchTrap(int number) {
+        if (number == 1) {
+            activateTrap1();
+        }
+        if (number == 2) {
+            activateTrap2();
+        }
+        if (number == 3) {
+            activateTrap3();
+        }
+    }
+
+    public void activateTrap1() {
+        JOptionPane.showMessageDialog(rootPane, "Trap 1 activated, your token was returned ");
+        moveDone = true;
+        
+    }
+
+    public void activateTrap2() {
+        JOptionPane.showMessageDialog(rootPane, "Trap 2 activated, you lost 1 turn");
+        done();
+    }
+
+    public void activateTrap3() {
+        // it will given a new token if is available
+        if (availableTokens != 0) {
+            JOptionPane.showMessageDialog(rootPane, "Trap 3 was activated, you were given a new token");
+            takeToken();
+        }
+        if (availableTokens == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Trap 3 was activated \n you will lost your round \n because isn't token's available");
+            done();
+        }
+    }
+
+    public void done() {
+        // it change to the another round
+        ListPlayersGaming.getInstance().playerGaming = ListPlayersGaming.getInstance().playerGaming.sig;
+        moveDone = false;
+        //ListPlayersGaming.getInstance().actualUser.setName("Done");  //ELIMINAR LINEA CUANDO ESTE CARGANDO LOS JUGADORES CON DIFERENTES NOMBRES
+        String gamer = ListPlayersGaming.getInstance().playerGaming.name;
+        actualPlayerName.setText(gamer);// change the player name in the game windows
+        position1.setIcon(null);
+        position2.setIcon(null);
+        position3.setIcon(null);
+        position4.setIcon(null);
+        count = 0;
+
+    }
+
+
+
+    // this will insert images in the actual tokens list 
+    public void insertImage(String button){
         imagesNames.clear(); //clean the list of names in every movement
         String var = "";     //var will be used to save the token name
         int tokensSize = ListPlayersGaming.getInstance().playerGaming.tokens.size(); //actual tokens size 
@@ -1234,6 +1357,7 @@ public class WindowStartGame extends javax.swing.JFrame {
     private javax.swing.JButton buttonDone;
     private javax.swing.JButton buttonExit;
     private javax.swing.JButton buttonSave;
+    private javax.swing.JButton buttonTrap;
     private javax.swing.JLabel celda1;
     private javax.swing.JLabel celda10;
     private javax.swing.JLabel celda11;
@@ -1318,8 +1442,6 @@ public class WindowStartGame extends javax.swing.JFrame {
     private javax.swing.JLabel doneImage1;
     private javax.swing.JLabel exitImage;
     private javax.swing.JLabel imageTable;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
@@ -1343,6 +1465,7 @@ public class WindowStartGame extends javax.swing.JFrame {
     private javax.swing.JLabel position9;
     private javax.swing.JLabel saveImage;
     private javax.swing.JPanel showTokens;
+    private javax.swing.JComboBox<String> tipoTrampa;
     private javax.swing.JLabel trapImage;
     private javax.swing.JPanel userControls;
     // End of variables declaration//GEN-END:variables
@@ -1525,7 +1648,7 @@ public class WindowStartGame extends javax.swing.JFrame {
     
     //this will catch the imagen for the game to save in file
     public static void capturarPantalla(String Nombre) throws AWTException, IOException {
-     BufferedImage captura = new Robot().createScreenCapture(new Rectangle(375, 130 , 1000,740) );
+     BufferedImage captura = new Robot().createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()) );
      ListPlayersGaming.getInstance().playerGaming.addGame(captura);
      // Save as JPEG
      File file = new File(Nombre + ".jpg");
@@ -1537,7 +1660,7 @@ public class WindowStartGame extends javax.swing.JFrame {
         ListTokensGame.getInstance().insertStart(nToken);
         if (nToken.id == 1 | nToken.id == 8 | nToken.id == 14
           | nToken.id == 19 | nToken.id == 23 | nToken.id == 28) {
-            TokenPair tok = new TokenPair(null,null,null,null,null, null, nToken.value1, nToken.value2, nToken.id, nToken.image, nToken.name);
+            TokenPair tok = new TokenPair(null,null,null,null,null, null, nToken.value1, nToken.value2, nToken.id, nToken.image, nToken.name,0);
             ListTokensGame.getInstance().addTokenPair(tok);
         }    
     }
@@ -1546,7 +1669,7 @@ public class WindowStartGame extends javax.swing.JFrame {
         ListTokensGame.getInstance().insertFinal(nToken); 
         if (nToken.id == 1 | nToken.id == 8 | nToken.id == 14
           | nToken.id == 19 | nToken.id == 23 | nToken.id == 28) {
-             TokenPair tok = new TokenPair(null,null,null,null,null, null, nToken.value1, nToken.value2, nToken.id, nToken.image, nToken.name);
+             TokenPair tok = new TokenPair(null,null,null,null,null, null, nToken.value1, nToken.value2, nToken.id, nToken.image, nToken.name,0);
              ListTokensGame.getInstance().addTokenPair(tok);
         }    
     }
@@ -1555,7 +1678,7 @@ public class WindowStartGame extends javax.swing.JFrame {
         ListTokensGame.getInstance().insertUp(nToken, tokenPair);
         if (nToken.id == 1 | nToken.id == 8 | nToken.id == 14
           | nToken.id == 19 | nToken.id == 23 | nToken.id == 28) {
-             TokenPair tok = new TokenPair(null,null,null,null,null, null, nToken.value1, nToken.value2, nToken.id, nToken.image, nToken.name);
+             TokenPair tok = new TokenPair(null,null,null,null,null, null, nToken.value1, nToken.value2, nToken.id, nToken.image, nToken.name,0);
              ListTokensGame.getInstance().addTokenPair(tok);
         }
     }
@@ -1564,7 +1687,7 @@ public class WindowStartGame extends javax.swing.JFrame {
         ListTokensGame.getInstance().insertDown(nToken, tokenPair);
         if (nToken.id == 1 | nToken.id == 8 | nToken.id == 14
           | nToken.id == 19 | nToken.id == 23 | nToken.id == 28) {
-             TokenPair tok = new TokenPair(null,null,null,null,null, null, nToken.value1, nToken.value2, nToken.id, nToken.image, nToken.name);
+             TokenPair tok = new TokenPair(null,null,null,null,null, null, nToken.value1, nToken.value2, nToken.id, nToken.image, nToken.name,0);
              ListTokensGame.getInstance().addTokenPair(tok);
         }
     }
