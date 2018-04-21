@@ -9,6 +9,9 @@
  * @author Fabián
  */
 public class SaveGame {
+    int[] tokensID;
+    
+    
     
     
 }
