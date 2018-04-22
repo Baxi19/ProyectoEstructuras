@@ -183,7 +183,7 @@ public class ListPlayersRegistered {   // singletone class PlayerList
     
     public void reWriteUsers(){
         Player aux = start;
-        while(aux.sig != end){
+        while(aux.sig != end.sig){
             Player auxAnt = aux.ant;
             Player auxSig = aux.sig;
             aux.ant = null;
