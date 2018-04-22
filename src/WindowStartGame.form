@@ -397,7 +397,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="0" red="66" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Trap"/>
+                    <Property name="text" type="java.lang.String" value="Ok"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonTrapActionPerformed"/>

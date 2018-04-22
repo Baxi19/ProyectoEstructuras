@@ -15,7 +15,6 @@ import javax.swing.ImageIcon;
 public class ListPlayersGaming {
     int numberOfGamers;
     Player start2, end2;
-    public static ArrayList<Token> listTrap = new ArrayList<Token>(14); //this will be used to save all tokens with trap
     public static int auxCont = 0;
     public Player actualUser;//It will have the user logged and the players's info  
     public static Player registredUser;
@@ -178,6 +177,15 @@ public class ListPlayersGaming {
         if(aux.getTokens().contains(highestToken)){
                 this.playerGaming = aux;
         }  
+    }
+    
+    public Token searchByName(String name){
+        for(int i = 0; i < playerGaming.tokens.size(); i++){
+            if(playerGaming.tokens.get(i).name == name){
+                return playerGaming.tokens.get(i);
+            }
+        }
+        return null;
     }
 }
 

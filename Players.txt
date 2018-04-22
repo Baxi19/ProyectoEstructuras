@@ -1,7 +1,8 @@
 {"name":"Elias","password":"1","wins":0,"trapsActivated":[],"tokens":[],"ant":null,"sig":null,"games":[]}
-{"name":"RandalV","password":"r","wins":9,"trapsActivated":[],"tokens":[],"ant":null,"sig":null,"games":[]}
+{"name":"Randald","password":"r","wins":1,"trapsActivated":[],"tokens":[],"ant":null,"sig":null,"games":[]}
 {"name":"xd","password":"xdD","wins":0,"trapsActivated":[],"tokens":[],"ant":null,"sig":null,"games":[]}
 {"name":"Danny","password":"largo","wins":0,"trapsActivated":[],"tokens":[],"ant":null,"sig":null,"games":[]}
 {"name":"Meylin","password":"bebito","wins":0,"trapsActivated":[],"tokens":[],"ant":null,"sig":null,"games":[]}
-{"name":"Jefrón","password":"1","wins":0,"trapsActivated":[],"tokens":[],"ant":null,"sig":null,"games":[]}
-{"name":"fabian","password":"zamora","wins":0,"trapsActivated":[],"tokens":[],"ant":null,"sig":null,"games":[]}
+{"name":"Fabian","password":"z","wins":5,"trapsActivated":[],"tokens":[],"ant":null,"sig":null,"games":[]}
+{"name":"gg","password":"gg","wins":0,"trapsActivated":[],"tokens":[],"ant":null,"sig":null,"games":[]}
+{"name":"dedede","password":"dedede","wins":0,"trapsActivated":[],"tokens":[],"ant":null,"sig":null,"games":[]}
