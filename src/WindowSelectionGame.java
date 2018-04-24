@@ -535,10 +535,9 @@ public class WindowSelectionGame extends javax.swing.JFrame {
 
     private void buttonSingIn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSingIn1ActionPerformed
         // TODO add your handling code here:
-        String name = actualPlayerName2.getText();
         String newName = jTextField1.getText();
         String newPassword = jTextField2.getText();
-        ListPlayersRegistered.getInstance().editSelfData(name, newName, newPassword);  
+        ListPlayersRegistered.getInstance().editSelfData(newName, newName, newPassword);  
         ListPlayersGaming.getInstance().actualUser.setName(newName);
         principalPanel.setSize(0,0);
         navBar = false;

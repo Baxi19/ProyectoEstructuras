@@ -193,12 +193,5 @@ public class ListPlayersRegistered {   // singletone class PlayerList
             aux.sig = auxSig;
             aux = aux.sig;
         }
-        Player auxAnt = aux.ant;
-        Player auxSig = aux.sig;
-        aux.ant = null;
-        aux.sig = null;
-        savePlayer(aux);
-        aux.ant = auxAnt;
-        aux.sig = auxSig;
     }
 }

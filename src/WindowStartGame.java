@@ -4,6 +4,7 @@ import java.awt.Robot;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 
+import javax.imageio.ImageIO;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -37,17 +38,15 @@ public class WindowStartGame extends javax.swing.JFrame {
     Token tokenSelected;                    //this will be used to get the actual token 
     ArrayList<Integer> tokensDelivered = new ArrayList<Integer>(28);//this will be used to save the tokens delivered info
     public static ArrayList<Token> tokensList = new ArrayList<Token>(28); //this will be used to save all tokens in the start
-    public static ArrayList<Integer> listTrap = new ArrayList<Integer>(24); //this will be used to save all tokens with trap
+    
     public static boolean moveDone;     //this will be used to check if the user insert a token 
     public static int tokensPair = 0;   //this will be used to count the pair's tokens
     public static int count = 0;        //this will be used to select the position in the list'names
     public static ArrayList<String> imagesNames = new ArrayList<String>(21);//this will be used to save the images names
+    
     public static int numberOfTokens = 0; //this will be used to count the tokens's number
     public static boolean winner = false; //this will be activate when the actual gamer is without tokens
     ArrayList<Integer> listPossibilities = new ArrayList<Integer>();//this will be used to save the game and posibilities in the logical  game
-    public static Token actualToken = ListPlayersGaming.getInstance().searchByName(imagesNames.get(count));
-    //public static int trapSelected = 0;
-    
     
     /*Variables to use for token image*/
     ImageIcon  I1 = new ImageIcon("/ImagesDominoes/0_0.png");
@@ -131,21 +130,21 @@ public class WindowStartGame extends javax.swing.JFrame {
                     TransferHandler tranferHandler = jlabelInfo.getTransferHandler();   //th is used to transfer the image to the new position                
                     String nam = imagesNames.get(count);//Get the actual token name
                     Token newToken = searchTokenName(nam);  //token grabbed
-                    //add token with trap in a arrayList                  
+                    //add token with trap in a arrayList
+                    if(newToken.trap != 0){
+                        int id = newToken.id;
+                        Token token = searchToken(id);
+                        ListPlayersGaming.listTrap.add(token);
+                    }
                     System.out.println("_______________Data of token_______________\n");
                     System.out.println(newToken.value1 + "|" + newToken.value2);
-                    
-                    
-                    
-                    
-//It insert the first token in the list
-                    if(ListTokensGame.getInstance().start3 == null) { //if the list is empty...
-
+                    //It insert the first token in the list
+                    if (ListTokensGame.getInstance().start3 == null) { //if the list is empty...
+                        // Search if are tokens with tramps
+                        verify();
                         tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY);   //is used to handle the transfer of a Transferable to and from Swing components                 
                         callInsertAtStart(newToken); //this will insert the first tokens
                         deleteToken(nam);            //this will eliminate the token in the player list   
-                        listTrap.add(newToken.value1);
-                        listTrap.add(newToken.trap);
                         listPossibilities.add (0,newToken.value1);// this will save the start position
                         listPossibilities.add(1,newToken.value2);// this will save the end position
                         tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY);//is used copy the token image in the graphical matrix                
@@ -174,17 +173,11 @@ public class WindowStartGame extends javax.swing.JFrame {
                         // this will check the start position
                         if (newToken.value2 == listPossibilities.get(0)){ // if is the same valor to start
                             // Search if are tokens with tramps
-                            //verify if there are any value with a trap
-                            if(verifyTrap(newToken.value1, newToken.value2)== true){
-                                moveDone = true;
-                                break;                       
-                            }
+                            verify();
                             int aux = listPossibilities.get(0);
                             tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY); // copy the info   //is used to handle the transfer of a Transferable to and from Swing components                 
                             callInsertAtStart(newToken); // insert at start
                             deleteToken(nam);// delete the token
-                            listTrap.add(newToken.value1);
-                            listTrap.add(newToken.trap);
                             listPossibilities.set(0, newToken.value1);// move the first value
                             // this will check if is pair
                             if(newToken.value1 == newToken.value2){
@@ -206,19 +199,13 @@ public class WindowStartGame extends javax.swing.JFrame {
                         }
                         if (newToken.value1 == listPossibilities.get(0)) { // if is different valor to start
                             // Search if are tokens with tramps
-                            //verify if there are any value with a trap
-                            if(verifyTrap(newToken.value1, newToken.value2)== true){
-                                moveDone = true;
-                                break;                       
-                            }
+                            verify();
                             tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY);   //is used to handle the transfer of a Transferable to and from Swing components                 
                             int[] arrayChanged = changeValors(newToken.value1, newToken.value2);
                             newToken.value1 = arrayChanged[0];
                             newToken.value2 = arrayChanged[1];
                             callInsertAtStart(newToken);
                             deleteToken(nam);
-                            listTrap.add(newToken.value1);
-                            listTrap.add(newToken.trap);
                             listPossibilities.set(0, newToken.value1);// move the first value
                             if(newToken.value1 == newToken.value2){
                                 listPossibilities.add( newToken.value1);
@@ -238,16 +225,10 @@ public class WindowStartGame extends javax.swing.JFrame {
                         }
                         if (newToken.value1 == listPossibilities.get(1)) { // if is the same valor to start
                             // Search if are tokens with tramps
-                            //verify if there are any value with a trap
-                            if(verifyTrap(newToken.value1, newToken.value2)== true){
-                                moveDone = true;
-                                break;                       
-                            }
+                            verify();
                             tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY);   //is used to handle the transfer of a Transferable to and from Swing components                 
                             callInserToTheRight(newToken);
                             deleteToken(nam);
-                            listTrap.add(newToken.value2);
-                            listTrap.add(newToken.trap);
                             listPossibilities.set(1, newToken.value2);// move the first value
                             if(newToken.value1 == newToken.value2){
                                 listPossibilities.add( newToken.value1);
@@ -267,19 +248,13 @@ public class WindowStartGame extends javax.swing.JFrame {
                         }
                         if (newToken.value2 == listPossibilities.get(1)) { // if is different valor to start
                             // Search if are tokens with tramps
-                            //verify if there are any value with a trap
-                            if(verifyTrap(newToken.value1, newToken.value2)== true){
-                                moveDone = true;
-                                break;                       
-                            }
+                            verify();
                             tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY);   //is used to handle the transfer of a Transferable to and from Swing components                 
                             int[] arrayChanged = changeValors(newToken.value1, newToken.value2);
                             newToken.value1 = arrayChanged[0];
                             newToken.value2 = arrayChanged[1];
                             callInserToTheRight(newToken);
                             deleteToken(nam);
-                            listTrap.add(newToken.value2);
-                            listTrap.add(newToken.trap);
                             listPossibilities.set(1, newToken.value2);// move the first value
                             if(newToken.value1 == newToken.value2){
                                 listPossibilities.add( newToken.value1);
@@ -303,16 +278,10 @@ public class WindowStartGame extends javax.swing.JFrame {
                                 
                                 if (var == newToken.value1) {
                                     // Search if are tokens with tramps
-                                    //verify if there are any value with a trap
-                                if(verifyTrap(newToken.value1, newToken.value2)== true){
-                                    moveDone = true;
-                                    break;                       
-                                }
+                                    verify();
                                     tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY);   //is used to handle the transfer of a Transferable to and from Swing components                 
                                     callInserToTheRight(newToken);
                                     deleteToken(nam);
-                                    listTrap.add(newToken.value2);
-                                    listTrap.add(newToken.trap);
                                     listPossibilities.set(i, newToken.value2);
 
                                 if( ListPlayersGaming.getInstance().playerGaming.tokens.size() == 0 ){
@@ -329,19 +298,13 @@ public class WindowStartGame extends javax.swing.JFrame {
                                 
                             }
                             if(var == newToken.value2){
-                                //verify if there are any value with a trap
-                                if(verifyTrap(newToken.value1, newToken.value2)== true){
-                                    moveDone = true;
-                                    break;                       
-                                }
+                                verify();
                                 tranferHandler.exportAsDrag(jlabelInfo, e, TransferHandler.COPY);   //is used to handle the transfer of a Transferable to and from Swing components                 
                                 int[] arrayChanged = changeValors(newToken.value1, newToken.value2);
                                 newToken.value1 = arrayChanged[0];
                                 newToken.value2 = arrayChanged[1];
                                 callInserToTheRight(newToken);
                                 deleteToken(nam);
-                                listTrap.add(newToken.value2);
-                                listTrap.add(newToken.trap);
                                 listPossibilities.set(i, newToken.value2);
                                 if( ListPlayersGaming.getInstance().playerGaming.tokens.size() == 0 ){
                                     winner = true;
@@ -365,10 +328,8 @@ public class WindowStartGame extends javax.swing.JFrame {
                             break;
                         }
                     }
-                
                     
-                
-            }
+                }
             
             
 
@@ -646,7 +607,7 @@ public class WindowStartGame extends javax.swing.JFrame {
 
         buttonTrap.setBackground(new java.awt.Color(0, 0, 0));
         buttonTrap.setForeground(new java.awt.Color(102, 0, 255));
-        buttonTrap.setText("Ok");
+        buttonTrap.setText("Trap");
         buttonTrap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonTrapActionPerformed(evt);
@@ -1162,7 +1123,7 @@ public class WindowStartGame extends javax.swing.JFrame {
                 position4.setIcon(null);
                 count = 0;
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Please select Button's Token to get a new possibility");
+                JOptionPane.showMessageDialog(rootPane, "Please select button's token to get a new possibility");
             }
         }
         if(moveDone == true){
@@ -1196,73 +1157,93 @@ public class WindowStartGame extends javax.swing.JFrame {
     }//GEN-LAST:event_tipoTrampaActionPerformed
 
     private void buttonTrapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTrapActionPerformed
+        //addTrap();
         
-        if (tipoTrampa.getSelectedItem().equals("Remove token")) {
-                if(ListPlayersGaming.getInstance().playerGaming.trapsActivated.contains(1)){
-                    JOptionPane.showMessageDialog(rootPane, "That trap was already activated");
-                }
-                else{
-                    String n = imagesNames.get(count);
-                    System.out.println(n);
-                    Token actualToken = ListPlayersGaming.getInstance().searchByName(n);
-                    actualToken.setTrap(1);
-                    ListPlayersGaming.getInstance().playerGaming.trapsActivated.add(1);
-                    JOptionPane.showMessageDialog(rootPane, "Trap 1 activated!");
-                }               
-            } 
-            else if (tipoTrampa.getSelectedItem().equals("Lose 1 turn")) {
-                if(ListPlayersGaming.getInstance().playerGaming.trapsActivated.contains(2)){
-                    JOptionPane.showMessageDialog(rootPane, "That trap was already activated");
-                    
-                }
-                else{
-                    String n = imagesNames.get(count);
-                    System.out.println(n);
-                    Token actualToken = ListPlayersGaming.getInstance().searchByName(n);
-                    actualToken.setTrap(2);
-                    ListPlayersGaming.getInstance().playerGaming.trapsActivated.add(2);
-                    JOptionPane.showMessageDialog(rootPane, "Trap 2 activated!");
-                }
-            }
-            else {
-                if(ListPlayersGaming.getInstance().playerGaming.trapsActivated.contains(1)){
-                    JOptionPane.showMessageDialog(rootPane, "That trap was already activated");
-                }
-                else{
-                    String n = imagesNames.get(count);
-                    System.out.println(n);
-                    Token actualToken = ListPlayersGaming.getInstance().searchByName(n);
-                    actualToken.setTrap(3);
-                    ListPlayersGaming.getInstance().playerGaming.trapsActivated.add(3);
-                    JOptionPane.showMessageDialog(rootPane, "Trap 3 activated!");
-                }
-            }  
     }//GEN-LAST:event_buttonTrapActionPerformed
-  
-    public boolean verifyTrap(int valueTrap1, int valueTrap2) {
-        for (int i = 0; i < listTrap.size(); i = i + 2) {
-            if (listTrap.get(i) == valueTrap1 | listTrap.get(i) == valueTrap2) {
-
-                if (listTrap.get(i + 1) == 1) {
-                    listTrap.set(i,8);
-                    trapReturnToken();
-                    return true;
-                }
-                if (listTrap.get(i + 1) == 2) {
-                    listTrap.set(i,8);
-                    trapLoseOneTry();
-                    return true;
-                }
-                if (listTrap.get(i + 1) == 3) {
-                    listTrap.set(i,8);
-                    trapTakeToken();
-                    return true;
-                }
-
+    public void addTrap(){
+        if (tipoTrampa.getSelectedItem().equals("Remove token")) {
+            if (ListPlayersGaming.getInstance().listTrap.contains(1)) {
+                JOptionPane.showMessageDialog(rootPane, "That trap was already activated");
+                return;
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Trap 1 activeted");
+                Token auxToken = tokenSelected;
+                auxToken.setTrap(1);
+                ListPlayersGaming.getInstance().listTrap.add(tokenSelected);
+                
+                return;
+            }
+        } else if (tipoTrampa.getSelectedItem().equals("Lose 1 turn")) {
+            if (ListPlayersGaming.getInstance().playerGaming.trapsActivated.contains(1)) {
+                JOptionPane.showMessageDialog(rootPane, "That trap was already activated");
+                return;
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Trap 2 activeted");
+                Token auxToken = tokenSelected;
+                auxToken.setTrap(2);
+                ListPlayersGaming.getInstance().listTrap.add(auxToken);
+                return;
+            }
+        } else if (tipoTrampa.getSelectedItem().equals("Take another token")) {
+            if (ListPlayersGaming.getInstance().playerGaming.trapsActivated.contains(1)) {
+                JOptionPane.showMessageDialog(rootPane, "That trap was already activated");
+                return ;
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Trap 3 activeted");
+                Token auxToken = tokenSelected;
+                auxToken.setTrap(1);
+                ListPlayersGaming.getInstance().listTrap.add(auxToken);
+                
+                return;
             }
         }
-        return false;
 
+    }
+
+    public void verify() {
+         
+        for (int i = 0; i < ListPlayersGaming.getInstance().listTrap.size(); i++) {
+            int trap = ListPlayersGaming.getInstance().listTrap.get(i).trap;
+            if (trap != 0) {
+                searchTrap(trap);
+                System.out.println("Token with trap : " + trap);
+            }
+        }
+    }
+
+    public void searchTrap(int number) {
+        if (number == 1) {
+            activateTrap1();
+        }
+        if (number == 2) {
+            activateTrap2();
+        }
+        if (number == 3) {
+            activateTrap3();
+        }
+    }
+
+    public void activateTrap1() {
+        JOptionPane.showMessageDialog(rootPane, "Trap 1 activated, your token was returned ");
+        moveDone = true;
+        
+    }
+
+    public void activateTrap2() {
+        JOptionPane.showMessageDialog(rootPane, "Trap 2 activated, you lost 1 turn");
+        done();
+    }
+
+    public void activateTrap3() {
+        // it will given a new token if is available
+        if (availableTokens != 0) {
+            JOptionPane.showMessageDialog(rootPane, "Trap 3 was activated, you were given a new token");
+            takeToken();
+        }
+        if (availableTokens == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Trap 3 was activated \n you will lost your round \n because isn't token's available");
+            done();
+        }
     }
 
     public void done() {
@@ -1352,18 +1333,15 @@ public class WindowStartGame extends javax.swing.JFrame {
     }//GEN-LAST:event_bBackActionPerformed
 
     private void buttonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveActionPerformed
-       
         try {
             // TODO add your handling code here:
             capturarPantalla(ListPlayersGaming.getInstance().playerGaming.name);
-
         } catch (AWTException ex) {
             Logger.getLogger(WindowStartGame.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(WindowStartGame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        deletePlayersFile();
-        saveActualPlayersList();
+        
     }//GEN-LAST:event_buttonSaveActionPerformed
 
 
@@ -1712,43 +1690,5 @@ public class WindowStartGame extends javax.swing.JFrame {
              ListTokensGame.getInstance().addTokenPair(tok);
         }
     }
-    
-    
-    // Traps
-    public void trapLoseOneTry(){
-        done();
-    }
-    
-    public void trapReturnToken(){
-        moveDone = true;     
-    }
 
-    public void trapTakeToken() {
-        // it will given a new token if is available
-        if (availableTokens != 0) {
-            JOptionPane.showMessageDialog(rootPane, "Trap 3 was activated, you were given a new token");
-            takeToken();
-        }
-        if (availableTokens == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Trap 3 was activated \n you will lost your round \n because isn't token's available");
-            done();
-        }
-    }
-    
-    public void saveActualPlayersList(){
-        ListPlayersRegistered.getInstance().reWriteUsers();
-    }
-    
-    public boolean deletePlayersFile() {
-        File route = new File(".");                                              // get the proyect location in any computer
-        String path = route.getAbsolutePath();  route.delete();                                 // save the location in a string
-        File playersFile = new File(path + "\\Players.txt");                       // open a new file
-        if (playersFile.exists()) {                                                // if the file.txt exists
-            playersFile.delete();                                                // then delete it                   // show the location where the text file used to be  
-            System.out.println("Files deleted from " + path);
-            return true;
-        } 
-         System.out.println("File does not exists.");
-         return false;
-    }
 }

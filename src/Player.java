@@ -22,12 +22,11 @@ public class Player implements Serializable{
         this.name = "";
         this.password = "";
         this.wins = 0;
-        this.trapsActivated = new ArrayList<>(3);
+        this.trapsActivated = new ArrayList<>();
         this.tokens = new ArrayList<>(21);
         this.ant = null;
         this.sig = null;
         this.games = new ArrayList<BufferedImage>();
-        
 }
 
     public Player(String name, String password) {
