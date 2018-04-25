@@ -1,4 +1,3 @@
 {"name":"xd","password":"xdD","wins":0,"trapsActivated":[],"tokens":[],"ant":null,"sig":null,"games":[]}
 {"name":"Danny","password":"largo","wins":0,"trapsActivated":[],"tokens":[],"ant":null,"sig":null,"games":[]}
 {"name":"Meylin","password":"bebito","wins":0,"trapsActivated":[],"tokens":[],"ant":null,"sig":null,"games":[]}
-{"name":"Jefrón","password":"1","wins":0,"trapsActivated":[],"tokens":[],"ant":null,"sig":null,"games":[]}

@@ -61,6 +61,7 @@ public class WindowLogin extends javax.swing.JFrame {
         butonSingIn = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
         principalPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -101,11 +102,11 @@ public class WindowLogin extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/lo.png"))); // NOI18N
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(70, 380, 100, 100);
+        jLabel2.setBounds(70, 310, 100, 100);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/re.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/off3.png"))); // NOI18N
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(70, 510, 96, 95);
+        jLabel3.setBounds(70, 570, 96, 95);
 
         butonLoadGame.setBackground(new java.awt.Color(102, 0, 255));
         butonLoadGame.setFont(new java.awt.Font("Script MT Bold", 3, 18)); // NOI18N
@@ -117,7 +118,7 @@ public class WindowLogin extends javax.swing.JFrame {
             }
         });
         jPanel1.add(butonLoadGame);
-        butonLoadGame.setBounds(260, 420, 100, 55);
+        butonLoadGame.setBounds(240, 350, 100, 55);
 
         butonSingIn.setBackground(new java.awt.Color(102, 0, 255));
         butonSingIn.setFont(new java.awt.Font("Script MT Bold", 3, 18)); // NOI18N
@@ -129,14 +130,14 @@ public class WindowLogin extends javax.swing.JFrame {
             }
         });
         jPanel1.add(butonSingIn);
-        butonSingIn.setBounds(260, 540, 100, 60);
+        butonSingIn.setBounds(240, 460, 100, 60);
 
         jLabel6.setFont(new java.awt.Font("Script MT Bold", 3, 36)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 0, 255));
         jLabel6.setText("Select an Option to Continue");
         jLabel6.setToolTipText("");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(0, 200, 460, 150);
+        jLabel6.setBounds(0, 200, 460, 90);
 
         jButton1.setBackground(new java.awt.Color(102, 0, 255));
         jButton1.setFont(new java.awt.Font("Script MT Bold", 1, 18)); // NOI18N
@@ -148,7 +149,11 @@ public class WindowLogin extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(260, 660, 100, 60);
+        jButton1.setBounds(240, 580, 100, 60);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/re.png"))); // NOI18N
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(70, 440, 96, 95);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 490, 1080);
@@ -445,6 +450,8 @@ public class WindowLogin extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         deletePlayersFile();
         saveActualPlayersList();
+        JOptionPane.showMessageDialog(rootPane, "Thanks for using our application! ");
+        this.dispose();
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -457,6 +464,7 @@ public class WindowLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
