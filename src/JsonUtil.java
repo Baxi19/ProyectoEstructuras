@@ -22,7 +22,8 @@ public class JsonUtil {
         String jsonResult = "";
         try {
             jsonResult = mapper.writeValueAsString(nPlayer);
-        } catch (IOException e) {
+        } 
+        catch (IOException e) {
          
         }
         return jsonResult;

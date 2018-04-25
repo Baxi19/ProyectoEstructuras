@@ -98,19 +98,27 @@ public class ListPlayersRegistered {   // singletone class PlayerList
     }
      
 // method to delete an player to the player's list
-    public void deletePlayer(String name){       
-        Player aux = searchPlayer(name);         // call method search and save the result in aux
-        aux.ant.sig = aux.sig;
-        aux.sig.ant = aux.ant;
-        if(aux == start){
-            start = aux.sig;
+    public void deletePlayer(Player playerToDelete){              // call method search and save the result in aux
+        if(playerToDelete == start){
+            playerToDelete.sig.ant = end;
+            end.sig = playerToDelete.sig;
+            start = playerToDelete.sig;  
+            playerToDelete.ant = null;
+            playerToDelete.sig = null;
         }
-        else if(aux == end){
-            end = aux.sig;
+        else if(playerToDelete == end){
+            playerToDelete.ant.sig = start;    
+            start.ant = playerToDelete.ant;
+            end = playerToDelete.ant;
+            playerToDelete.ant = null;
+            playerToDelete.sig = null;
         }
-        aux.sig = null;
-        aux.ant = null;
-        aux = null;
+        else{
+            playerToDelete.ant.sig = playerToDelete.sig;
+            playerToDelete.sig.ant = playerToDelete.ant;
+            playerToDelete.ant = null;
+            playerToDelete.sig = null;
+        }
     }
     
     public void editPlayer(String name, String newName, String newPassword, int wins){

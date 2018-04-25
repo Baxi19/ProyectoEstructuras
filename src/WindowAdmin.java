@@ -144,7 +144,7 @@ public class WindowAdmin extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButton1);
-        jButton1.setBounds(390, 360, 57, 23);
+        jButton1.setBounds(390, 360, 58, 24);
 
         buttonAddUser.setFont(new java.awt.Font("MS Gothic", 1, 14)); // NOI18N
         buttonAddUser.setText("Add User");
@@ -165,7 +165,7 @@ public class WindowAdmin extends javax.swing.JFrame {
             }
         });
         jPanel2.add(buttonBack);
-        buttonBack.setBounds(22, 415, 49, 30);
+        buttonBack.setBounds(22, 415, 50, 30);
 
         labelSearchUser.setFont(new java.awt.Font("MS Gothic", 1, 14)); // NOI18N
         labelSearchUser.setForeground(new java.awt.Color(255, 255, 255));
@@ -205,7 +205,7 @@ public class WindowAdmin extends javax.swing.JFrame {
             }
         });
         jPanel2.add(buttonDeleteUser);
-        buttonDeleteUser.setBounds(710, 210, 121, 30);
+        buttonDeleteUser.setBounds(710, 210, 122, 30);
 
         labelResult.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(labelResult);
@@ -309,7 +309,10 @@ public class WindowAdmin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Empty field");
         else{
             String name = TextFieldUserDelete.getText();
-            ListPlayersRegistered.getInstance().deletePlayer(name);
+            Player playerToDelete = ListPlayersRegistered.getInstance().searchPlayer(name);
+            if(playerToDelete != null){
+                ListPlayersRegistered.getInstance().deletePlayer(playerToDelete);
+            }
             JOptionPane.showMessageDialog(rootPane, "Player " + name + " succesfully deleted.");
             TextFieldUserDelete.setText("");      
        }
